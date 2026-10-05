@@ -86,6 +86,38 @@ def preprocess_numpy(image, mean=MEAN, std=STD):
     return x.transpose(2, 0, 1)
 
 
+def available_cpus():
+    """CPU cores this process may really use.
+
+    Containers (Render, Vercel, Docker) often report the host's core count while
+    limiting the process to a fraction of one core through cgroups. Starting many
+    threads there makes the model extremely slow, so read the real quota.
+    """
+    env = os.environ.get("SMARTAGRI_THREADS")
+    if env and env.isdigit():
+        return max(1, int(env))
+    quota = None
+    try:  # cgroup v2
+        with open("/sys/fs/cgroup/cpu.max", encoding="utf-8") as fh:
+            q, period = fh.read().split()[:2]
+            if q != "max":
+                quota = int(q) / int(period)
+    except (OSError, ValueError):
+        try:  # cgroup v1
+            with open("/sys/fs/cgroup/cpu/cpu.cfs_quota_us", encoding="utf-8") as fh:
+                q = int(fh.read())
+            with open("/sys/fs/cgroup/cpu/cpu.cfs_period_us", encoding="utf-8") as fh:
+                period = int(fh.read())
+            if q > 0:
+                quota = q / period
+        except (OSError, ValueError):
+            pass
+    cores = os.cpu_count() or 1
+    if quota is not None:
+        cores = min(cores, max(1, int(quota)))
+    return max(1, min(4, cores))
+
+
 def _softmax(z):
     import numpy as np
 
@@ -138,7 +170,11 @@ class DiseaseModel:
                     import onnxruntime as ort
 
                     opts = ort.SessionOptions()
-                    opts.intra_op_num_threads = max(1, min(4, os.cpu_count() or 1))
+                    opts.intra_op_num_threads = available_cpus()
+                    opts.inter_op_num_threads = 1
+                    # Busy-waiting threads starve small containers; sleep instead.
+                    opts.add_session_config_entry("session.intra_op.allow_spinning", "0")
+                    opts.add_session_config_entry("session.inter_op.allow_spinning", "0")
                     self._session = ort.InferenceSession(os.path.join(self.model_dir, "model.onnx"), opts,
                                                          providers=["CPUExecutionProvider"])
                     with open(os.path.join(self.model_dir, "config.json"), encoding="utf-8") as fh:
@@ -148,7 +184,7 @@ class DiseaseModel:
                     import torch
                     from transformers import AutoModelForImageClassification
 
-                    torch.set_num_threads(max(1, min(4, os.cpu_count() or 1)))
+                    torch.set_num_threads(available_cpus())
                     source = self.model_dir if os.path.isfile(os.path.join(self.model_dir, "config.json")) else HF_REPO
                     if source == HF_REPO:
                         log.warning("Local model not found in %s; downloading %s", self.model_dir, HF_REPO)
@@ -162,7 +198,8 @@ class DiseaseModel:
                     self._model = model
                 self.load_error = None
                 self.load_seconds = round(time.time() - start, 1)
-                log.info("Disease model loaded (%s) in %ss", self.backend, self.load_seconds)
+                log.info("Disease model loaded (%s, %d threads) in %ss", self.backend, available_cpus(),
+                         self.load_seconds)
             except Exception as exc:  # noqa: BLE001 - surface any load failure to the UI
                 self.load_error = str(exc)
                 log.exception("Could not load disease model")
