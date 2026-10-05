@@ -66,7 +66,9 @@ def create_app(test_config=None):
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE="Lax",
         PERMANENT_SESSION_LIFETIME=dt.timedelta(days=14),
-        WARMUP_MODEL=True,
+        # Background warm-up only when asked (run.py does). Under forking production servers a
+        # model loaded before the fork can hang, so there it loads on the first request instead.
+        WARMUP_MODEL=os.environ.get("SMARTAGRI_WARMUP") == "1",
         WTF_CSRF_ENABLED=True,
     )
     if test_config:

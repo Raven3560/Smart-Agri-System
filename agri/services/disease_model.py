@@ -137,12 +137,26 @@ class DiseaseModel:
         self._transform = None
         self._mean_std = (MEAN, STD)
         self._lock = threading.Lock()
+        self._pid = os.getpid()
         self.backend = None
         self.load_error = None
         self.load_seconds = None
+        self.stage = "not loaded"
+        self.threads = None
+
+    def _check_fork(self):
+        """Web servers such as uWSGI and gunicorn fork worker processes. A model, thread
+        pool or lock copied across a fork can hang forever, so start fresh in a new process."""
+        if self._pid != os.getpid():
+            self._pid = os.getpid()
+            self._model = None
+            self._session = None
+            self._lock = threading.Lock()
+            self.stage = "not loaded (new worker process)"
 
     @property
     def loaded(self):
+        self._check_fork()
         return self._model is not None or self._session is not None
 
     @staticmethod
@@ -159,7 +173,10 @@ class DiseaseModel:
     def load(self):
         if self.loaded:
             return self._model or self._session
-        with self._lock:
+        # Never wait forever: if another request is stuck loading, fail with a clear message.
+        if not self._lock.acquire(timeout=90):
+            raise RuntimeError("The disease model is still loading. Please try again in a minute.")
+        try:
             if self.loaded:
                 return self._model or self._session
             start = time.time()
@@ -167,10 +184,16 @@ class DiseaseModel:
                 self._mean_std = load_preprocess(self.model_dir)
                 self.backend = self._choose_backend()
                 if self.backend == "onnx":
+                    self.stage = "importing onnxruntime"
                     import onnxruntime as ort
 
+                    self.stage = "creating inference session"
                     opts = ort.SessionOptions()
-                    opts.intra_op_num_threads = available_cpus()
+                    # One thread by default: MobileNetV2 is small, and a single thread cannot
+                    # deadlock after a fork or starve a small container. Override with SMARTAGRI_THREADS.
+                    env_threads = os.environ.get("SMARTAGRI_THREADS", "")
+                    self.threads = int(env_threads) if env_threads.isdigit() and int(env_threads) > 0 else 1
+                    opts.intra_op_num_threads = self.threads
                     opts.inter_op_num_threads = 1
                     # Busy-waiting threads starve small containers; sleep instead.
                     opts.add_session_config_entry("session.intra_op.allow_spinning", "0")
@@ -181,10 +204,12 @@ class DiseaseModel:
                         id2label = json.load(fh)["id2label"]
                     self._labels = [id2label[str(i)] for i in range(len(id2label))]
                 else:
+                    self.stage = "importing torch"
                     import torch
                     from transformers import AutoModelForImageClassification
 
-                    torch.set_num_threads(available_cpus())
+                    self.threads = available_cpus()
+                    torch.set_num_threads(self.threads)
                     source = self.model_dir if os.path.isfile(os.path.join(self.model_dir, "config.json")) else HF_REPO
                     if source == HF_REPO:
                         log.warning("Local model not found in %s; downloading %s", self.model_dir, HF_REPO)
@@ -198,12 +223,16 @@ class DiseaseModel:
                     self._model = model
                 self.load_error = None
                 self.load_seconds = round(time.time() - start, 1)
-                log.info("Disease model loaded (%s, %d threads) in %ss", self.backend, available_cpus(),
+                self.stage = "ready"
+                log.info("Disease model loaded (%s, %s threads) in %ss", self.backend, self.threads,
                          self.load_seconds)
             except Exception as exc:  # noqa: BLE001 - surface any load failure to the UI
-                self.load_error = str(exc)
+                self.load_error = f"{type(exc).__name__}: {exc}"
+                self.stage = "failed"
                 log.exception("Could not load disease model")
                 raise
+        finally:
+            self._lock.release()
         return self._model or self._session
 
     @property
@@ -261,7 +290,8 @@ class DiseaseModel:
     def info(self):
         info = {"dir": self.model_dir, "loaded": self.loaded, "error": self.load_error,
                 "load_seconds": self.load_seconds, "architecture": "MobileNetV2 (1.0, 224)",
-                "source": HF_REPO, "input_size": f"{IMAGE_SIZE} x {IMAGE_SIZE} RGB", "backend": self.backend}
+                "source": HF_REPO, "input_size": f"{IMAGE_SIZE} x {IMAGE_SIZE} RGB", "backend": self.backend,
+                "stage": self.stage, "threads": self.threads}
         for name in ("model.safetensors", "model.onnx"):
             weights = os.path.join(self.model_dir, name)
             if os.path.exists(weights):

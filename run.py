@@ -8,7 +8,11 @@
 """
 import argparse
 
-from agri import create_app
+import os
+
+os.environ.setdefault("SMARTAGRI_WARMUP", "1")  # single process: safe to load the model at start-up
+
+from agri import create_app  # noqa: E402
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run the Smart Agriculture Assistant")

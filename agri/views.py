@@ -211,8 +211,24 @@ def confusion_matrix():
 
 @bp.route("/healthz")
 def healthz():
+    import time
+
     m = disease_model()
-    return {"status": "ok", "model_loaded": m.loaded, "model_error": m.load_error}
+    out = {"status": "ok", "model_loaded": m.loaded, "model_error": m.load_error}
+    if request.args.get("load") == "1":
+        start = time.time()
+        try:
+            m.load()
+            from PIL import Image as _Image
+            t = time.time()
+            m.analyse(_Image.new("RGB", (300, 300), (90, 140, 70)))
+            out["predict_ms"] = round((time.time() - t) * 1000)
+        except Exception as exc:  # noqa: BLE001 - this endpoint exists to report problems
+            out["model_error"] = f"{type(exc).__name__}: {exc}"
+        out["load_check_seconds"] = round(time.time() - start, 2)
+        out["model_loaded"] = m.loaded
+    out.update({"backend": m.backend, "stage": m.stage, "threads": m.threads, "pid": os.getpid()})
+    return out
 
 
 # --------------------------------------------------------------------------- dashboard
@@ -284,10 +300,9 @@ def analyze():
     if inputs["crop"] in kb.model_crops():
         try:
             ranked = classify(image, inputs["crop"])
-        except Exception:  # noqa: BLE001 - shown to the user as a friendly message
+        except Exception as exc:  # noqa: BLE001 - shown to the user as a friendly message
             current_app.logger.exception("Prediction failed")
-            flash("The disease detection model could not be loaded. Run 'python scripts/download_model.py' "
-                  "and restart the app.", "error")
+            flash(f"The disease model could not run ({exc}). Please try again in a minute.", "error")
             values = {**form_defaults(), **inputs, "location": loc}
             return render_template("analyze.html", values=values, **ctx), 500
         prediction = recommender.interpret_prediction(ranked, inputs["crop"])
