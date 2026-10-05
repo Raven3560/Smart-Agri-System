@@ -1,0 +1,1335 @@
+{
+ "trained_at": "2026-10-05 21:06",
+ "backbone": "PlantVillage MobileNetV2 features (1280-d, mirror-averaged), frozen",
+ "classifier": "logreg C=0.2",
+ "images": 19531,
+ "train_images": 16601,
+ "test_images": 2930,
+ "classes": 81,
+ "crops": 16,
+ "accuracy_within_crop": 0.9058,
+ "macro_f1_within_crop": 0.8963,
+ "accuracy_auto_crop": 0.8986,
+ "val_accuracy": 0.9096,
+ "per_crop": {
+  "banana": {
+   "accuracy": 0.8901,
+   "macro_f1": 0.9091,
+   "test_images": 182,
+   "classes": [
+    {
+     "key": "banana___cordana_leaf_spot",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 24
+    },
+    {
+     "key": "banana___healthy",
+     "precision": 0.8261,
+     "recall": 0.9048,
+     "f1": 0.8636,
+     "support": 42
+    },
+    {
+     "key": "banana___pestalotiopsis_leaf_spot",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 26
+    },
+    {
+     "key": "banana___sigatoka",
+     "precision": 0.907,
+     "recall": 0.8667,
+     "f1": 0.8864,
+     "support": 45
+    },
+    {
+     "key": "banana___xanthomonas_wilt",
+     "precision": 0.814,
+     "recall": 0.7778,
+     "f1": 0.7955,
+     "support": 45
+    }
+   ],
+   "confusion": [
+    [
+     24,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     38,
+     0,
+     0,
+     4
+    ],
+    [
+     0,
+     0,
+     26,
+     0,
+     0
+    ],
+    [
+     0,
+     2,
+     0,
+     39,
+     4
+    ],
+    [
+     0,
+     6,
+     0,
+     4,
+     35
+    ]
+   ]
+  },
+  "chilli": {
+   "accuracy": 0.7722,
+   "macro_f1": 0.7568,
+   "test_images": 79,
+   "classes": [
+    {
+     "key": "chilli___cercospora_leaf_spot",
+     "precision": 0.76,
+     "recall": 0.8261,
+     "f1": 0.7917,
+     "support": 23
+    },
+    {
+     "key": "chilli___healthy",
+     "precision": 0.6667,
+     "recall": 0.6,
+     "f1": 0.6316,
+     "support": 10
+    },
+    {
+     "key": "chilli___mites_and_thrips",
+     "precision": 0.75,
+     "recall": 0.75,
+     "f1": 0.75,
+     "support": 16
+    },
+    {
+     "key": "chilli___nutrient_deficiency",
+     "precision": 0.6923,
+     "recall": 0.6,
+     "f1": 0.6429,
+     "support": 15
+    },
+    {
+     "key": "chilli___powdery_mildew",
+     "precision": 0.9375,
+     "recall": 1.0,
+     "f1": 0.9677,
+     "support": 15
+    }
+   ],
+   "confusion": [
+    [
+     19,
+     0,
+     0,
+     4,
+     0
+    ],
+    [
+     0,
+     6,
+     3,
+     0,
+     1
+    ],
+    [
+     3,
+     1,
+     12,
+     0,
+     0
+    ],
+    [
+     3,
+     2,
+     1,
+     9,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     15
+    ]
+   ]
+  },
+  "cotton": {
+   "accuracy": 0.933,
+   "macro_f1": 0.9254,
+   "test_images": 194,
+   "classes": [
+    {
+     "key": "cotton___alternaria_leaf_spot",
+     "precision": 0.913,
+     "recall": 0.8077,
+     "f1": 0.8571,
+     "support": 26
+    },
+    {
+     "key": "cotton___bacterial_blight",
+     "precision": 0.8857,
+     "recall": 0.9394,
+     "f1": 0.9118,
+     "support": 33
+    },
+    {
+     "key": "cotton___fusarium_wilt",
+     "precision": 1.0,
+     "recall": 0.9778,
+     "f1": 0.9888,
+     "support": 45
+    },
+    {
+     "key": "cotton___healthy",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    },
+    {
+     "key": "cotton___verticillium_wilt",
+     "precision": 0.8511,
+     "recall": 0.8889,
+     "f1": 0.8696,
+     "support": 45
+    }
+   ],
+   "confusion": [
+    [
+     21,
+     0,
+     0,
+     0,
+     5
+    ],
+    [
+     0,
+     31,
+     0,
+     0,
+     2
+    ],
+    [
+     0,
+     1,
+     44,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     45,
+     0
+    ],
+    [
+     2,
+     3,
+     0,
+     0,
+     40
+    ]
+   ]
+  },
+  "groundnut": {
+   "accuracy": 1.0,
+   "macro_f1": 1.0,
+   "test_images": 168,
+   "classes": [
+    {
+     "key": "groundnut___alternaria_leaf_spot",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    },
+    {
+     "key": "groundnut___healthy",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    },
+    {
+     "key": "groundnut___rosette",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 15
+    },
+    {
+     "key": "groundnut___rust",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 18
+    },
+    {
+     "key": "groundnut___tikka_leaf_spot",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    }
+   ],
+   "confusion": [
+    [
+     45,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     45,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     15,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     18,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     45
+    ]
+   ]
+  },
+  "malabar_spinach": {
+   "accuracy": 0.6237,
+   "macro_f1": 0.6154,
+   "test_images": 186,
+   "classes": [
+    {
+     "key": "malabar_spinach___anthracnose",
+     "precision": 0.7,
+     "recall": 0.4667,
+     "f1": 0.56,
+     "support": 15
+    },
+    {
+     "key": "malabar_spinach___bacterial_spot",
+     "precision": 0.6222,
+     "recall": 0.6222,
+     "f1": 0.6222,
+     "support": 45
+    },
+    {
+     "key": "malabar_spinach___downy_mildew",
+     "precision": 0.6429,
+     "recall": 0.75,
+     "f1": 0.6923,
+     "support": 36
+    },
+    {
+     "key": "malabar_spinach___healthy",
+     "precision": 0.6596,
+     "recall": 0.6889,
+     "f1": 0.6739,
+     "support": 45
+    },
+    {
+     "key": "malabar_spinach___pest_damage",
+     "precision": 0.5476,
+     "recall": 0.5111,
+     "f1": 0.5287,
+     "support": 45
+    }
+   ],
+   "confusion": [
+    [
+     7,
+     1,
+     1,
+     4,
+     2
+    ],
+    [
+     2,
+     28,
+     4,
+     3,
+     8
+    ],
+    [
+     0,
+     3,
+     27,
+     3,
+     3
+    ],
+    [
+     1,
+     6,
+     1,
+     31,
+     6
+    ],
+    [
+     0,
+     7,
+     9,
+     6,
+     23
+    ]
+   ]
+  },
+  "mango": {
+   "accuracy": 0.9889,
+   "macro_f1": 0.9889,
+   "test_images": 360,
+   "classes": [
+    {
+     "key": "mango___anthracnose",
+     "precision": 1.0,
+     "recall": 0.9556,
+     "f1": 0.9773,
+     "support": 45
+    },
+    {
+     "key": "mango___bacterial_canker",
+     "precision": 0.9783,
+     "recall": 1.0,
+     "f1": 0.989,
+     "support": 45
+    },
+    {
+     "key": "mango___cutting_weevil",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    },
+    {
+     "key": "mango___die_back",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    },
+    {
+     "key": "mango___gall_midge",
+     "precision": 0.9565,
+     "recall": 0.9778,
+     "f1": 0.967,
+     "support": 45
+    },
+    {
+     "key": "mango___healthy",
+     "precision": 0.9783,
+     "recall": 1.0,
+     "f1": 0.989,
+     "support": 45
+    },
+    {
+     "key": "mango___powdery_mildew",
+     "precision": 1.0,
+     "recall": 0.9778,
+     "f1": 0.9888,
+     "support": 45
+    },
+    {
+     "key": "mango___sooty_mould",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    }
+   ],
+   "confusion": [
+    [
+     43,
+     1,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     45,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     45,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     45,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     44,
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     45,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     44,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     45
+    ]
+   ]
+  },
+  "masoor": {
+   "accuracy": 0.7722,
+   "macro_f1": 0.7717,
+   "test_images": 180,
+   "classes": [
+    {
+     "key": "masoor___ascochyta_blight",
+     "precision": 0.8095,
+     "recall": 0.7556,
+     "f1": 0.7816,
+     "support": 45
+    },
+    {
+     "key": "masoor___healthy",
+     "precision": 0.6889,
+     "recall": 0.6889,
+     "f1": 0.6889,
+     "support": 45
+    },
+    {
+     "key": "masoor___powdery_mildew",
+     "precision": 0.7778,
+     "recall": 0.7778,
+     "f1": 0.7778,
+     "support": 45
+    },
+    {
+     "key": "masoor___rust",
+     "precision": 0.8125,
+     "recall": 0.8667,
+     "f1": 0.8387,
+     "support": 45
+    }
+   ],
+   "confusion": [
+    [
+     34,
+     5,
+     4,
+     2
+    ],
+    [
+     4,
+     31,
+     4,
+     6
+    ],
+    [
+     2,
+     7,
+     35,
+     1
+    ],
+    [
+     2,
+     2,
+     2,
+     39
+    ]
+   ]
+  },
+  "money_plant": {
+   "accuracy": 1.0,
+   "macro_f1": 1.0,
+   "test_images": 135,
+   "classes": [
+    {
+     "key": "money_plant___bacterial_wilt",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    },
+    {
+     "key": "money_plant___healthy",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    },
+    {
+     "key": "money_plant___manganese_toxicity",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    }
+   ],
+   "confusion": [
+    [
+     45,
+     0,
+     0
+    ],
+    [
+     0,
+     45,
+     0
+    ],
+    [
+     0,
+     0,
+     45
+    ]
+   ]
+  },
+  "onion": {
+   "accuracy": 0.7596,
+   "macro_f1": 0.6776,
+   "test_images": 104,
+   "classes": [
+    {
+     "key": "onion___healthy",
+     "precision": 0.7917,
+     "recall": 0.8444,
+     "f1": 0.8172,
+     "support": 45
+    },
+    {
+     "key": "onion___iris_yellow_spot_virus",
+     "precision": 0.725,
+     "recall": 0.6905,
+     "f1": 0.7073,
+     "support": 42
+    },
+    {
+     "key": "onion___leaf_blight",
+     "precision": 0.7857,
+     "recall": 0.7857,
+     "f1": 0.7857,
+     "support": 14
+    },
+    {
+     "key": "onion___purple_blotch",
+     "precision": 0.5,
+     "recall": 0.3333,
+     "f1": 0.4,
+     "support": 3
+    }
+   ],
+   "confusion": [
+    [
+     38,
+     6,
+     1,
+     0
+    ],
+    [
+     10,
+     29,
+     2,
+     1
+    ],
+    [
+     0,
+     3,
+     11,
+     0
+    ],
+    [
+     0,
+     2,
+     0,
+     1
+    ]
+   ]
+  },
+  "papaya": {
+   "accuracy": 0.9603,
+   "macro_f1": 0.9603,
+   "test_images": 126,
+   "classes": [
+    {
+     "key": "papaya___healthy",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 21
+    },
+    {
+     "key": "papaya___leaf_curl",
+     "precision": 0.9048,
+     "recall": 0.9048,
+     "f1": 0.9048,
+     "support": 21
+    },
+    {
+     "key": "papaya___mealybug",
+     "precision": 0.9524,
+     "recall": 0.9524,
+     "f1": 0.9524,
+     "support": 21
+    },
+    {
+     "key": "papaya___mites",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 21
+    },
+    {
+     "key": "papaya___mosaic",
+     "precision": 0.913,
+     "recall": 1.0,
+     "f1": 0.9545,
+     "support": 21
+    },
+    {
+     "key": "papaya___ring_spot",
+     "precision": 1.0,
+     "recall": 0.9048,
+     "f1": 0.95,
+     "support": 21
+    }
+   ],
+   "confusion": [
+    [
+     21,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     19,
+     0,
+     0,
+     2,
+     0
+    ],
+    [
+     0,
+     1,
+     20,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     21,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     21,
+     0
+    ],
+    [
+     0,
+     1,
+     1,
+     0,
+     0,
+     19
+    ]
+   ]
+  },
+  "radish": {
+   "accuracy": 1.0,
+   "macro_f1": 1.0,
+   "test_images": 225,
+   "classes": [
+    {
+     "key": "radish___black_leaf_spot",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    },
+    {
+     "key": "radish___downy_mildew",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    },
+    {
+     "key": "radish___flea_beetle",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    },
+    {
+     "key": "radish___healthy",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    },
+    {
+     "key": "radish___mosaic",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    }
+   ],
+   "confusion": [
+    [
+     45,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     45,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     45,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     45,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     45
+    ]
+   ]
+  },
+  "rice": {
+   "accuracy": 0.9667,
+   "macro_f1": 0.9666,
+   "test_images": 180,
+   "classes": [
+    {
+     "key": "rice___bacterial_blight",
+     "precision": 0.9184,
+     "recall": 1.0,
+     "f1": 0.9574,
+     "support": 45
+    },
+    {
+     "key": "rice___blast",
+     "precision": 0.9762,
+     "recall": 0.9111,
+     "f1": 0.9425,
+     "support": 45
+    },
+    {
+     "key": "rice___brown_spot",
+     "precision": 0.9773,
+     "recall": 0.9556,
+     "f1": 0.9663,
+     "support": 45
+    },
+    {
+     "key": "rice___tungro",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    }
+   ],
+   "confusion": [
+    [
+     45,
+     0,
+     0,
+     0
+    ],
+    [
+     3,
+     41,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     43,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     45
+    ]
+   ]
+  },
+  "sugarcane": {
+   "accuracy": 0.8346,
+   "macro_f1": 0.8346,
+   "test_images": 405,
+   "classes": [
+    {
+     "key": "sugarcane___banded_chlorosis",
+     "precision": 0.6981,
+     "recall": 0.8222,
+     "f1": 0.7551,
+     "support": 45
+    },
+    {
+     "key": "sugarcane___brown_rust",
+     "precision": 0.8085,
+     "recall": 0.8444,
+     "f1": 0.8261,
+     "support": 45
+    },
+    {
+     "key": "sugarcane___brown_spot",
+     "precision": 0.95,
+     "recall": 0.8444,
+     "f1": 0.8941,
+     "support": 45
+    },
+    {
+     "key": "sugarcane___grassy_shoot",
+     "precision": 0.9783,
+     "recall": 1.0,
+     "f1": 0.989,
+     "support": 45
+    },
+    {
+     "key": "sugarcane___healthy",
+     "precision": 1.0,
+     "recall": 0.9778,
+     "f1": 0.9888,
+     "support": 45
+    },
+    {
+     "key": "sugarcane___mosaic",
+     "precision": 0.9474,
+     "recall": 0.8,
+     "f1": 0.8675,
+     "support": 45
+    },
+    {
+     "key": "sugarcane___pokkah_boeng",
+     "precision": 0.6481,
+     "recall": 0.7778,
+     "f1": 0.7071,
+     "support": 45
+    },
+    {
+     "key": "sugarcane___smut",
+     "precision": 0.6216,
+     "recall": 0.5111,
+     "f1": 0.561,
+     "support": 45
+    },
+    {
+     "key": "sugarcane___yellow_leaf",
+     "precision": 0.913,
+     "recall": 0.9333,
+     "f1": 0.9231,
+     "support": 45
+    }
+   ],
+   "confusion": [
+    [
+     37,
+     6,
+     2,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     7,
+     38,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     3,
+     2,
+     38,
+     0,
+     0,
+     0,
+     0,
+     0,
+     2
+    ],
+    [
+     0,
+     0,
+     0,
+     45,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     44,
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     3,
+     0,
+     0,
+     0,
+     0,
+     36,
+     0,
+     4,
+     2
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     35,
+     10,
+     0
+    ],
+    [
+     1,
+     0,
+     0,
+     1,
+     0,
+     1,
+     19,
+     23,
+     0
+    ],
+    [
+     2,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     42
+    ]
+   ]
+  },
+  "tea": {
+   "accuracy": 0.9944,
+   "macro_f1": 0.9944,
+   "test_images": 180,
+   "classes": [
+    {
+     "key": "tea___healthy",
+     "precision": 0.9783,
+     "recall": 1.0,
+     "f1": 0.989,
+     "support": 45
+    },
+    {
+     "key": "tea___leaf_blight",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    },
+    {
+     "key": "tea___red_leaf_spot",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 45
+    },
+    {
+     "key": "tea___red_scab",
+     "precision": 1.0,
+     "recall": 0.9778,
+     "f1": 0.9888,
+     "support": 45
+    }
+   ],
+   "confusion": [
+    [
+     45,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     45,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     45,
+     0
+    ],
+    [
+     1,
+     0,
+     0,
+     44
+    ]
+   ]
+  },
+  "turmeric": {
+   "accuracy": 0.96,
+   "macro_f1": 0.9598,
+   "test_images": 75,
+   "classes": [
+    {
+     "key": "turmeric___aphids",
+     "precision": 0.9474,
+     "recall": 0.9474,
+     "f1": 0.9474,
+     "support": 19
+    },
+    {
+     "key": "turmeric___healthy",
+     "precision": 0.9444,
+     "recall": 0.9444,
+     "f1": 0.9444,
+     "support": 18
+    },
+    {
+     "key": "turmeric___leaf_blotch",
+     "precision": 1.0,
+     "recall": 0.9474,
+     "f1": 0.973,
+     "support": 19
+    },
+    {
+     "key": "turmeric___leaf_spot",
+     "precision": 0.95,
+     "recall": 1.0,
+     "f1": 0.9744,
+     "support": 19
+    }
+   ],
+   "confusion": [
+    [
+     18,
+     1,
+     0,
+     0
+    ],
+    [
+     1,
+     17,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     18,
+     1
+    ],
+    [
+     0,
+     0,
+     0,
+     19
+    ]
+   ]
+  },
+  "urad": {
+   "accuracy": 0.9801,
+   "macro_f1": 0.9807,
+   "test_images": 151,
+   "classes": [
+    {
+     "key": "urad___anthracnose",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 34
+    },
+    {
+     "key": "urad___healthy",
+     "precision": 0.9697,
+     "recall": 0.9697,
+     "f1": 0.9697,
+     "support": 33
+    },
+    {
+     "key": "urad___leaf_crinkle",
+     "precision": 0.9583,
+     "recall": 1.0,
+     "f1": 0.9787,
+     "support": 23
+    },
+    {
+     "key": "urad___powdery_mildew",
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 27
+    },
+    {
+     "key": "urad___yellow_mosaic",
+     "precision": 0.9697,
+     "recall": 0.9412,
+     "f1": 0.9552,
+     "support": 34
+    }
+   ],
+   "confusion": [
+    [
+     34,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     32,
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     0,
+     23,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     27,
+     0
+    ],
+    [
+     0,
+     1,
+     1,
+     0,
+     32
+    ]
+   ]
+  }
+ },
+ "note": "Test images are a held-out 15% of each class that the classifier never saw. Some source datasets contain several photos of the same leaf or augmented copies, which can make test scores optimistic."
+}

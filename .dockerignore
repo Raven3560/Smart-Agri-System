@@ -1,0 +1,6 @@
+data/
+instance/
+models/dinov2-small/
+__pycache__/
+*.pyc
+.git/

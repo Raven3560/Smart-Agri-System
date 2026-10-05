@@ -163,8 +163,9 @@ class AppTests(unittest.TestCase):
                              content_type="multipart/form-data")
         self.assertEqual(r.status_code, 200)
         data = r.get_json()
-        self.assertEqual(len(data["probs"]), 38)
-        self.assertAlmostEqual(sum(data["probs"]), 1.0, delta=0.01)
+        from agri.services import knowledge as kb
+        self.assertEqual(len(data["probs"]), len(kb.all_diseases()))
+        self.assertAlmostEqual(sum(data["probs"][:38]), 1.0, delta=0.01)  # PlantVillage block
         best = max(range(38), key=lambda i: data["probs"][i])
         from agri.services import knowledge as kb
         self.assertEqual(kb.diseases()[best]["key"], "corn_common_rust")
@@ -187,12 +188,21 @@ class AppTests(unittest.TestCase):
         page = self.client.get(r.headers["Location"]).data.decode()
         self.assertIn("Check the soil today", page)
         self.assertIn("Root rot (overwatering)", page)
+        if os.path.exists(os.path.join(ROOT, "models", "extra-crops", "head.npz")):
+            with open(os.path.join(SAMPLES, "money_plant_bacterial_wilt.jpg"), "rb") as fh:
+                img = fh.read()
+            r = self.client.post("/analyze", data={**base, "crop": "money_plant", "last_irrigation": "",
+                                                   "image": (io.BytesIO(img), "m.jpg")}, content_type="multipart/form-data")
+            page = self.client.get(r.headers["Location"]).data.decode()
+            self.assertIn("Money Plant Bacterial Wilt", page)
+            self.assertIn("Disease detected", page)
+        # A crop with no photo model shows its common problems instead.
         with open(os.path.join(SAMPLES, "tomato_healthy.jpg"), "rb") as fh:
             img = fh.read()
-        r = self.client.post("/analyze", data={**base, "crop": "money_plant", "last_irrigation": "",
-                                               "image": (io.BytesIO(img), "m.jpg")}, content_type="multipart/form-data")
+        r = self.client.post("/analyze", data={**base, "crop": "bajra", "last_irrigation": "",
+                                               "image": (io.BytesIO(img), "b.jpg")}, content_type="multipart/form-data")
         page = self.client.get(r.headers["Location"]).data.decode()
-        self.assertIn("Common problems with money plant", page)
+        self.assertIn("Common problems with pearl millet", page)
         self.assertIn("Photo diagnosis isn&#39;t available", page)
 
     def test_scan_requires_image(self):

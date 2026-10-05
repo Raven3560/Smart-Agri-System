@@ -1,3 +1,14 @@
+---
+title: SmartAgri
+colorFrom: green
+colorTo: yellow
+sdk: gradio
+sdk_version: 4.44.1
+python_version: "3.11"
+app_file: app.py
+pinned: false
+---
+
 # SmartAgri AI: AI-Based Smart Agriculture Assistant for Crop Health and Smart Irrigation Management
 
 Final year B.Tech (CSE) project, I.T.S Engineering College, Greater Noida (AKTU), session 2026-27, group 27CSE53.
@@ -196,6 +207,8 @@ Results for each crop, and full dataset credits, are on the **The model** page. 
 
 ### Training your own model
 
+Install the training tools first: `pip install -r requirements-ml.txt`.
+
 1. Download PlantVillage from Kaggle ("PlantVillage Dataset" or "New Plant Diseases Dataset"). Extract it so each class is a folder, for example `data/plantvillage/Tomato___Late_blight/`.
 2. Train. A GPU is recommended; on Google Colab, upload this folder and run the same command.
 
@@ -212,18 +225,28 @@ Results for each crop, and full dataset credits, are on the **The model** page. 
 
 ---
 
-## Deploying on Render
+## Deploying
 
-The repo includes `render.yaml` (a Render Blueprint) and `wsgi.py` (the gunicorn entry point).
+The website runs the disease models with **ONNX Runtime** (`models/plant-disease-mobilenetv2/model.onnx`),
+so hosting needs only `requirements.txt` (about 150 MB installed, about 120 MB of memory). PyTorch and the other
+training tools are in `requirements-ml.txt` and are only needed to retrain models. After retraining, run
+`python scripts/export_onnx.py` to refresh the ONNX file.
 
-1. Push the `smart-agri-assistant` folder to a GitHub repository (`data/` and `instance/` are git-ignored).
-2. On https://dashboard.render.com choose **New > Blueprint**, pick the repository, and apply.
-3. Render installs CPU-only PyTorch, starts `gunicorn wsgi:app`, and mounts a 1 GB disk at `/var/data`
-   for the SQLite database and uploaded photos (`INSTANCE_DIR`).
+### Vercel (free)
+1. Push the project to GitHub.
+2. On https://vercel.com choose **Add New > Project**, import the repository, keep the defaults, and add an
+   environment variable `SECRET_KEY` with any long random text. Click **Deploy**.
+3. `vercel.json` routes every request to `api/index.py`, which runs the Flask app as a serverless function.
 
-The AI model needs about 500 MB of memory, so the blueprint uses the **Standard** plan (2 GB). On the 512 MB
-Free or Starter plans the app may restart with out-of-memory errors, and the Free plan has no persistent disk,
-so accounts and scans are lost on every redeploy. Render serves HTTPS, so the live camera scan works on phones.
+Vercel functions have no permanent disk: the SQLite database and uploaded photos live in `/tmp` and can reset
+whenever Vercel starts a fresh instance. The demo account is recreated automatically, so demos keep working.
+
+### Render
+**New > Blueprint** with this repository uses `render.yaml` (free plan). For data that survives deploys, switch
+to a paid plan and enable the disk block in `render.yaml`.
+
+### Hugging Face Spaces (free)
+Create a Space with the **Gradio** SDK; it runs `app.py`. See the header at the top of this README.
 
 ## Tests
 

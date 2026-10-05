@@ -1,7 +1,7 @@
 @echo off
 REM Double-click to start SmartAgri AI. The browser opens at http://localhost:5000
 cd /d "%~dp0"
-python -c "import flask, torch, transformers" 2>nul
+python -c "import flask, onnxruntime" 2>nul
 if errorlevel 1 (
   echo Installing required packages...
   python -m pip install -r requirements.txt

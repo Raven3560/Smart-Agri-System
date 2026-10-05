@@ -4,6 +4,13 @@ Wraps a MobileNetV2 image classifier fine-tuned on the PlantVillage dataset
 (38 classes across 14 crops). The model is stored in Hugging Face format under
 ``models/plant-disease-mobilenetv2``; any model trained with ``ml/train.py``
 can be dropped into the same folder.
+
+Two interchangeable back ends:
+  * "torch": Hugging Face / PyTorch (used for training and when PyTorch is installed),
+  * "onnx":  ONNX Runtime with model.onnx (about 60 MB to install; used for hosting
+             on Vercel or small plans). Create it with scripts/export_onnx.py.
+The back end is picked automatically (PyTorch if it can be imported) or forced with
+the environment variable SMARTAGRI_BACKEND=onnx|torch.
 """
 import json
 import logging
@@ -56,121 +63,177 @@ def build_transform(train=False, mean=MEAN, std=STD):
     ])
 
 
+def preprocess_numpy(image, mean=MEAN, std=STD):
+    """The same steps as build_transform(), using only PIL and numpy.
+
+    torchvision resizes PIL images with the PIL bilinear filter and centre-crops with
+    the same rounding, so both paths produce the same input.
+    """
+    import numpy as np
+
+    im = image.convert("RGB")
+    w, h = im.size
+    if w <= h:
+        size = (RESIZE_TO, int(RESIZE_TO * h / w))
+    else:
+        size = (int(RESIZE_TO * w / h), RESIZE_TO)
+    im = im.resize(size, Image.BILINEAR)
+    w, h = im.size
+    top, left = int(round((h - IMAGE_SIZE) / 2.0)), int(round((w - IMAGE_SIZE) / 2.0))
+    im = im.crop((left, top, left + IMAGE_SIZE, top + IMAGE_SIZE))
+    x = np.asarray(im, dtype=np.float32) / 255.0
+    x = (x - np.array(mean, dtype=np.float32)) / np.array(std, dtype=np.float32)
+    return x.transpose(2, 0, 1)
+
+
+def _softmax(z):
+    import numpy as np
+
+    z = z - z.max(axis=-1, keepdims=True)
+    e = np.exp(z)
+    return e / e.sum(axis=-1, keepdims=True)
+
+
 class DiseaseModel:
-    """Lazily loaded, thread-safe singleton around the classifier."""
+    """Lazily loaded, thread-safe wrapper around the classifier."""
 
     def __init__(self, model_dir):
         self.model_dir = model_dir
         self._model = None
+        self._session = None
+        self._labels = None
         self._transform = None
+        self._mean_std = (MEAN, STD)
         self._lock = threading.Lock()
+        self.backend = None
         self.load_error = None
         self.load_seconds = None
 
     @property
     def loaded(self):
-        return self._model is not None
+        return self._model is not None or self._session is not None
+
+    @staticmethod
+    def _choose_backend():
+        forced = os.environ.get("SMARTAGRI_BACKEND", "").lower()
+        if forced in ("onnx", "torch"):
+            return forced
+        try:
+            import torch  # noqa: F401
+            return "torch"
+        except ImportError:
+            return "onnx"
 
     def load(self):
-        if self._model is not None:
-            return self._model
+        if self.loaded:
+            return self._model or self._session
         with self._lock:
-            if self._model is not None:
-                return self._model
+            if self.loaded:
+                return self._model or self._session
             start = time.time()
             try:
-                import torch
-                from transformers import AutoModelForImageClassification
+                self._mean_std = load_preprocess(self.model_dir)
+                self.backend = self._choose_backend()
+                if self.backend == "onnx":
+                    import onnxruntime as ort
 
-                torch.set_num_threads(max(1, min(4, os.cpu_count() or 1)))
-                source = self.model_dir if os.path.isfile(os.path.join(self.model_dir, "config.json")) else HF_REPO
-                if source == HF_REPO:
-                    log.warning("Local model not found in %s; downloading %s", self.model_dir, HF_REPO)
-                model = AutoModelForImageClassification.from_pretrained(source)
-                model.eval()
-                if source == HF_REPO:
-                    os.makedirs(self.model_dir, exist_ok=True)
-                    model.save_pretrained(self.model_dir)
-                self._transform = build_transform(False, *load_preprocess(self.model_dir))
-                self._model = model
+                    opts = ort.SessionOptions()
+                    opts.intra_op_num_threads = max(1, min(4, os.cpu_count() or 1))
+                    self._session = ort.InferenceSession(os.path.join(self.model_dir, "model.onnx"), opts,
+                                                         providers=["CPUExecutionProvider"])
+                    with open(os.path.join(self.model_dir, "config.json"), encoding="utf-8") as fh:
+                        id2label = json.load(fh)["id2label"]
+                    self._labels = [id2label[str(i)] for i in range(len(id2label))]
+                else:
+                    import torch
+                    from transformers import AutoModelForImageClassification
+
+                    torch.set_num_threads(max(1, min(4, os.cpu_count() or 1)))
+                    source = self.model_dir if os.path.isfile(os.path.join(self.model_dir, "config.json")) else HF_REPO
+                    if source == HF_REPO:
+                        log.warning("Local model not found in %s; downloading %s", self.model_dir, HF_REPO)
+                    model = AutoModelForImageClassification.from_pretrained(source)
+                    model.eval()
+                    if source == HF_REPO:
+                        os.makedirs(self.model_dir, exist_ok=True)
+                        model.save_pretrained(self.model_dir)
+                    self._transform = build_transform(False, *self._mean_std)
+                    self._labels = [model.config.id2label[i] for i in range(len(model.config.id2label))]
+                    self._model = model
                 self.load_error = None
                 self.load_seconds = round(time.time() - start, 1)
-                log.info("Disease model loaded in %ss", self.load_seconds)
+                log.info("Disease model loaded (%s) in %ss", self.backend, self.load_seconds)
             except Exception as exc:  # noqa: BLE001 - surface any load failure to the UI
                 self.load_error = str(exc)
                 log.exception("Could not load disease model")
                 raise
-        return self._model
+        return self._model or self._session
 
     @property
     def labels(self):
-        model = self.load()
-        return [model.config.id2label[i] for i in range(len(model.config.id2label))]
+        self.load()
+        return self._labels
+
+    def _forward(self, images, mirror=False):
+        """(probabilities, pooled descriptors) as numpy arrays; with ``mirror`` the flipped images follow."""
+        import numpy as np
+
+        self.load()
+        if self.backend == "onnx":
+            x = np.stack([preprocess_numpy(im, *self._mean_std) for im in images]).astype(np.float32)
+            if mirror:
+                x = np.concatenate([x, x[:, :, :, ::-1]])
+            logits, pooled = self._session.run(None, {"pixel_values": np.ascontiguousarray(x)})
+            return _softmax(logits), pooled
+        import torch
+
+        x = torch.stack([self._transform(im.convert("RGB")) for im in images])
+        if mirror:
+            x = torch.cat([x, torch.flip(x, dims=[3])])
+        with torch.no_grad():
+            pooled = self._model.mobilenet_v2(pixel_values=x).pooler_output
+            probs = self._model.classifier(pooled).softmax(-1)
+        return probs.numpy(), pooled.numpy()
 
     def predict(self, image: Image.Image):
         """Return a list of (label, probability) for every class, best first."""
-        import torch
-
-        model = self.load()
-        tensor = self._transform(image.convert("RGB")).unsqueeze(0)
-        with torch.no_grad():
-            probs = model(pixel_values=tensor).logits.softmax(-1)[0].tolist()
-        labels = self.labels
-        ranked = sorted(zip(labels, probs), key=lambda x: x[1], reverse=True)
-        return ranked
+        probs, _ = self._forward([image])
+        return sorted(zip(self.labels, probs[0].tolist()), key=lambda x: x[1], reverse=True)
 
     def predict_batch(self, images):
-        import torch
-
-        model = self.load()
-        batch = torch.stack([self._transform(im.convert("RGB")) for im in images])
-        with torch.no_grad():
-            return model(pixel_values=batch).logits.softmax(-1)
+        probs, _ = self._forward(images)
+        if self.backend == "torch":
+            import torch
+            return torch.from_numpy(probs)
+        return probs
 
     def features_batch(self, images, tta=False):
-        """1280-number leaf descriptors from the layer before the classifier.
-
-        With ``tta`` the mirror image is also passed through and the two
-        descriptors are averaged, which makes them a little more robust.
-        """
-        import torch
-
-        model = self.load()
-        batch = torch.stack([self._transform(im.convert("RGB")) for im in images])
-        with torch.no_grad():
-            feats = model.mobilenet_v2(pixel_values=batch).pooler_output
-            if tta:
-                feats = (feats + model.mobilenet_v2(pixel_values=torch.flip(batch, dims=[3])).pooler_output) / 2
-        return feats.numpy()
+        """1280-number leaf descriptors (mirror-averaged with ``tta``)."""
+        _, pooled = self._forward(images, mirror=tta)
+        if tta:
+            n = len(images)
+            pooled = (pooled[:n] + pooled[n:]) / 2
+        return pooled
 
     def analyse(self, image):
-        """One pass for both models: PlantVillage ranking plus the leaf descriptor.
-
-        The mirror image is included so the descriptor matches how the extra-crops
-        classifier was trained; PlantVillage probabilities come from the original view.
-        """
-        import torch
-
-        model = self.load()
-        x = self._transform(image.convert("RGB")).unsqueeze(0)
-        batch = torch.cat([x, torch.flip(x, dims=[3])])
-        with torch.no_grad():
-            pooled = model.mobilenet_v2(pixel_values=batch).pooler_output
-            probs = model.classifier(pooled[:1]).softmax(-1)[0].tolist()
-        labels = self.labels
-        ranked = sorted(zip(labels, probs), key=lambda x: x[1], reverse=True)
-        return ranked, pooled.mean(0).numpy()
+        """One pass for both models: PlantVillage ranking plus the mirror-averaged leaf descriptor."""
+        probs, pooled = self._forward([image], mirror=True)
+        ranked = sorted(zip(self.labels, probs[0].tolist()), key=lambda x: x[1], reverse=True)
+        return ranked, pooled.mean(0)
 
     def info(self):
         info = {"dir": self.model_dir, "loaded": self.loaded, "error": self.load_error,
                 "load_seconds": self.load_seconds, "architecture": "MobileNetV2 (1.0, 224)",
-                "source": HF_REPO, "input_size": f"{IMAGE_SIZE} x {IMAGE_SIZE} RGB"}
-        weights = os.path.join(self.model_dir, "model.safetensors")
-        if os.path.exists(weights):
-            info["size_mb"] = round(os.path.getsize(weights) / 1e6, 1)
+                "source": HF_REPO, "input_size": f"{IMAGE_SIZE} x {IMAGE_SIZE} RGB", "backend": self.backend}
+        for name in ("model.safetensors", "model.onnx"):
+            weights = os.path.join(self.model_dir, name)
+            if os.path.exists(weights):
+                info["size_mb"] = round(os.path.getsize(weights) / 1e6, 1)
+                break
         if self.loaded:
-            info["num_classes"] = len(self._model.config.id2label)
-            info["parameters_m"] = round(sum(p.numel() for p in self._model.parameters()) / 1e6, 2)
+            info["num_classes"] = len(self._labels)
+            info["parameters_m"] = (round(sum(p.numel() for p in self._model.parameters()) / 1e6, 2)
+                                    if self._model is not None else 2.27)
         return info
 
     def warmup_async(self):
