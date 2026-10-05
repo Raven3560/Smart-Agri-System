@@ -5,21 +5,6 @@
   const $ = (sel, root) => (root || document).querySelector(sel);
   const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
 
-  /* ---------------- theme ---------------- */
-  function effectiveTheme() {
-    const set = document.documentElement.getAttribute("data-theme");
-    if (set) return set;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  }
-  $$("[data-theme-toggle]").forEach((btn) =>
-    btn.addEventListener("click", () => {
-      const next = effectiveTheme() === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", next);
-      try { localStorage.setItem("theme", next); } catch (e) { /* storage unavailable */ }
-      renderCharts();
-    })
-  );
-
   /* ---------------- mobile nav ---------------- */
   const navToggle = $("[data-nav-toggle]");
   const navLinks = $("#nav-links");
@@ -357,5 +342,4 @@
     });
   }
   window.addEventListener("load", renderCharts);
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", renderCharts);
 })();

@@ -7,14 +7,12 @@
   <title>{% block title %}SmartAgri{% endblock %} · SmartAgri</title>
   <meta name="description" content="Take a photo of a crop leaf to find the disease and what to spray, and plan irrigation from your local weather forecast. Free, and works on any phone.">
   <meta name="theme-color" content="#2e6a3e">
+  <meta name="color-scheme" content="light">
   <link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <script>
-    (function () { try { var t = localStorage.getItem("theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {} })();
-  </script>
   {% block head %}{% endblock %}
 </head>
 <body data-csrf="{{ csrf_token() }}">
@@ -45,7 +43,6 @@
       {% endif %}
     </nav>
     <div class="nav-right">
-      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark theme">{{ icon("moon") }}<span class="sr-only">Toggle theme</span></button>
       {% if g.user %}
         <a class="user-chip" href="{{ url_for('main.profile') }}" title="Profile and farm settings">
           <span class="avatar">{{ g.user.name[:1]|upper }}</span><span class="name">{{ g.user.name.split(' ')[0] }}</span>

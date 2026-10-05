@@ -1,7 +1,7 @@
 /* SmartAgri - stylesheet
    Look: a field notebook. Warm paper, ink-dark text, earthy greens and wheat,
    slab-serif headings, ruled lines instead of heavy shadows.
-   Light/dark: follows the OS, overridable with the theme button (data-theme on <html>). */
+   Light theme only. */
 
 :root {
   color-scheme: light;
@@ -38,43 +38,6 @@
   --font-head: "Bitter", Georgia, "Times New Roman", serif;
   --nav-h: 62px;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --bg: #15140f; --surface: #1c1b15; --surface-2: #21201a; --surface-3: #2a2820;
-    --border: #33312a; --border-strong: #47443a;
-    --text: #ece7da; --text-2: #c3bdac; --muted: #938d7b;
-    --primary: #7db487; --primary-hover: #91c49a; --primary-soft: #222e1f; --primary-ink: #11160e;
-    --accent: #d8a650; --accent-soft: #32291a; --soil: #c79a6e;
-    --good-ink: #6fcf7c; --good-soft: #1c2a1b;
-    --warning-ink: #f1c35c; --warning-soft: #2e2716;
-    --serious-ink: #f0a07f; --serious-soft: #2f1f18;
-    --critical-ink: #f08a84; --critical-soft: #301b19;
-    --info-ink: #8ab6ec; --info-soft: #18222f;
-    --series-1: #3987e5; --series-2: #d95926;
-    --chart-grid: #2e2c25; --chart-axis: #898781;
-    --shadow: 0 1px 0 rgba(0, 0, 0, .3);
-    --shadow-lg: 0 12px 32px rgba(0, 0, 0, .5);
-  }
-}
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --bg: #15140f; --surface: #1c1b15; --surface-2: #21201a; --surface-3: #2a2820;
-  --border: #33312a; --border-strong: #47443a;
-  --text: #ece7da; --text-2: #c3bdac; --muted: #938d7b;
-  --primary: #7db487; --primary-hover: #91c49a; --primary-soft: #222e1f; --primary-ink: #11160e;
-  --accent: #d8a650; --accent-soft: #32291a; --soil: #c79a6e;
-  --good-ink: #6fcf7c; --good-soft: #1c2a1b;
-  --warning-ink: #f1c35c; --warning-soft: #2e2716;
-  --serious-ink: #f0a07f; --serious-soft: #2f1f18;
-  --critical-ink: #f08a84; --critical-soft: #301b19;
-  --info-ink: #8ab6ec; --info-soft: #18222f;
-  --series-1: #3987e5; --series-2: #d95926;
-  --chart-grid: #2e2c25; --chart-axis: #898781;
-  --shadow: 0 1px 0 rgba(0, 0, 0, .3);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, .5);
-}
-
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body {
