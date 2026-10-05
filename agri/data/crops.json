@@ -1,0 +1,2030 @@
+{
+ "_source": "Crop coefficients (Kc) and depletion fraction (p) follow FAO Irrigation and Drainage Paper 56 (Allen et al., 1998), Tables 12 and 22. Root depths use the lower end of the FAO-56 Table 22 ranges, which FAO recommends for frequently irrigated crops. Crops not listed by FAO are approximated from the closest listed crop and marked kc_source = Approximate. NPK ranges are general reference values; always confirm with a soil test (Soil Health Card).",
+ "crops": {
+  "tomato": {
+   "name": "Tomato",
+   "group": "Vegetable",
+   "kc": [
+    0.6,
+    1.15,
+    0.8
+   ],
+   "root_m": 0.7,
+   "p": 0.4,
+   "perennial": false,
+   "npk": "100-150 : 60-80 : 60-100 kg/ha",
+   "tip": "Tomato is most sensitive to water stress during flowering and fruit set. Uneven watering causes blossom-end rot and fruit cracking.",
+   "hindi": "Tamatar",
+   "season": "Rabi / Kharif",
+   "kc_source": "FAO-56",
+   "kind": "field",
+   "problems": []
+  },
+  "potato": {
+   "name": "Potato",
+   "group": "Vegetable",
+   "kc": [
+    0.5,
+    1.15,
+    0.75
+   ],
+   "root_m": 0.4,
+   "p": 0.35,
+   "perennial": false,
+   "npk": "150-180 : 80-100 : 100-120 kg/ha",
+   "tip": "Potato has shallow roots. Keep the soil evenly moist from tuber initiation to bulking, and stop irrigation 10-15 days before harvest.",
+   "hindi": "Aloo",
+   "season": "Rabi",
+   "kc_source": "FAO-56",
+   "kind": "field",
+   "problems": []
+  },
+  "bell_pepper": {
+   "name": "Bell Pepper (Capsicum)",
+   "group": "Vegetable",
+   "kc": [
+    0.6,
+    1.05,
+    0.9
+   ],
+   "root_m": 0.5,
+   "p": 0.3,
+   "perennial": false,
+   "npk": "120-150 : 60-80 : 60-80 kg/ha",
+   "tip": "Capsicum is sensitive to both drought and waterlogging. Light, frequent irrigation through drip works best.",
+   "hindi": "Shimla mirch",
+   "season": "Rabi",
+   "kc_source": "FAO-56",
+   "kind": "field",
+   "problems": []
+  },
+  "maize": {
+   "name": "Maize (Corn)",
+   "group": "Cereal",
+   "kc": [
+    0.3,
+    1.2,
+    0.6
+   ],
+   "root_m": 1.0,
+   "p": 0.55,
+   "perennial": false,
+   "npk": "120-150 : 60 : 40 kg/ha",
+   "tip": "The tasselling and silking stage is the most critical for water. Stress at this time causes poor grain set.",
+   "hindi": "Makka",
+   "season": "Kharif / Rabi",
+   "kc_source": "FAO-56",
+   "kind": "field",
+   "problems": []
+  },
+  "soybean": {
+   "name": "Soybean",
+   "group": "Oilseed",
+   "kc": [
+    0.4,
+    1.15,
+    0.5
+   ],
+   "root_m": 0.6,
+   "p": 0.5,
+   "perennial": false,
+   "npk": "20-30 : 60-80 : 40 kg/ha",
+   "tip": "Flowering and pod filling are critical stages. Soybean does not tolerate waterlogging, so drain excess rainwater.",
+   "hindi": "Soyabean",
+   "season": "Kharif",
+   "kc_source": "FAO-56",
+   "kind": "field",
+   "problems": [
+    {
+     "name": "Yellow mosaic virus",
+     "type": "Viral (whitefly)",
+     "signs": "Bright yellow patches scattered on green leaves; small, few pods.",
+     "manage": "Grow resistant varieties, pull out infected plants early, and control whitefly with yellow sticky traps."
+    },
+    {
+     "name": "Rust",
+     "type": "Fungal",
+     "signs": "Tiny tan to reddish-brown pustules under the leaves; early leaf fall.",
+     "manage": "Grow tolerant varieties and spray hexaconazole or propiconazole at first appearance."
+    },
+    {
+     "name": "Girdle beetle",
+     "type": "Pest",
+     "signs": "Two rings cut around the stem or leaf stalk; the part above wilts and dries.",
+     "manage": "Remove and destroy affected plant parts; spray a recommended insecticide if damage is widespread."
+    }
+   ]
+  },
+  "squash": {
+   "name": "Squash",
+   "group": "Vegetable",
+   "kc": [
+    0.5,
+    0.95,
+    0.75
+   ],
+   "root_m": 0.6,
+   "p": 0.5,
+   "perennial": false,
+   "npk": "80-100 : 50 : 50 kg/ha",
+   "tip": "Water at the base of plants. Wet leaves increase powdery mildew and other leaf diseases.",
+   "hindi": "Chappan kaddu",
+   "season": "Zaid",
+   "kc_source": "FAO-56",
+   "kind": "field",
+   "problems": []
+  },
+  "strawberry": {
+   "name": "Strawberry",
+   "group": "Fruit",
+   "kc": [
+    0.4,
+    0.85,
+    0.75
+   ],
+   "root_m": 0.2,
+   "p": 0.2,
+   "perennial": false,
+   "npk": "Small, frequent fertigation doses of balanced NPK",
+   "tip": "Strawberry has very shallow roots. Use drip with light, frequent irrigation and keep the soil from drying out.",
+   "hindi": "Strawberry",
+   "season": "Rabi",
+   "kc_source": "FAO-56",
+   "kind": "field",
+   "problems": []
+  },
+  "apple": {
+   "name": "Apple",
+   "group": "Fruit tree",
+   "kc": [
+    0.45,
+    0.95,
+    0.7
+   ],
+   "root_m": 1.0,
+   "p": 0.5,
+   "perennial": true,
+   "npk": "Per tree, based on tree age and leaf analysis",
+   "tip": "Fruit set and fruit growth are critical periods. Avoid water stress in the 4-6 weeks after flowering.",
+   "hindi": "Seb",
+   "season": "Perennial",
+   "kc_source": "FAO-56",
+   "kind": "field",
+   "problems": []
+  },
+  "cherry": {
+   "name": "Cherry",
+   "group": "Fruit tree",
+   "kc": [
+    0.45,
+    0.95,
+    0.7
+   ],
+   "root_m": 1.0,
+   "p": 0.5,
+   "perennial": true,
+   "npk": "Per tree, based on tree age and leaf analysis",
+   "tip": "Keep moisture steady during fruit growth. Heavy irrigation just before harvest can cause fruit cracking.",
+   "hindi": "Cherry",
+   "season": "Perennial",
+   "kc_source": "FAO-56",
+   "kind": "field",
+   "problems": []
+  },
+  "peach": {
+   "name": "Peach",
+   "group": "Fruit tree",
+   "kc": [
+    0.45,
+    0.9,
+    0.65
+   ],
+   "root_m": 1.0,
+   "p": 0.5,
+   "perennial": true,
+   "npk": "Per tree, based on tree age and leaf analysis",
+   "tip": "The final fruit swell, 4-6 weeks before harvest, needs good moisture for fruit size.",
+   "hindi": "Aadu",
+   "season": "Perennial",
+   "kc_source": "FAO-56",
+   "kind": "field",
+   "problems": []
+  },
+  "orange": {
+   "name": "Orange (Citrus)",
+   "group": "Fruit tree",
+   "kc": [
+    0.7,
+    0.65,
+    0.7
+   ],
+   "root_m": 1.2,
+   "p": 0.5,
+   "perennial": true,
+   "npk": "Per tree, based on tree age and leaf analysis",
+   "tip": "Flowering and fruit set are critical. Avoid water touching the trunk to prevent foot rot; use ring or drip irrigation.",
+   "hindi": "Santra",
+   "season": "Perennial",
+   "kc_source": "FAO-56",
+   "kind": "field",
+   "problems": []
+  },
+  "grape": {
+   "name": "Grape",
+   "group": "Fruit vine",
+   "kc": [
+    0.3,
+    0.85,
+    0.45
+   ],
+   "root_m": 1.0,
+   "p": 0.35,
+   "perennial": true,
+   "npk": "Per vine, split after pruning, based on petiole analysis",
+   "tip": "Avoid stress from bloom to berry set. Reduce irrigation during ripening to improve sugar content.",
+   "hindi": "Angoor",
+   "season": "Perennial",
+   "kc_source": "FAO-56",
+   "kind": "field",
+   "problems": []
+  },
+  "blueberry": {
+   "name": "Blueberry",
+   "group": "Fruit bush",
+   "kc": [
+    0.3,
+    1.05,
+    0.5
+   ],
+   "root_m": 0.6,
+   "p": 0.5,
+   "perennial": true,
+   "npk": "Ammonium-based N; keep soil pH 4.5-5.5",
+   "tip": "Blueberry roots are shallow and fibrous. Keep the soil consistently moist and mulched.",
+   "hindi": "Blueberry",
+   "season": "Perennial",
+   "kc_source": "FAO-56",
+   "kind": "field",
+   "problems": [
+    {
+     "name": "Iron chlorosis (high soil pH)",
+     "type": "Nutrition",
+     "signs": "Young leaves turn yellow while the veins stay green.",
+     "manage": "Bring soil pH down to 4.5-5.5 with elemental sulphur and use acidic mulch such as pine bark."
+    },
+    {
+     "name": "Root rot",
+     "type": "Oomycete",
+     "signs": "Plants wilt and decline in wet, heavy soil.",
+     "manage": "Plant on raised beds with good drainage and avoid overwatering."
+    }
+   ]
+  },
+  "raspberry": {
+   "name": "Raspberry",
+   "group": "Fruit bush",
+   "kc": [
+    0.3,
+    1.05,
+    0.5
+   ],
+   "root_m": 0.6,
+   "p": 0.5,
+   "perennial": true,
+   "npk": "Light nitrogen in spring; compost mulch",
+   "tip": "Water needs peak during fruiting. Drip irrigation keeps fruit and canes dry.",
+   "hindi": "Raspberry",
+   "season": "Perennial",
+   "kc_source": "FAO-56",
+   "kind": "field",
+   "problems": [
+    {
+     "name": "Grey mould",
+     "type": "Fungal",
+     "signs": "Grey fuzzy rot on ripe fruit, mostly in wet weather.",
+     "manage": "Pick fruit often, remove rotten fruit, and keep rows narrow for air flow."
+    },
+    {
+     "name": "Cane blight",
+     "type": "Fungal",
+     "signs": "Dark patches on canes near pruning wounds; side shoots wilt.",
+     "manage": "Prune in dry weather and remove fruited canes after harvest."
+    }
+   ]
+  },
+  "wheat": {
+   "name": "Wheat",
+   "group": "Cereal",
+   "kc": [
+    0.4,
+    1.15,
+    0.3
+   ],
+   "root_m": 1.0,
+   "p": 0.55,
+   "perennial": false,
+   "npk": "120 : 60 : 40 kg/ha",
+   "tip": "Crown root initiation (about 21 days after sowing) is the most critical irrigation stage, followed by flowering and grain filling.",
+   "hindi": "Gehun",
+   "season": "Rabi",
+   "problems": [
+    {
+     "name": "Yellow (stripe) rust",
+     "type": "Fungal",
+     "signs": "Yellow powdery stripes of pustules along the leaf veins, mostly in cool, humid weather in January and February.",
+     "manage": "Grow resistant varieties. At the first stripes, spray propiconazole 25 EC @ 1 ml/L and repeat after 15 days if needed."
+    },
+    {
+     "name": "Loose smut",
+     "type": "Fungal (seed-borne)",
+     "signs": "Ears come out as black powdery masses instead of grain.",
+     "manage": "Sow certified seed treated with carboxin or tebuconazole. Pull out smutted plants in a bag and bury them."
+    },
+    {
+     "name": "Aphids",
+     "type": "Pest",
+     "signs": "Small green insects clustered on leaves and ears, with sticky honeydew.",
+     "manage": "Ladybird beetles usually keep them in check. Spray only if numbers are very high, using a recommended insecticide."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "rice": {
+   "name": "Rice (Paddy)",
+   "group": "Cereal",
+   "kc": [
+    1.05,
+    1.2,
+    0.75
+   ],
+   "root_m": 0.5,
+   "p": 0.2,
+   "perennial": false,
+   "npk": "120 : 60 : 40 kg/ha",
+   "tip": "Alternate Wetting and Drying (AWD) can save 15-30% water: re-flood only when the water level drops about 15 cm below the soil surface, except at flowering.",
+   "hindi": "Dhan / Chawal",
+   "season": "Kharif",
+   "problems": [
+    {
+     "name": "Blast",
+     "type": "Fungal",
+     "signs": "Spindle-shaped spots with grey centres and brown edges on leaves. In neck blast the neck turns black and the panicle breaks.",
+     "manage": "Avoid excess nitrogen and grow resistant varieties. Spray tricyclazole 75 WP @ 0.6 g/L at first symptoms and at heading."
+    },
+    {
+     "name": "Bacterial leaf blight",
+     "type": "Bacterial",
+     "signs": "Leaves dry from the tip and edges in wavy yellow-white stripes.",
+     "manage": "Use balanced nitrogen, drain the field during severe attack and grow resistant varieties. Antibiotic sprays are banned."
+    },
+    {
+     "name": "Brown planthopper",
+     "type": "Pest",
+     "signs": "Plants yellow and dry in round patches (hopper burn). Brown insects sit at the base of the tillers.",
+     "manage": "Avoid excess nitrogen, practise alternate wetting and drying, and leave gaps in the field for air. Spray only when numbers are high."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "sugarcane": {
+   "name": "Sugarcane",
+   "group": "Cash crop",
+   "kc": [
+    0.4,
+    1.25,
+    0.75
+   ],
+   "root_m": 1.2,
+   "p": 0.65,
+   "perennial": false,
+   "npk": "150-250 : 60-80 : 60 kg/ha",
+   "tip": "The grand growth phase needs the most water. Drip irrigation with trash mulching saves a large share of water in sugarcane.",
+   "hindi": "Ganna",
+   "season": "Annual (12-18 months)",
+   "problems": [
+    {
+     "name": "Red rot",
+     "type": "Fungal",
+     "signs": "Top leaves dry. A split cane shows red tissue with white patches and smells sour.",
+     "manage": "Plant healthy setts of resistant varieties. Uproot and burn affected clumps and don't ratoon an infected field."
+    },
+    {
+     "name": "Early shoot borer",
+     "type": "Pest",
+     "signs": "Dead heart in young shoots that pulls out easily and smells bad.",
+     "manage": "Trash mulching, timely earthing up, and release of Trichogramma egg parasitoids."
+    },
+    {
+     "name": "Grassy shoot",
+     "type": "Phytoplasma",
+     "signs": "Many thin, pale, grassy shoots grow from one clump.",
+     "manage": "Use healthy, hot-water-treated seed cane and pull out affected clumps."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "cotton": {
+   "name": "Cotton",
+   "group": "Cash crop",
+   "kc": [
+    0.35,
+    1.18,
+    0.6
+   ],
+   "root_m": 1.0,
+   "p": 0.65,
+   "perennial": false,
+   "npk": "100-150 : 50-60 : 50-60 kg/ha",
+   "tip": "Flowering and boll formation are critical. Too much water in the vegetative stage causes excess leafy growth.",
+   "hindi": "Kapas",
+   "season": "Kharif",
+   "problems": [
+    {
+     "name": "Pink bollworm",
+     "type": "Pest",
+     "signs": "Rosette-shaped flowers, holes in bolls, pink larvae inside and stained lint.",
+     "manage": "Pheromone traps, timely end of the crop, and destroying crop residue. Follow local IPM advice for sprays."
+    },
+    {
+     "name": "Leaf curl virus (whitefly)",
+     "type": "Viral",
+     "signs": "Leaves curl upward with thickened veins; whiteflies under the leaves.",
+     "manage": "Resistant varieties, weed control, yellow sticky traps and neem oil. Avoid excess nitrogen."
+    },
+    {
+     "name": "Bacterial blight",
+     "type": "Bacterial",
+     "signs": "Angular, water-soaked spots on leaves that turn black; black arm on stems.",
+     "manage": "Use acid-delinted, treated seed and spray copper oxychloride 50 WP @ 3 g/L."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "mustard": {
+   "name": "Mustard",
+   "group": "Oilseed",
+   "kc": [
+    0.35,
+    1.08,
+    0.35
+   ],
+   "root_m": 1.0,
+   "p": 0.6,
+   "perennial": false,
+   "npk": "80-120 : 40-60 : 40 kg/ha + Sulphur 20-40 kg/ha",
+   "tip": "One irrigation at flowering and one at pod filling usually give the best returns.",
+   "hindi": "Sarson",
+   "season": "Rabi",
+   "problems": [
+    {
+     "name": "Alternaria blight",
+     "type": "Fungal",
+     "signs": "Dark brown round spots with rings on leaves and pods.",
+     "manage": "Sow on time and spray mancozeb 75 WP @ 2.5 g/L at first symptoms."
+    },
+    {
+     "name": "White rust",
+     "type": "Fungal",
+     "signs": "White blister-like pustules under leaves; swollen, twisted flower shoots (stag head).",
+     "manage": "Spray metalaxyl + mancozeb as per label and rotate crops."
+    },
+    {
+     "name": "Mustard aphid",
+     "type": "Pest",
+     "signs": "Dense grey-green colonies on flower shoots and pods; poor pod set.",
+     "manage": "Sow in October so the crop escapes peak aphid attack. Conserve ladybird beetles; spray only above the threshold."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "chickpea": {
+   "name": "Chickpea (Gram)",
+   "group": "Pulse",
+   "kc": [
+    0.4,
+    1.0,
+    0.35
+   ],
+   "root_m": 0.6,
+   "p": 0.5,
+   "perennial": false,
+   "npk": "20 : 40-60 : 20 kg/ha + Rhizobium",
+   "tip": "Chickpea needs little water. A light irrigation at branching and at pod filling is enough; avoid heavy irrigation.",
+   "hindi": "Chana",
+   "season": "Rabi",
+   "problems": [
+    {
+     "name": "Fusarium wilt",
+     "type": "Fungal",
+     "signs": "Plants droop and dry in patches; brown-black streaks inside the stem.",
+     "manage": "Grow resistant varieties, treat seed with Trichoderma, and rotate crops."
+    },
+    {
+     "name": "Pod borer",
+     "type": "Pest",
+     "signs": "Holes in pods; green caterpillars eating the seeds.",
+     "manage": "Pheromone traps, bird perches and NPV sprays. Use a recommended insecticide when larvae cross the threshold."
+    },
+    {
+     "name": "Ascochyta blight",
+     "type": "Fungal",
+     "signs": "Brown spots with dark rings on leaves, stems and pods; plants collapse in wet weather.",
+     "manage": "Use healthy seed and resistant varieties; spray mancozeb or chlorothalonil."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "onion": {
+   "name": "Onion",
+   "group": "Vegetable",
+   "kc": [
+    0.7,
+    1.05,
+    0.75
+   ],
+   "root_m": 0.3,
+   "p": 0.3,
+   "perennial": false,
+   "npk": "100-120 : 50-60 : 50-80 kg/ha",
+   "tip": "Onion has shallow roots and needs frequent light irrigation during bulb development. Stop irrigation 10-15 days before harvest.",
+   "hindi": "Pyaz",
+   "season": "Rabi / Kharif",
+   "problems": [
+    {
+     "name": "Purple blotch",
+     "type": "Fungal",
+     "signs": "Small white sunken spots on leaves that turn purple with a yellow margin.",
+     "manage": "Spray mancozeb 75 WP @ 2.5 g/L with a sticker and rotate crops."
+    },
+    {
+     "name": "Thrips",
+     "type": "Pest",
+     "signs": "Silvery white streaks on leaves; tips curl and dry.",
+     "manage": "Blue sticky traps and a recommended insecticide. Avoid water stress, which makes damage worse."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "bajra": {
+   "name": "Pearl Millet",
+   "hindi": "Bajra",
+   "group": "Cereal",
+   "season": "Kharif",
+   "kc": [
+    0.3,
+    1.0,
+    0.3
+   ],
+   "root_m": 1.0,
+   "p": 0.55,
+   "perennial": false,
+   "npk": "60-80 : 40 : 20 kg/ha",
+   "tip": "Very drought tolerant. Tillering, flowering and grain filling are the stages where a missed irrigation hurts most. Avoid waterlogging.",
+   "problems": [
+    {
+     "name": "Downy mildew (green ear)",
+     "type": "Fungal",
+     "signs": "Yellow streaks on leaves with white downy growth underneath; ears turn into leafy structures.",
+     "manage": "Grow resistant hybrids, treat seed with metalaxyl, and pull out infected plants early."
+    },
+    {
+     "name": "Ergot",
+     "type": "Fungal",
+     "signs": "Pinkish, sticky droplets ooze from flowers; later dark hard bodies replace grains.",
+     "manage": "Soak seed in 10% salt water and discard floating bits. Time sowing so flowering avoids heavy rain."
+    },
+    {
+     "name": "Smut",
+     "type": "Fungal",
+     "signs": "Some grains become larger, green, then dark brown and full of black powder.",
+     "manage": "Grow resistant hybrids and rotate crops."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "jowar": {
+   "name": "Sorghum",
+   "hindi": "Jowar",
+   "group": "Cereal",
+   "season": "Kharif / Rabi",
+   "kc": [
+    0.3,
+    1.05,
+    0.55
+   ],
+   "root_m": 1.0,
+   "p": 0.55,
+   "perennial": false,
+   "npk": "80-100 : 40 : 40 kg/ha",
+   "tip": "Handles dry spells well. Booting, flowering and grain filling are the stages where water matters most.",
+   "problems": [
+    {
+     "name": "Shoot fly",
+     "type": "Pest",
+     "signs": "Central shoot of young seedlings dries (dead heart).",
+     "manage": "Sow early with the first rains, use a slightly higher seed rate, and treat seed with a recommended insecticide."
+    },
+    {
+     "name": "Grain mould",
+     "type": "Fungal",
+     "signs": "Grains turn pink, black or white and mouldy when it rains at maturity.",
+     "manage": "Harvest at maturity and dry the grain quickly; grow tolerant varieties."
+    },
+    {
+     "name": "Anthracnose",
+     "type": "Fungal",
+     "signs": "Reddish-purple oval spots on leaves that join together.",
+     "manage": "Resistant varieties, crop rotation and mancozeb spray at first symptoms."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "ragi": {
+   "name": "Finger Millet",
+   "hindi": "Ragi / Mandua",
+   "group": "Cereal",
+   "season": "Kharif",
+   "kc": [
+    0.3,
+    1.0,
+    0.3
+   ],
+   "root_m": 1.0,
+   "p": 0.55,
+   "perennial": false,
+   "npk": "40-60 : 30-40 : 20-30 kg/ha",
+   "tip": "Hardy and drought tolerant. In a dry spell, irrigate at tillering and flowering.",
+   "problems": [
+    {
+     "name": "Blast",
+     "type": "Fungal",
+     "signs": "Spindle-shaped spots on leaves; the neck and fingers of the ear turn black and dry.",
+     "manage": "Grow resistant varieties, treat seed with carbendazim, and spray tricyclazole at flowering if needed."
+    },
+    {
+     "name": "Brown spot",
+     "type": "Fungal",
+     "signs": "Small oval brown spots scattered on leaves.",
+     "manage": "Balanced fertilizer and mancozeb spray if spots spread."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "barley": {
+   "name": "Barley",
+   "hindi": "Jau",
+   "group": "Cereal",
+   "season": "Rabi",
+   "kc": [
+    0.3,
+    1.15,
+    0.25
+   ],
+   "root_m": 1.0,
+   "p": 0.55,
+   "perennial": false,
+   "npk": "60 : 30 : 20 kg/ha",
+   "tip": "Needs less water than wheat; two or three irrigations are usually enough.",
+   "problems": [
+    {
+     "name": "Stripe rust",
+     "type": "Fungal",
+     "signs": "Yellow stripes of powdery pustules on leaves.",
+     "manage": "Resistant varieties and a propiconazole spray at first appearance."
+    },
+    {
+     "name": "Covered smut",
+     "type": "Fungal (seed-borne)",
+     "signs": "Grains replaced by hard black smut balls.",
+     "manage": "Treat seed with carbendazim or tebuconazole before sowing."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "arhar": {
+   "name": "Pigeon Pea",
+   "hindi": "Arhar / Tur",
+   "group": "Pulse",
+   "season": "Kharif",
+   "kc": [
+    0.4,
+    1.15,
+    0.35
+   ],
+   "kc_source": "Approximate",
+   "root_m": 1.0,
+   "p": 0.5,
+   "perennial": false,
+   "npk": "20 : 50 : 20 kg/ha + Rhizobium",
+   "tip": "Deep-rooted and drought tolerant. Waterlogging causes wilt and root rot, so drain excess rain. Irrigate at flowering and pod filling if it is dry.",
+   "problems": [
+    {
+     "name": "Fusarium wilt",
+     "type": "Fungal",
+     "signs": "Plants wilt and dry, often in patches; brown-black streaks inside the stem.",
+     "manage": "Grow resistant varieties, rotate for three years, and treat seed with Trichoderma."
+    },
+    {
+     "name": "Sterility mosaic",
+     "type": "Viral (mite-borne)",
+     "signs": "Bushy, pale green plants with small leaves and no flowers.",
+     "manage": "Resistant varieties; pull out infected plants early and control mites."
+    },
+    {
+     "name": "Pod borer",
+     "type": "Pest",
+     "signs": "Holes in pods and caterpillars feeding on the seeds.",
+     "manage": "Pheromone traps and NPV; a recommended insecticide when larvae cross the threshold."
+    }
+   ],
+   "kind": "field"
+  },
+  "moong": {
+   "name": "Green Gram",
+   "hindi": "Moong",
+   "group": "Pulse",
+   "season": "Kharif / Zaid",
+   "kc": [
+    0.4,
+    1.05,
+    0.35
+   ],
+   "root_m": 0.6,
+   "p": 0.45,
+   "perennial": false,
+   "npk": "20 : 40 : 20 kg/ha + Rhizobium",
+   "tip": "A short-duration crop. Keep the field drained; give a light irrigation at flowering and pod filling in the summer (Zaid) crop.",
+   "problems": [
+    {
+     "name": "Yellow mosaic virus",
+     "type": "Viral (whitefly)",
+     "signs": "Bright yellow and green patches on the leaves.",
+     "manage": "Grow resistant varieties, pull out infected plants, and control whitefly with yellow sticky traps."
+    },
+    {
+     "name": "Powdery mildew",
+     "type": "Fungal",
+     "signs": "White powder on leaves late in the season.",
+     "manage": "Wettable sulphur 80 WP @ 2 g/L at first symptoms."
+    },
+    {
+     "name": "Cercospora leaf spot",
+     "type": "Fungal",
+     "signs": "Brown spots with a grey centre and red-brown edge.",
+     "manage": "Crop rotation and a carbendazim or mancozeb spray."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "urad": {
+   "name": "Black Gram",
+   "hindi": "Urad",
+   "group": "Pulse",
+   "season": "Kharif",
+   "kc": [
+    0.4,
+    1.05,
+    0.35
+   ],
+   "root_m": 0.6,
+   "p": 0.45,
+   "perennial": false,
+   "npk": "20 : 40 : 20 kg/ha + Rhizobium",
+   "tip": "Sensitive to waterlogging; make drainage channels in the rainy season.",
+   "problems": [
+    {
+     "name": "Yellow mosaic virus",
+     "type": "Viral (whitefly)",
+     "signs": "Yellow mottling on leaves; plants stay small with few pods.",
+     "manage": "Resistant varieties, early removal of infected plants, and whitefly control."
+    },
+    {
+     "name": "Leaf crinkle virus",
+     "type": "Viral",
+     "signs": "Leaves become large, wrinkled and crinkled; flowers drop.",
+     "manage": "Use healthy seed and pull out infected plants."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "masoor": {
+   "name": "Lentil",
+   "hindi": "Masoor",
+   "group": "Pulse",
+   "season": "Rabi",
+   "kc": [
+    0.4,
+    1.1,
+    0.3
+   ],
+   "root_m": 0.6,
+   "p": 0.5,
+   "perennial": false,
+   "npk": "20 : 40 : 20 kg/ha",
+   "tip": "One or two light irrigations, at branching and at pod filling, are usually enough.",
+   "problems": [
+    {
+     "name": "Rust",
+     "type": "Fungal",
+     "signs": "Orange-brown pustules on leaves and stems.",
+     "manage": "Grow resistant varieties and spray mancozeb at first appearance."
+    },
+    {
+     "name": "Wilt",
+     "type": "Fungal",
+     "signs": "Plants yellow, droop and dry in patches.",
+     "manage": "Resistant varieties, seed treatment with Trichoderma, and rotation."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "peas": {
+   "name": "Garden Pea",
+   "hindi": "Matar",
+   "group": "Pulse",
+   "season": "Rabi",
+   "kc": [
+    0.5,
+    1.15,
+    1.1
+   ],
+   "root_m": 0.6,
+   "p": 0.35,
+   "perennial": false,
+   "npk": "20-25 : 60 : 40 kg/ha",
+   "tip": "Flowering and pod filling are critical. Give light irrigations and avoid standing water.",
+   "problems": [
+    {
+     "name": "Powdery mildew",
+     "type": "Fungal",
+     "signs": "White powdery coating on leaves, stems and pods.",
+     "manage": "Wettable sulphur 80 WP @ 2 g/L; early sowing helps escape it."
+    },
+    {
+     "name": "Rust",
+     "type": "Fungal",
+     "signs": "Yellow-orange pustules turning brown on leaves and stems.",
+     "manage": "Resistant varieties and a mancozeb spray."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "groundnut": {
+   "name": "Groundnut",
+   "hindi": "Moongphali",
+   "group": "Oilseed",
+   "season": "Kharif",
+   "kc": [
+    0.4,
+    1.15,
+    0.6
+   ],
+   "root_m": 0.5,
+   "p": 0.5,
+   "perennial": false,
+   "npk": "20-25 : 40-60 : 30-40 kg/ha + gypsum at pegging",
+   "tip": "Pegging and pod development are critical. Keep the soil moist and loose when pegs enter the soil.",
+   "problems": [
+    {
+     "name": "Tikka leaf spot",
+     "type": "Fungal",
+     "signs": "Brown to black round spots on leaves, often with a yellow halo; heavy leaf fall.",
+     "manage": "Crop rotation and a carbendazim + mancozeb or tebuconazole spray."
+    },
+    {
+     "name": "Stem rot",
+     "type": "Fungal",
+     "signs": "Plant wilts; white cottony fungus with mustard-seed-like bodies at the stem base.",
+     "manage": "Deep summer ploughing, Trichoderma in the soil, and avoid heaping soil on the stem."
+    },
+    {
+     "name": "Leaf miner",
+     "type": "Pest",
+     "signs": "Brown blotches on leaves; leaves fold and dry.",
+     "manage": "Light traps and a recommended insecticide when damage is high."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "sunflower": {
+   "name": "Sunflower",
+   "hindi": "Surajmukhi",
+   "group": "Oilseed",
+   "season": "Rabi / Zaid",
+   "kc": [
+    0.35,
+    1.08,
+    0.35
+   ],
+   "root_m": 0.8,
+   "p": 0.45,
+   "perennial": false,
+   "npk": "60-90 : 60-90 : 40-60 kg/ha",
+   "tip": "Button stage, flowering and seed filling are the critical stages for water.",
+   "problems": [
+    {
+     "name": "Alternaria blight",
+     "type": "Fungal",
+     "signs": "Dark brown spots with rings on leaves and stems.",
+     "manage": "Mancozeb 75 WP @ 2.5 g/L at first symptoms."
+    },
+    {
+     "name": "Head rot",
+     "type": "Fungal",
+     "signs": "Soft, water-soaked rot on the back of the head after rain.",
+     "manage": "Avoid injury to heads and spray mancozeb if rain is expected at flowering."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "sesame": {
+   "name": "Sesame",
+   "hindi": "Til",
+   "group": "Oilseed",
+   "season": "Kharif",
+   "kc": [
+    0.35,
+    1.1,
+    0.25
+   ],
+   "root_m": 1.0,
+   "p": 0.6,
+   "perennial": false,
+   "npk": "40 : 20-40 : 20 kg/ha",
+   "tip": "Very sensitive to waterlogging. Irrigate lightly only in long dry spells.",
+   "problems": [
+    {
+     "name": "Phyllody",
+     "type": "Phytoplasma (leafhopper)",
+     "signs": "Flowers turn into green leafy structures and no pods form.",
+     "manage": "Pull out affected plants and control leafhoppers."
+    },
+    {
+     "name": "Stem and root rot",
+     "type": "Fungal",
+     "signs": "Plants wilt; black dots on the stem base and roots.",
+     "manage": "Seed treatment with Trichoderma or carbendazim and good drainage."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "castor": {
+   "name": "Castor",
+   "hindi": "Arandi",
+   "group": "Oilseed",
+   "season": "Kharif",
+   "kc": [
+    0.35,
+    1.15,
+    0.55
+   ],
+   "root_m": 1.0,
+   "p": 0.5,
+   "perennial": false,
+   "npk": "40-60 : 40 : 20 kg/ha",
+   "tip": "Drought tolerant, but irrigation during spike development raises yield.",
+   "problems": [
+    {
+     "name": "Grey rot",
+     "type": "Fungal",
+     "signs": "Grey fungal growth on spikes and capsules in wet weather.",
+     "manage": "Remove affected spikes and spray carbendazim when rain is forecast at flowering."
+    },
+    {
+     "name": "Semilooper",
+     "type": "Pest",
+     "signs": "Caterpillars that move in loops eat the leaves.",
+     "manage": "Hand-pick young larvae and spray a recommended insecticide if defoliation is severe."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "brinjal": {
+   "name": "Brinjal",
+   "hindi": "Baingan",
+   "group": "Vegetable",
+   "season": "All seasons",
+   "kc": [
+    0.6,
+    1.05,
+    0.9
+   ],
+   "root_m": 0.7,
+   "p": 0.45,
+   "perennial": false,
+   "npk": "100-120 : 60 : 50 kg/ha",
+   "tip": "Irrigate every 3-4 days in summer and every 7-10 days in winter. Avoid stress at flowering and fruiting.",
+   "problems": [
+    {
+     "name": "Shoot and fruit borer",
+     "type": "Pest",
+     "signs": "Tips of shoots wilt; fruits have holes with frass.",
+     "manage": "Cut and destroy affected shoots and fruits every week, use pheromone traps, and spray a recommended insecticide."
+    },
+    {
+     "name": "Phomopsis blight",
+     "type": "Fungal",
+     "signs": "Grey-brown spots on leaves; sunken, rotting patches on fruit.",
+     "manage": "Use healthy seed, rotate crops, and spray mancozeb or carbendazim."
+    },
+    {
+     "name": "Little leaf",
+     "type": "Phytoplasma (leafhopper)",
+     "signs": "Very small, narrow leaves and a bushy plant with no fruit.",
+     "manage": "Pull out affected plants early and control leafhoppers."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "okra": {
+   "name": "Okra",
+   "hindi": "Bhindi",
+   "group": "Vegetable",
+   "season": "Kharif / Zaid",
+   "kc": [
+    0.5,
+    1.1,
+    0.8
+   ],
+   "kc_source": "Approximate",
+   "root_m": 0.6,
+   "p": 0.45,
+   "perennial": false,
+   "npk": "100 : 50 : 50 kg/ha",
+   "tip": "Needs regular moisture during flowering and picking. In summer, irrigate every 4-5 days.",
+   "problems": [
+    {
+     "name": "Yellow vein mosaic virus",
+     "type": "Viral (whitefly)",
+     "signs": "Leaf veins turn yellow in a net pattern; fruits are pale and small.",
+     "manage": "Grow tolerant hybrids, pull out infected plants, and control whitefly."
+    },
+    {
+     "name": "Shoot and fruit borer",
+     "type": "Pest",
+     "signs": "Drooping shoot tips and bored, misshapen pods.",
+     "manage": "Remove affected shoots and pods, use pheromone traps, and spray if damage is heavy."
+    },
+    {
+     "name": "Powdery mildew",
+     "type": "Fungal",
+     "signs": "White powder on older leaves.",
+     "manage": "Wettable sulphur 80 WP @ 2 g/L."
+    }
+   ],
+   "kind": "field"
+  },
+  "chilli": {
+   "name": "Chilli",
+   "hindi": "Mirch",
+   "group": "Vegetable",
+   "season": "Kharif / Rabi",
+   "kc": [
+    0.6,
+    1.05,
+    0.9
+   ],
+   "root_m": 0.5,
+   "p": 0.3,
+   "perennial": false,
+   "npk": "100-120 : 50-60 : 50-60 kg/ha",
+   "tip": "Chilli dislikes both drought and waterlogging. Light, frequent irrigation; drip works well.",
+   "problems": [
+    {
+     "name": "Leaf curl",
+     "type": "Viral (whitefly, thrips)",
+     "signs": "Leaves curl, crinkle and shrink; plants are stunted.",
+     "manage": "Raise seedlings under insect net, pull out infected plants, and control whitefly and thrips."
+    },
+    {
+     "name": "Die-back and fruit rot",
+     "type": "Fungal",
+     "signs": "Twigs dry from the tip; sunken dark spots on ripe fruit.",
+     "manage": "Prune affected twigs and spray carbendazim or mancozeb."
+    },
+    {
+     "name": "Thrips and mites",
+     "type": "Pest",
+     "signs": "Leaves curl upward (thrips) or downward (mites) and look bronzed.",
+     "manage": "Blue sticky traps, neem oil, and a recommended miticide or insecticide."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "cauliflower": {
+   "name": "Cauliflower",
+   "hindi": "Phool gobhi",
+   "group": "Vegetable",
+   "season": "Rabi",
+   "kc": [
+    0.7,
+    1.05,
+    0.95
+   ],
+   "root_m": 0.4,
+   "p": 0.45,
+   "perennial": false,
+   "npk": "120 : 60 : 60 kg/ha + boron",
+   "tip": "Keep the soil evenly moist during curd formation. Boron shortage causes brown, hollow curds.",
+   "problems": [
+    {
+     "name": "Black rot",
+     "type": "Bacterial",
+     "signs": "V-shaped yellow patches from the leaf edge with black veins.",
+     "manage": "Hot-water treated seed, crop rotation, and copper oxychloride sprays."
+    },
+    {
+     "name": "Diamondback moth",
+     "type": "Pest",
+     "signs": "Small green caterpillars make windows and holes in leaves.",
+     "manage": "Grow mustard as a trap crop, use pheromone traps, and spray Bt or a recommended insecticide."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "cabbage": {
+   "name": "Cabbage",
+   "hindi": "Patta gobhi",
+   "group": "Vegetable",
+   "season": "Rabi",
+   "kc": [
+    0.7,
+    1.05,
+    0.95
+   ],
+   "root_m": 0.5,
+   "p": 0.45,
+   "perennial": false,
+   "npk": "120 : 60 : 60 kg/ha",
+   "tip": "Uneven watering causes heads to split. Keep moisture steady as heads form.",
+   "problems": [
+    {
+     "name": "Diamondback moth",
+     "type": "Pest",
+     "signs": "Holes and windows in leaves; small green caterpillars.",
+     "manage": "Mustard trap crop, pheromone traps, and Bt sprays."
+    },
+    {
+     "name": "Black rot",
+     "type": "Bacterial",
+     "signs": "Yellow V-shaped patches from leaf edges with blackened veins.",
+     "manage": "Treated seed, rotation and copper oxychloride."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "cucumber": {
+   "name": "Cucumber",
+   "hindi": "Kheera",
+   "group": "Vegetable",
+   "season": "Zaid / Kharif",
+   "kc": [
+    0.6,
+    1.0,
+    0.75
+   ],
+   "root_m": 0.7,
+   "p": 0.5,
+   "perennial": false,
+   "npk": "80-100 : 50 : 50 kg/ha",
+   "tip": "Water at the base, not on the leaves. Uneven watering gives bitter, misshapen fruit.",
+   "problems": [
+    {
+     "name": "Downy mildew",
+     "type": "Oomycete",
+     "signs": "Angular yellow patches on the upper leaf; grey-purple growth underneath.",
+     "manage": "Wider spacing, drip irrigation, and metalaxyl + mancozeb sprays."
+    },
+    {
+     "name": "Fruit fly",
+     "type": "Pest",
+     "signs": "Fruits rot with maggots inside.",
+     "manage": "Collect and destroy fallen fruit, and use cue-lure traps."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "bottle_gourd": {
+   "name": "Bottle Gourd",
+   "hindi": "Lauki",
+   "group": "Vegetable",
+   "season": "Zaid / Kharif",
+   "kc": [
+    0.5,
+    1.0,
+    0.8
+   ],
+   "kc_source": "Approximate",
+   "root_m": 1.0,
+   "p": 0.35,
+   "perennial": false,
+   "npk": "80 : 40 : 40 kg/ha",
+   "tip": "Grows fast in heat. Irrigate every 4-5 days in summer and train vines on a trellis.",
+   "problems": [
+    {
+     "name": "Fruit fly",
+     "type": "Pest",
+     "signs": "Fruits turn soft and rot with maggots inside.",
+     "manage": "Destroy infested fruit and use cue-lure traps."
+    },
+    {
+     "name": "Red pumpkin beetle",
+     "type": "Pest",
+     "signs": "Orange beetles eat holes in seedling leaves.",
+     "manage": "Hand-pick beetles in the morning and protect seedlings early."
+    },
+    {
+     "name": "Downy mildew",
+     "type": "Oomycete",
+     "signs": "Yellow angular patches on leaves.",
+     "manage": "Mancozeb sprays and good air flow."
+    }
+   ],
+   "kind": "field"
+  },
+  "bitter_gourd": {
+   "name": "Bitter Gourd",
+   "hindi": "Karela",
+   "group": "Vegetable",
+   "season": "Zaid / Kharif",
+   "kc": [
+    0.6,
+    1.0,
+    0.75
+   ],
+   "kc_source": "Approximate",
+   "root_m": 0.7,
+   "p": 0.5,
+   "perennial": false,
+   "npk": "80 : 50 : 50 kg/ha",
+   "tip": "Keep soil moist but drained; a trellis keeps fruit clean and reduces disease.",
+   "problems": [
+    {
+     "name": "Fruit fly",
+     "type": "Pest",
+     "signs": "Fruits with sting marks rot and drop.",
+     "manage": "Bag young fruits where practical and use cue-lure traps."
+    },
+    {
+     "name": "Powdery mildew",
+     "type": "Fungal",
+     "signs": "White powder on leaves.",
+     "manage": "Wettable sulphur on cool mornings."
+    }
+   ],
+   "kind": "field"
+  },
+  "pumpkin": {
+   "name": "Pumpkin",
+   "hindi": "Kaddu / Sitaphal",
+   "group": "Vegetable",
+   "season": "Zaid / Kharif",
+   "kc": [
+    0.5,
+    1.0,
+    0.8
+   ],
+   "root_m": 1.0,
+   "p": 0.35,
+   "perennial": false,
+   "npk": "80 : 40 : 40 kg/ha",
+   "tip": "Deep watering once or twice a week is better than daily sprinkling.",
+   "problems": [
+    {
+     "name": "Powdery mildew",
+     "type": "Fungal",
+     "signs": "White powder spreading over leaves.",
+     "manage": "Wettable sulphur or hexaconazole at first spots."
+    },
+    {
+     "name": "Red pumpkin beetle",
+     "type": "Pest",
+     "signs": "Holes in young leaves.",
+     "manage": "Hand-pick beetles and protect seedlings."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "watermelon": {
+   "name": "Watermelon",
+   "hindi": "Tarbooz",
+   "group": "Vegetable",
+   "season": "Zaid",
+   "kc": [
+    0.4,
+    1.0,
+    0.75
+   ],
+   "root_m": 0.8,
+   "p": 0.4,
+   "perennial": false,
+   "npk": "100 : 50 : 50 kg/ha",
+   "tip": "Cut back irrigation as fruits ripen for sweeter fruit and less cracking.",
+   "problems": [
+    {
+     "name": "Fusarium wilt",
+     "type": "Fungal",
+     "signs": "Vines wilt in the day and die; brown streaks inside the stem.",
+     "manage": "Resistant varieties and long crop rotation."
+    },
+    {
+     "name": "Anthracnose",
+     "type": "Fungal",
+     "signs": "Dark sunken spots on leaves and fruit.",
+     "manage": "Mancozeb or carbendazim sprays and healthy seed."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "carrot": {
+   "name": "Carrot",
+   "hindi": "Gajar",
+   "group": "Vegetable",
+   "season": "Rabi",
+   "kc": [
+    0.7,
+    1.05,
+    0.95
+   ],
+   "root_m": 0.5,
+   "p": 0.35,
+   "perennial": false,
+   "npk": "60-80 : 40-60 : 60-80 kg/ha",
+   "tip": "Even moisture gives straight, smooth roots. Heavy watering after dry spells makes roots crack.",
+   "problems": [
+    {
+     "name": "Root cracking and forking",
+     "type": "Physiological",
+     "signs": "Split or branched roots.",
+     "manage": "Even watering, loose stone-free soil, and no fresh manure."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "radish": {
+   "name": "Radish",
+   "hindi": "Mooli",
+   "group": "Vegetable",
+   "season": "Rabi",
+   "kc": [
+    0.7,
+    0.9,
+    0.85
+   ],
+   "root_m": 0.3,
+   "p": 0.3,
+   "perennial": false,
+   "npk": "60 : 40 : 40 kg/ha",
+   "tip": "Shallow roots. Water lightly and often; dry soil makes roots pithy and hot.",
+   "problems": [
+    {
+     "name": "Aphids",
+     "type": "Pest",
+     "signs": "Colonies of small insects under leaves; leaves curl.",
+     "manage": "Neem oil and a strong water spray; insecticide only if severe."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "spinach": {
+   "name": "Spinach",
+   "hindi": "Palak",
+   "group": "Vegetable",
+   "season": "Rabi",
+   "kc": [
+    0.7,
+    1.0,
+    0.95
+   ],
+   "root_m": 0.3,
+   "p": 0.2,
+   "perennial": false,
+   "npk": "80-100 : 40 : 40 kg/ha",
+   "tip": "Keep the soil moist all the time; give nitrogen after each cutting.",
+   "problems": [
+    {
+     "name": "Leaf spot",
+     "type": "Fungal",
+     "signs": "Small round brown spots on leaves.",
+     "manage": "Remove spotted leaves and avoid overhead watering."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "garlic": {
+   "name": "Garlic",
+   "hindi": "Lahsun",
+   "group": "Vegetable",
+   "season": "Rabi",
+   "kc": [
+    0.7,
+    1.0,
+    0.7
+   ],
+   "root_m": 0.3,
+   "p": 0.3,
+   "perennial": false,
+   "npk": "100 : 50 : 50 kg/ha",
+   "tip": "Shallow roots; irrigate every 7-10 days and stop 2-3 weeks before harvest.",
+   "problems": [
+    {
+     "name": "Purple blotch",
+     "type": "Fungal",
+     "signs": "Purple spots with yellow margins on leaves.",
+     "manage": "Mancozeb sprays with a sticker."
+    },
+    {
+     "name": "Thrips",
+     "type": "Pest",
+     "signs": "Silvery streaks on leaves.",
+     "manage": "Blue sticky traps and a recommended insecticide."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "sweet_potato": {
+   "name": "Sweet Potato",
+   "hindi": "Shakarkand",
+   "group": "Vegetable",
+   "season": "Kharif",
+   "kc": [
+    0.5,
+    1.15,
+    0.65
+   ],
+   "root_m": 1.0,
+   "p": 0.65,
+   "perennial": false,
+   "npk": "50-75 : 50 : 75 kg/ha",
+   "tip": "Tolerates dry spells; irrigate during tuber formation if it is dry.",
+   "problems": [
+    {
+     "name": "Sweet potato weevil",
+     "type": "Pest",
+     "signs": "Tunnels in tubers with a bitter smell.",
+     "manage": "Use clean vine cuttings, earth up to cover cracks, and rotate crops."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "turmeric": {
+   "name": "Turmeric",
+   "hindi": "Haldi",
+   "group": "Spice",
+   "season": "Kharif (about 9 months)",
+   "kc": [
+    0.6,
+    1.1,
+    0.8
+   ],
+   "kc_source": "Approximate",
+   "root_m": 0.5,
+   "p": 0.45,
+   "perennial": false,
+   "npk": "60 : 50 : 120 kg/ha + farmyard manure",
+   "tip": "Needs steady moisture and good drainage. Mulch the beds with leaves after planting.",
+   "problems": [
+    {
+     "name": "Rhizome rot",
+     "type": "Oomycete",
+     "signs": "Lower leaves yellow; collar becomes soft and the rhizome rots.",
+     "manage": "Good drainage, healthy seed rhizomes treated with mancozeb or Trichoderma, and removal of affected clumps."
+    },
+    {
+     "name": "Leaf blotch",
+     "type": "Fungal",
+     "signs": "Many small yellowish spots on both sides of the leaf.",
+     "manage": "Mancozeb or carbendazim spray."
+    }
+   ],
+   "kind": "field"
+  },
+  "ginger": {
+   "name": "Ginger",
+   "hindi": "Adrak",
+   "group": "Spice",
+   "season": "Kharif",
+   "kc": [
+    0.6,
+    1.1,
+    0.8
+   ],
+   "kc_source": "Approximate",
+   "root_m": 0.4,
+   "p": 0.45,
+   "perennial": false,
+   "npk": "75 : 50 : 50 kg/ha + farmyard manure",
+   "tip": "Likes partial shade, moist soil and excellent drainage. Mulch heavily.",
+   "problems": [
+    {
+     "name": "Soft rot",
+     "type": "Oomycete",
+     "signs": "Pseudostem yellows and collapses; rhizome becomes soft and smelly.",
+     "manage": "Drainage, treated seed rhizomes, and removal of affected clumps."
+    },
+    {
+     "name": "Bacterial wilt",
+     "type": "Bacterial",
+     "signs": "Sudden wilting; milky ooze from cut stems.",
+     "manage": "Use disease-free seed and rotate away from tomato, potato and chilli."
+    }
+   ],
+   "kind": "field"
+  },
+  "banana": {
+   "name": "Banana",
+   "hindi": "Kela",
+   "group": "Fruit tree",
+   "season": "Perennial",
+   "kc": [
+    0.5,
+    1.1,
+    1.0
+   ],
+   "root_m": 0.5,
+   "p": 0.35,
+   "perennial": true,
+   "npk": "200 : 60 : 300 g per plant per crop, in splits",
+   "tip": "Needs plenty of water. Drip irrigation with mulch can save about 40-50% water.",
+   "problems": [
+    {
+     "name": "Panama wilt",
+     "type": "Fungal",
+     "signs": "Older leaves yellow and hang down; the pseudostem splits; brown streaks inside.",
+     "manage": "Use tissue-culture plants, remove infected plants, and don't replant banana in the same pit."
+    },
+    {
+     "name": "Sigatoka leaf spot",
+     "type": "Fungal",
+     "signs": "Yellow streaks that become brown spots with grey centres.",
+     "manage": "Remove infected leaves and spray propiconazole with mineral oil."
+    },
+    {
+     "name": "Bunchy top",
+     "type": "Viral (aphid)",
+     "signs": "Narrow, upright, bunched leaves with dark green streaks.",
+     "manage": "Pull out infected plants and use virus-free tissue-culture plants."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "mango": {
+   "name": "Mango",
+   "hindi": "Aam",
+   "group": "Fruit tree",
+   "season": "Perennial",
+   "kc": [
+    0.6,
+    0.85,
+    0.75
+   ],
+   "kc_source": "Approximate",
+   "root_m": 1.0,
+   "p": 0.65,
+   "perennial": true,
+   "npk": "About 1 kg N, 0.5 kg P2O5 and 1 kg K2O per year for a 10-year tree, in splits",
+   "tip": "Stop irrigation for 2-3 months before flowering to encourage blossoms, then irrigate during fruit development.",
+   "problems": [
+    {
+     "name": "Powdery mildew",
+     "type": "Fungal",
+     "signs": "White powder on flowers and young fruits, which then drop.",
+     "manage": "Wettable sulphur @ 2 g/L when panicles appear."
+    },
+    {
+     "name": "Anthracnose",
+     "type": "Fungal",
+     "signs": "Black spots on leaves, flowers and ripening fruit.",
+     "manage": "Carbendazim or copper oxychloride sprays; prune dead twigs."
+    },
+    {
+     "name": "Mango hopper",
+     "type": "Pest",
+     "signs": "Flowers dry and drop; sticky honeydew and black sooty mould.",
+     "manage": "Spray a recommended insecticide at flower-bud stage; keep the orchard open and clean."
+    }
+   ],
+   "kind": "field"
+  },
+  "guava": {
+   "name": "Guava",
+   "hindi": "Amrood",
+   "group": "Fruit tree",
+   "season": "Perennial",
+   "kc": [
+    0.6,
+    0.85,
+    0.75
+   ],
+   "kc_source": "Approximate",
+   "root_m": 1.0,
+   "p": 0.5,
+   "perennial": true,
+   "npk": "Per tree, based on tree age; split doses before flowering",
+   "tip": "Hardy tree. Irrigate during flowering and fruit growth; avoid waterlogging.",
+   "problems": [
+    {
+     "name": "Wilt",
+     "type": "Fungal",
+     "signs": "Leaves yellow and branches dry one after another.",
+     "manage": "Remove affected trees, improve drainage, and add Trichoderma to the soil."
+    },
+    {
+     "name": "Fruit fly",
+     "type": "Pest",
+     "signs": "Fruits rot with maggots inside, mostly in the rainy season.",
+     "manage": "Collect fallen fruit and use methyl eugenol traps."
+    }
+   ],
+   "kind": "field"
+  },
+  "papaya": {
+   "name": "Papaya",
+   "hindi": "Papita",
+   "group": "Fruit tree",
+   "season": "Perennial",
+   "kc": [
+    0.6,
+    1.0,
+    0.85
+   ],
+   "kc_source": "Approximate",
+   "root_m": 0.6,
+   "p": 0.4,
+   "perennial": true,
+   "npk": "200 : 200 : 400 g per plant per year, in splits",
+   "tip": "Very sensitive to waterlogging; a few hours of standing water can kill plants. Use raised beds.",
+   "problems": [
+    {
+     "name": "Ring spot virus",
+     "type": "Viral (aphid)",
+     "signs": "Mottled leaves; ring-shaped spots on fruit.",
+     "manage": "Use healthy seedlings, grow a border crop such as maize, and pull out infected plants."
+    },
+    {
+     "name": "Foot rot",
+     "type": "Oomycete",
+     "signs": "Water-soaked rot at the stem base; the plant topples.",
+     "manage": "Good drainage and keep water away from the stem."
+    }
+   ],
+   "kind": "field"
+  },
+  "pomegranate": {
+   "name": "Pomegranate",
+   "hindi": "Anar",
+   "group": "Fruit tree",
+   "season": "Perennial",
+   "kc": [
+    0.45,
+    0.85,
+    0.65
+   ],
+   "kc_source": "Approximate",
+   "root_m": 1.0,
+   "p": 0.5,
+   "perennial": true,
+   "npk": "Per tree, based on tree age and crop regulation (bahar)",
+   "tip": "Drought tolerant, but uneven watering cracks the fruit. Use drip and keep moisture steady.",
+   "problems": [
+    {
+     "name": "Bacterial blight",
+     "type": "Bacterial",
+     "signs": "Oily, water-soaked spots on leaves and fruit that crack.",
+     "manage": "Prune and burn infected parts, and spray copper oxychloride. Antibiotic sprays are banned."
+    },
+    {
+     "name": "Fruit borer",
+     "type": "Pest",
+     "signs": "Holes in fruit with rotting inside.",
+     "manage": "Bag fruits and remove damaged fruit."
+    }
+   ],
+   "kind": "field"
+  },
+  "coconut": {
+   "name": "Coconut",
+   "hindi": "Nariyal",
+   "group": "Plantation",
+   "season": "Perennial",
+   "kc": [
+    0.95,
+    1.0,
+    1.0
+   ],
+   "root_m": 0.7,
+   "p": 0.65,
+   "perennial": true,
+   "npk": "500 : 320 : 1200 g per palm per year, in two splits",
+   "tip": "Irrigate regularly in summer; basin irrigation with husk burial or drip saves water.",
+   "problems": [
+    {
+     "name": "Bud rot",
+     "type": "Oomycete",
+     "signs": "The spear leaf yellows and pulls out; the crown rots and smells foul.",
+     "manage": "Remove rotten tissue and apply Bordeaux paste; spray Bordeaux mixture before the monsoon."
+    },
+    {
+     "name": "Rhinoceros beetle",
+     "type": "Pest",
+     "signs": "V-shaped cuts in opened leaves.",
+     "manage": "Hook out beetles, keep the area clean of manure pits, and use pheromone traps."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "tea": {
+   "name": "Tea",
+   "hindi": "Chai",
+   "group": "Plantation",
+   "season": "Perennial",
+   "kc": [
+    0.95,
+    1.0,
+    1.0
+   ],
+   "root_m": 0.9,
+   "p": 0.4,
+   "perennial": true,
+   "npk": "Based on yield and soil test; split through the plucking season",
+   "tip": "Needs well-distributed rain; sprinkler irrigation in dry months keeps bushes flushing.",
+   "problems": [
+    {
+     "name": "Blister blight",
+     "type": "Fungal",
+     "signs": "Pale translucent spots on young leaves that blister underneath.",
+     "manage": "Copper-based sprays during the wet season and shorter plucking rounds."
+    },
+    {
+     "name": "Tea mosquito bug",
+     "type": "Pest",
+     "signs": "Dark spots on young shoots, which dry.",
+     "manage": "Remove shade-tree weeds and spray a recommended insecticide."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "coffee": {
+   "name": "Coffee",
+   "hindi": "Coffee",
+   "group": "Plantation",
+   "season": "Perennial",
+   "kc": [
+    0.9,
+    0.95,
+    0.95
+   ],
+   "root_m": 0.9,
+   "p": 0.4,
+   "perennial": true,
+   "npk": "Based on yield and soil test; split before and after the monsoon",
+   "tip": "A blossom irrigation (about 25 mm) in February-March triggers uniform flowering.",
+   "problems": [
+    {
+     "name": "Leaf rust",
+     "type": "Fungal",
+     "signs": "Orange powdery spots under the leaves; heavy leaf fall.",
+     "manage": "Resistant varieties and Bordeaux mixture or systemic fungicide sprays."
+    },
+    {
+     "name": "White stem borer",
+     "type": "Pest",
+     "signs": "Yellowing branches and holes in the main stem.",
+     "manage": "Maintain shade, scrub the stem bark, and uproot badly affected plants."
+    }
+   ],
+   "kc_source": "FAO-56",
+   "kind": "field"
+  },
+  "money_plant": {
+   "name": "Money Plant",
+   "hindi": "Pothos",
+   "group": "Houseplant",
+   "season": "Year-round",
+   "kind": "houseplant",
+   "kc": [
+    0.3,
+    0.3,
+    0.3
+   ],
+   "root_m": 0.2,
+   "p": 0.5,
+   "perennial": true,
+   "npk": "Balanced liquid fertilizer once a month in spring and summer",
+   "tip": "Most money plant problems come from overwatering, not underwatering.",
+   "care": {
+    "water_days": {
+     "hot": 6,
+     "warm": 8,
+     "cool": 12
+    },
+    "light": "Bright, indirect light. Gentle morning sun is fine; harsh afternoon sun scorches the leaves.",
+    "watering": "Water when the top 2-3 cm of soil feel dry, until water drains from the bottom. Empty the saucer after 15 minutes.",
+    "water_grown": "Growing it in a bottle of water? Change the water every 7-10 days and keep the nodes under water, not the leaves.",
+    "fertilizer": "A balanced liquid fertilizer (such as NPK 19:19:19 at 1 g per litre) once a month in spring and summer. No feeding in winter."
+   },
+   "problems": [
+    {
+     "name": "Root rot (overwatering)",
+     "type": "Fungal",
+     "signs": "Yellow leaves, black mushy stems at the soil line, and a sour smell from the pot.",
+     "manage": "Let the soil dry out, cut away black roots, and repot in fresh mix in a pot with a drainage hole."
+    },
+    {
+     "name": "Brown, crispy leaf edges",
+     "type": "Care",
+     "signs": "Leaf tips and edges turn brown and dry.",
+     "manage": "Water thoroughly when the topsoil is dry, keep it away from heater or AC vents, and flush the soil every few months."
+    },
+    {
+     "name": "Mealybugs",
+     "type": "Pest",
+     "signs": "White cottony clusters in leaf joints; sticky leaves.",
+     "manage": "Wipe them off with cotton dipped in rubbing alcohol, then spray neem oil (5 ml per litre with a few drops of soap) weekly."
+    },
+    {
+     "name": "Leaf spot",
+     "type": "Fungal / bacterial",
+     "signs": "Brown spots with yellow halos on leaves.",
+     "manage": "Remove affected leaves, water the soil rather than the leaves, and improve air flow."
+    }
+   ],
+   "kc_source": "FAO-56"
+  },
+  "tulsi": {
+   "name": "Tulsi",
+   "hindi": "Holy basil",
+   "group": "Houseplant",
+   "season": "Year-round",
+   "kind": "houseplant",
+   "kc": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "root_m": 0.2,
+   "p": 0.4,
+   "perennial": true,
+   "npk": "Compost or vermicompost every 4-6 weeks",
+   "tip": "Pinch off the flower spikes (manjari) to keep the plant bushy and leafy.",
+   "care": {
+    "water_days": {
+     "hot": 1,
+     "warm": 2,
+     "cool": 4
+    },
+    "light": "At least 4-6 hours of direct sun. A sunny balcony, terrace or courtyard is ideal.",
+    "watering": "Keep the soil lightly moist but never soggy. In peak summer a pot may need water every day.",
+    "water_grown": "",
+    "fertilizer": "Compost or vermicompost every 4-6 weeks. Avoid chemical sprays on leaves you will use."
+   },
+   "problems": [
+    {
+     "name": "Wilting from overwatering",
+     "type": "Care",
+     "signs": "Leaves droop and blacken even though the soil is wet.",
+     "manage": "Let the topsoil dry before watering again and make sure the pot drains."
+    },
+    {
+     "name": "Downy mildew",
+     "type": "Oomycete",
+     "signs": "Leaves yellow, with grey-purple fuzz underneath.",
+     "manage": "Remove affected leaves, give more sun and air, and avoid wetting the leaves."
+    },
+    {
+     "name": "Winter dieback",
+     "type": "Care",
+     "signs": "Leaves drop and stems blacken in cold weather.",
+     "manage": "Move the pot to a sunny, sheltered spot or indoors near a window, and water less in winter."
+    }
+   ],
+   "kc_source": "FAO-56"
+  },
+  "malabar_spinach": {
+   "name": "Malabar Spinach",
+   "hindi": "Poi",
+   "group": "Vegetable",
+   "season": "Kharif / Zaid",
+   "kc": [
+    0.7,
+    1.0,
+    0.95
+   ],
+   "kc_source": "Approximate",
+   "root_m": 0.4,
+   "p": 0.3,
+   "perennial": false,
+   "kind": "field",
+   "npk": "60-80 : 40 : 40 kg/ha",
+   "tip": "A climbing vine that loves heat and moisture. Give it a trellis, keep the soil moist, and pick leaves often.",
+   "problems": [
+    {
+     "name": "Cercospora leaf spot",
+     "type": "Fungal",
+     "signs": "Small round spots with pale centres and reddish-brown edges on leaves.",
+     "manage": "Remove spotted leaves, avoid wetting leaves, and spray mancozeb 75 WP @ 2.5 g/L if it spreads."
+    },
+    {
+     "name": "Leaf-eating caterpillars",
+     "type": "Pest",
+     "signs": "Holes and chewed edges on leaves.",
+     "manage": "Hand-pick caterpillars and spray neem oil 1500 ppm @ 3-5 ml/L."
+    }
+   ]
+  }
+ },
+ "stages": {
+  "initial": {
+   "label": "Initial",
+   "hint": "Germination, transplanting or new growth",
+   "root_factor": 0.35
+  },
+  "development": {
+   "label": "Development",
+   "hint": "Vegetative growth, crop canopy expanding",
+   "root_factor": 0.7
+  },
+  "mid": {
+   "label": "Mid-season",
+   "hint": "Flowering, fruiting or grain filling",
+   "root_factor": 1.0
+  },
+  "late": {
+   "label": "Late season",
+   "hint": "Maturity and ripening, close to harvest",
+   "root_factor": 1.0
+  }
+ },
+ "stage_nutrition": {
+  "initial": "Apply the full phosphorus and potassium dose and about one third of the nitrogen as a basal dose at sowing or planting. Well-decomposed farmyard manure or compost improves soil structure and water holding.",
+  "development": "Top-dress nitrogen (for example urea) in split doses during vegetative growth and irrigate lightly after application. Correct visible micronutrient deficiencies such as zinc or iron with foliar sprays.",
+  "mid": "Focus on potassium, and on calcium and boron for fruiting crops, during flowering and fruit or grain filling. Give the final nitrogen split if recommended, and avoid heavy nitrogen that promotes leafy growth and disease.",
+  "late": "Stop nitrogen applications. No major fertilizer is needed near harvest. Plan a soil test after harvest to guide the next crop."
+ },
+ "methods": {
+  "drip": {
+   "label": "Drip",
+   "efficiency": 0.9
+  },
+  "sprinkler": {
+   "label": "Sprinkler",
+   "efficiency": 0.75
+  },
+  "furrow": {
+   "label": "Furrow",
+   "efficiency": 0.6
+  },
+  "flood": {
+   "label": "Flood / basin",
+   "efficiency": 0.5
+  }
+ },
+ "groups": [
+  "Cereal",
+  "Pulse",
+  "Oilseed",
+  "Vegetable",
+  "Fruit",
+  "Fruit tree",
+  "Fruit vine",
+  "Fruit bush",
+  "Spice",
+  "Plantation",
+  "Cash crop",
+  "Houseplant"
+ ]
+}

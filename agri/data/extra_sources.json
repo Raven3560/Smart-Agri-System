@@ -1,0 +1,189 @@
+[
+ {
+  "crop": "money_plant",
+  "dataset": "money_plant_disease_classification",
+  "licence": "CC BY 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/money_plant_disease_classification",
+  "title": "Money plant disease atlas: A comprehensive dataset for disease classification in ornamental horticulture",
+  "authors": "ali Biswas, Md Seyam et al.",
+  "year": "2025",
+  "venue": "Data in Brief",
+  "doi": "10.17632/rzjww3vdxt.3"
+ },
+ {
+  "crop": "rice",
+  "dataset": "rice_leaf_disease_classification_india",
+  "licence": "CC BY 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/rice_leaf_disease_classification_india",
+  "title": "Deep feature based rice leaf disease identification using support vector machine",
+  "authors": "Sethy, Prabira Kumar et al.",
+  "year": "2020",
+  "venue": "Computers and Electronics in Agriculture",
+  "doi": "10.17632/fwcj7stb8r.2"
+ },
+ {
+  "crop": "sugarcane",
+  "dataset": "sugarcane_leaf_disease_classification",
+  "licence": "CC BY 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/sugarcane_leaf_disease_classification",
+  "title": "Sugarcane leaf dataset: A dataset for disease detection and classification for machine learning applications",
+  "authors": "Thite, Sandip and Suryawanshi, Yogesh and Patil, Kailas and Chumchu, Prawit",
+  "year": "2024",
+  "venue": "Data in brief",
+  "doi": "10.17632/9twjtv92vk.1"
+ },
+ {
+  "crop": "cotton",
+  "dataset": "cotton_leaf_disease_classification",
+  "licence": "CC BY-NC 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/cotton_leaf_disease_classification",
+  "title": "Cotton leaf image dataset for disease classification and health monitoring",
+  "authors": "Ripon, Shamim et al.",
+  "year": "2025",
+  "venue": "Data in Brief",
+  "doi": "10.17632/t9hgvk2h9p.1"
+ },
+ {
+  "crop": "mango",
+  "dataset": "mango_leaf_disease_classification",
+  "licence": "CC BY 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/mango_leaf_disease_classification",
+  "title": "MangoLeafBD: A comprehensive image dataset to classify diseased and healthy mango leaves",
+  "authors": "Ahmed, Sarder Iftekhar et al.",
+  "year": "2023",
+  "venue": "Data in Brief",
+  "doi": "10.17632/hxsnvwty3r.1"
+ },
+ {
+  "crop": "banana",
+  "dataset": "BananaLSD_leaf_disease_classification",
+  "licence": "CC BY 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/BananaLSD_leaf_disease_classification",
+  "title": "BananaLSD: A banana leaf images dataset for classification of banana leaf diseases using machine learning",
+  "authors": "Arman, Shifat E et al.",
+  "year": "2023",
+  "venue": "Data in Brief",
+  "doi": "10.17632/9tb7k297ff.1"
+ },
+ {
+  "crop": "banana",
+  "dataset": "banana_leaf_disease_classification",
+  "licence": "CC BY 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/banana_leaf_disease_classification",
+  "title": "Sigatoka and xanthomonas banana leaf disease detection via transfer learning",
+  "authors": "Genet, Yordanos Hailu et al.",
+  "year": "2024",
+  "venue": "Scientia Iranica",
+  "doi": "10.17632/rjykr62kdh.1"
+ },
+ {
+  "crop": "chilli",
+  "dataset": "COLD_chili_leaf_disease_classification",
+  "licence": "CC BY 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/COLD_chili_leaf_disease_classification",
+  "title": "Dataset of chilli and onion plant leaf images for classification and detection",
+  "authors": "Aishwarya, MP and Reddy, A Padmanabha",
+  "year": "2024",
+  "venue": "Data in Brief",
+  "doi": "10.17632/tf9dtfz9m6.2"
+ },
+ {
+  "crop": "onion",
+  "dataset": "COLD_onion_leaf_disease_classification",
+  "licence": "CC BY 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/COLD_onion_leaf_disease_classification",
+  "title": "Dataset of chilli and onion plant leaf images for classification and detection",
+  "authors": "Aishwarya, MP and Reddy, A Padmanabha",
+  "year": "2024",
+  "venue": "Data in Brief",
+  "doi": "10.17632/7nxxn4gj5s.2"
+ },
+ {
+  "crop": "groundnut",
+  "dataset": "groundnut_leaf_disease_classification",
+  "licence": "CC BY 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/groundnut_leaf_disease_classification",
+  "title": "A novel groundnut leaf dataset for detection and classification of groundnut leaf diseases",
+  "authors": "Sasmal, Buddhadev et al.",
+  "year": "2024",
+  "venue": "Data in Brief",
+  "doi": "10.17632/x6x5jkk873.2"
+ },
+ {
+  "crop": "turmeric",
+  "dataset": "turmeric_leaf_disease_classification",
+  "licence": "CC BY 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/turmeric_leaf_disease_classification",
+  "title": "Smartphone image dataset for turmeric plant leaf disease from Bangladesh spice fields",
+  "authors": "Ahmed, Jubaer et al.",
+  "year": "2025",
+  "venue": "Data in Brief",
+  "doi": "10.17632/jtttfbx342.2"
+ },
+ {
+  "crop": "tea",
+  "dataset": "tea_leaf_disease_classification_bangladesh",
+  "licence": "CC BY 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/tea_leaf_disease_classification_bangladesh",
+  "title": "High-resolution dataset for tea garden disease management: Precision agriculture insights",
+  "authors": "Bormon, Sajib et al.",
+  "year": "2025",
+  "venue": "Data in Brief",
+  "doi": "10.17632/tt2smzrzrs.4"
+ },
+ {
+  "crop": "papaya",
+  "dataset": "papaya_leaf_disease_classification_bangladesh",
+  "licence": "CC BY 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/papaya_leaf_disease_classification_bangladesh",
+  "title": "Smartphone image dataset to distinguish healthy and unhealthy leaves in papaya orchards in Bangladesh",
+  "authors": "Gani, Raiyan et al.",
+  "year": "2024",
+  "venue": "Data in Brief",
+  "doi": "10.17632/44p8v6ywsm.1"
+ },
+ {
+  "crop": "masoor",
+  "dataset": "lentil_disease_classification",
+  "licence": "CC BY 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/lentil_disease_classification",
+  "title": "Lentil plant disease and quality assessment: A detailed dataset of high-resolution images for deep learning research",
+  "authors": "Mahamud, Eram and Assaduzzaman, Md and Sharmin, Shayla",
+  "year": "2025",
+  "venue": "Data in Brief",
+  "doi": "10.17632/7vb77bz2st.2"
+ },
+ {
+  "crop": "urad",
+  "dataset": "blackgram_plant_leaf_disease_classification",
+  "licence": "CC BY 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/blackgram_plant_leaf_disease_classification",
+  "title": "Black gram Plant Leaf Disease (BPLD) dataset for recognition and classification of diseases using computer-vision algorithms",
+  "authors": "Talasila, Srinivas and Rawal, Kirti and Sethi, Gaurav and Mss, Sanjay and others",
+  "year": "2022",
+  "venue": "Data in Brief",
+  "doi": "10.17632/zfcv9fmrgv.3"
+ },
+ {
+  "crop": "malabar_spinach",
+  "dataset": "IDDMSLD_spinach_leaf_disease_classification",
+  "licence": "CC BY 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/IDDMSLD_spinach_leaf_disease_classification",
+  "title": "IDDMSLD: An image dataset for detecting Malabar spinach leaf diseases",
+  "authors": "Sayeem, Adnan Rahman et al.",
+  "year": "2025",
+  "venue": "Data in Brief",
+  "doi": "10.17632/sy69db2nz5.2"
+ },
+ {
+  "crop": "radish",
+  "dataset": "radish_leaf_disease_classification",
+  "licence": "CC BY 4.0",
+  "url": "https://huggingface.co/datasets/Project-AgML/radish_leaf_disease_classification",
+  "title": "Smartphone image dataset for radish plant leaf disease classification from Bangladesh",
+  "authors": "Hasan, Mahamudul et al.",
+  "year": "2025",
+  "venue": "Data in Brief",
+  "doi": "10.17632/s973cz2jcd.1"
+ }
+]

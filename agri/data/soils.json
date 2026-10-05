@@ -1,0 +1,15 @@
+{
+  "_source": "Available water capacity (mm of water per metre of soil) from the midpoints of FAO-56 Table 19 ranges, with typical values for common Indian soil groups.",
+  "soils": {
+    "sandy":      {"name": "Sandy",            "awc": 80,  "tip": "Sandy soil drains fast and holds little water. Irrigate lightly and more often, and add organic matter to improve water holding."},
+    "sandy_loam": {"name": "Sandy loam",       "awc": 130, "tip": "Sandy loam drains well. Moderate, regular irrigation works best; avoid heavy single irrigations that leach nutrients."},
+    "loamy":      {"name": "Loamy",            "awc": 155, "tip": "Loamy soil holds water well and drains well. Standard irrigation intervals usually work."},
+    "alluvial":   {"name": "Alluvial",         "awc": 150, "tip": "Alluvial soils of the Indo-Gangetic plains hold water well. Level the field so irrigation water spreads evenly."},
+    "silty":      {"name": "Silty / silt loam", "awc": 170, "tip": "Silty soil holds a lot of water but can form a surface crust. Avoid flooding and break crusts after irrigation."},
+    "clay_loam":  {"name": "Clay loam",        "awc": 160, "tip": "Clay loam holds water for a long time. Allow longer intervals between irrigations and ensure drainage."},
+    "clay":       {"name": "Clay",             "awc": 165, "tip": "Clay soil absorbs water slowly and can waterlog. Apply water slowly, avoid over-irrigation and keep drainage channels open."},
+    "black":      {"name": "Black (Regur)",    "awc": 180, "tip": "Black cotton soil holds a lot of water and cracks when dry. Irrigate before deep cracks form and avoid waterlogging."},
+    "red":        {"name": "Red",              "awc": 110, "tip": "Red soil is porous with low water holding. Irrigate more frequently and add compost or farmyard manure."},
+    "laterite":   {"name": "Laterite",         "awc": 100, "tip": "Laterite soil drains quickly and is low in nutrients. Mulching and organic matter help keep moisture."}
+  }
+}

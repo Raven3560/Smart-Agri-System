@@ -1,0 +1,3065 @@
+[
+ {
+  "id": 1000,
+  "key": "banana___cordana_leaf_spot",
+  "model_label": "banana___cordana_leaf_spot",
+  "pv_folder": "banana___cordana_leaf_spot",
+  "crop": "banana",
+  "healthy": false,
+  "model": "extra",
+  "name": "Banana Cordana Leaf Spot",
+  "type": "Fungal",
+  "pathogen": "Cordana musae",
+  "impact": "Moderate",
+  "summary": "Pale brown oval spots with a yellow halo that join into large dead patches in wet weather.",
+  "symptoms": [
+   "Pale brown oval spots with a yellow halo, often near the leaf edge",
+   "Spots join into large dead patches"
+  ],
+  "conditions": "Wet, humid weather.",
+  "weather_profile": {
+   "t_min": 22,
+   "t_max": 30,
+   "rh_min": 85,
+   "needs_rain": true
+  },
+  "treatment": {
+   "cultural": [
+    "Remove and burn infected leaves"
+   ],
+   "organic": [],
+   "chemical": [
+    "Mancozeb 75 WP @ 2.5 g/L or propiconazole 25 EC @ 1 ml/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer with enough potassium"
+  ],
+  "prevention": [
+   "Good drainage and spacing"
+  ]
+ },
+ {
+  "id": 1001,
+  "key": "banana___healthy",
+  "model_label": "banana___healthy",
+  "pv_folder": "banana___healthy",
+  "crop": "banana",
+  "healthy": true,
+  "model": "extra",
+  "name": "Healthy Banana",
+  "type": "Healthy",
+  "pathogen": "",
+  "impact": "None",
+  "summary": "No disease is visible on this banana leaf. Keep watching for panama wilt, sigatoka leaf spot, bunchy top.",
+  "symptoms": [],
+  "conditions": "",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [],
+   "organic": [],
+   "chemical": []
+  },
+  "fertilizer": [
+   "General reference: 200 : 60 : 300 g per plant per crop, in splits.",
+   "Needs plenty of water. Drip irrigation with mulch can save about 40-50% water."
+  ],
+  "prevention": [
+   "Inspect plants every week, especially in humid weather.",
+   "Keep the field or pot clean of dead leaves and weeds."
+  ]
+ },
+ {
+  "id": 1002,
+  "key": "banana___pestalotiopsis_leaf_spot",
+  "model_label": "banana___pestalotiopsis_leaf_spot",
+  "pv_folder": "banana___pestalotiopsis_leaf_spot",
+  "crop": "banana",
+  "healthy": false,
+  "model": "extra",
+  "name": "Banana Pestalotiopsis Leaf Spot",
+  "type": "Fungal",
+  "pathogen": "Pestalotiopsis species",
+  "impact": "Low",
+  "summary": "Grey-brown spots on older leaves, usually after injury. Rarely serious if the plantation is kept clean.",
+  "symptoms": [
+   "Grey-brown spots with dark margins, mostly on older leaves",
+   "Tiny black dots in the spots"
+  ],
+  "conditions": "Wounds and humid weather.",
+  "weather_profile": {
+   "t_min": 22,
+   "t_max": 32,
+   "rh_min": 80,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove dead and spotted leaves"
+   ],
+   "organic": [],
+   "chemical": [
+    "Carbendazim 50 WP @ 1 g/L or mancozeb 75 WP @ 2.5 g/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Avoid wounds and keep the plantation clean"
+  ]
+ },
+ {
+  "id": 1003,
+  "key": "banana___sigatoka",
+  "model_label": "banana___sigatoka",
+  "pv_folder": "banana___sigatoka",
+  "crop": "banana",
+  "healthy": false,
+  "model": "extra",
+  "name": "Banana Sigatoka Leaf Spot",
+  "type": "Fungal",
+  "pathogen": "Mycosphaerella species (yellow and black Sigatoka)",
+  "impact": "High",
+  "summary": "The most important banana leaf disease. It destroys leaf area so bunches fill poorly.",
+  "symptoms": [
+   "Pale yellow streaks that turn into brown spots with grey centres",
+   "Large parts of leaves dry; bunches fill poorly"
+  ],
+  "conditions": "Warm, humid, rainy weather.",
+  "weather_profile": {
+   "t_min": 24,
+   "t_max": 30,
+   "rh_min": 85,
+   "needs_rain": true
+  },
+  "treatment": {
+   "cultural": [
+    "Cut and burn badly infected leaves",
+    "Improve drainage and spacing"
+   ],
+   "organic": [],
+   "chemical": [
+    "Propiconazole 25 EC @ 1 ml/L with mineral oil, as per label, alternated with mancozeb"
+   ]
+  },
+  "fertilizer": [
+   "Adequate potassium"
+  ],
+  "prevention": [
+   "Remove infected leaves regularly through the season"
+  ]
+ },
+ {
+  "id": 1004,
+  "key": "banana___xanthomonas_wilt",
+  "model_label": "banana___xanthomonas_wilt",
+  "pv_folder": "banana___xanthomonas_wilt",
+  "crop": "banana",
+  "healthy": false,
+  "model": "extra",
+  "name": "Banana Bacterial Wilt",
+  "type": "Bacterial",
+  "pathogen": "Xanthomonas species",
+  "impact": "Severe",
+  "summary": "A serious bacterial wilt. Leaves yellow and wilt, fruit ripens unevenly and rots. There is no cure.",
+  "symptoms": [
+   "Leaves turn yellow and wilt, starting with the youngest",
+   "Yellow bacterial ooze from cut stems; fruit ripens unevenly and rots"
+  ],
+  "conditions": "Spread by infected tools, planting material and insects visiting the male flower.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Uproot and destroy infected plants",
+    "Clean tools with fire or bleach between plants",
+    "Remove the male bud with a forked stick"
+   ],
+   "organic": [],
+   "chemical": [
+    "No chemical cure"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Use clean, tissue-culture planting material"
+  ]
+ },
+ {
+  "id": 1005,
+  "key": "chilli___cercospora_leaf_spot",
+  "model_label": "chilli___cercospora_leaf_spot",
+  "pv_folder": "chilli___cercospora_leaf_spot",
+  "crop": "chilli",
+  "healthy": false,
+  "model": "extra",
+  "name": "Chilli Cercospora Leaf Spot (Frog-eye)",
+  "type": "Fungal",
+  "pathogen": "Cercospora capsici",
+  "impact": "Moderate",
+  "summary": "Round 'frog-eye' spots that make leaves yellow and fall, weakening the plant.",
+  "symptoms": [
+   "Round spots with light grey centres and dark brown margins",
+   "Leaves yellow and drop"
+  ],
+  "conditions": "Warm, humid weather.",
+  "weather_profile": {
+   "t_min": 22,
+   "t_max": 30,
+   "rh_min": 85,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove infected leaves",
+    "Rotate crops"
+   ],
+   "organic": [],
+   "chemical": [
+    "Mancozeb 75 WP @ 2.5 g/L or carbendazim 50 WP @ 1 g/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Use healthy, treated seed"
+  ]
+ },
+ {
+  "id": 1006,
+  "key": "chilli___healthy",
+  "model_label": "chilli___healthy",
+  "pv_folder": "chilli___healthy",
+  "crop": "chilli",
+  "healthy": true,
+  "model": "extra",
+  "name": "Healthy Chilli",
+  "type": "Healthy",
+  "pathogen": "",
+  "impact": "None",
+  "summary": "No disease is visible on this chilli leaf. Keep watching for leaf curl, die-back and fruit rot, thrips and mites.",
+  "symptoms": [],
+  "conditions": "",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [],
+   "organic": [],
+   "chemical": []
+  },
+  "fertilizer": [
+   "General reference: 100-120 : 50-60 : 50-60 kg/ha.",
+   "Chilli dislikes both drought and waterlogging. Light, frequent irrigation; drip works well."
+  ],
+  "prevention": [
+   "Inspect plants every week, especially in humid weather.",
+   "Keep the field or pot clean of dead leaves and weeds."
+  ]
+ },
+ {
+  "id": 1007,
+  "key": "chilli___mites_and_thrips",
+  "model_label": "chilli___mites_and_thrips",
+  "pv_folder": "chilli___mites_and_thrips",
+  "crop": "chilli",
+  "healthy": false,
+  "model": "extra",
+  "name": "Chilli Mites and Thrips (Leaf Curl)",
+  "type": "Pest",
+  "pathogen": "Yellow mite and chilli thrips",
+  "impact": "High",
+  "summary": "Tiny sucking pests that curl and bronze chilli leaves. Thrips curl leaves upward; mites curl them downward.",
+  "symptoms": [
+   "Leaves curl upward and become boat-shaped (thrips) or downward with a bronze look (mites)",
+   "Silvery scratches or tiny moving insects under the leaves"
+  ],
+  "conditions": "Hot, dry weather.",
+  "weather_profile": {
+   "t_min": 28,
+   "t_max": 38,
+   "rh_max": 60,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove heavily infested leaves",
+    "Spray water on leaf undersides"
+   ],
+   "organic": [
+    "Blue sticky traps for thrips",
+    "Neem oil 1500 ppm @ 3-5 ml/L"
+   ],
+   "chemical": [
+    "Mites: a recommended miticide such as spiromesifen 22.9 SC @ 1 ml/L",
+    "Thrips: a recommended insecticide such as fipronil 5 SC @ 1.5 ml/L (rotate groups)"
+   ]
+  },
+  "fertilizer": [
+   "Avoid excess nitrogen"
+  ],
+  "prevention": [
+   "Grow 2-3 border rows of maize or sorghum"
+  ]
+ },
+ {
+  "id": 1008,
+  "key": "chilli___nutrient_deficiency",
+  "model_label": "chilli___nutrient_deficiency",
+  "pv_folder": "chilli___nutrient_deficiency",
+  "crop": "chilli",
+  "healthy": false,
+  "model": "extra",
+  "name": "Chilli Nutrient Deficiency",
+  "type": "Nutritional disorder",
+  "pathogen": "Shortage of nitrogen, magnesium, zinc or other nutrients",
+  "impact": "Moderate",
+  "summary": "Yellowing and poor growth caused by missing nutrients rather than disease.",
+  "symptoms": [
+   "Yellowing between the veins or of whole older leaves",
+   "Pale, small new leaves"
+  ],
+  "conditions": "Poor or unbalanced soil, leaching rain, or root damage.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Get a soil test to find the missing nutrient"
+   ],
+   "organic": [
+    "Apply well-rotted compost or vermicompost"
+   ],
+   "chemical": [
+    "Foliar spray of a micronutrient mix as per label; urea 1% if nitrogen is short"
+   ]
+  },
+  "fertilizer": [
+   "Apply nitrogen in splits; correct magnesium (magnesium sulphate) and zinc (zinc sulphate) if deficient"
+  ],
+  "prevention": [
+   "Fertilize based on a soil test"
+  ]
+ },
+ {
+  "id": 1009,
+  "key": "chilli___powdery_mildew",
+  "model_label": "chilli___powdery_mildew",
+  "pv_folder": "chilli___powdery_mildew",
+  "crop": "chilli",
+  "healthy": false,
+  "model": "extra",
+  "name": "Chilli Powdery Mildew",
+  "type": "Fungal",
+  "pathogen": "Leveillula taurica",
+  "impact": "Moderate",
+  "summary": "White powder under the leaves with yellow blotches on top, causing early leaf fall.",
+  "symptoms": [
+   "White powdery patches under leaves and yellow blotches on top",
+   "Leaves fall early"
+  ],
+  "conditions": "Warm, dry days with humid nights.",
+  "weather_profile": {
+   "t_min": 20,
+   "t_max": 30,
+   "rh_min": 50,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove the worst affected leaves"
+   ],
+   "organic": [
+    "Wettable sulphur 80 WP @ 2 g/L (not above 32 °C)"
+   ],
+   "chemical": [
+    "Hexaconazole 5 EC @ 1 ml/L or azoxystrobin 23 SC @ 1 ml/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Spray at the first spots"
+  ]
+ },
+ {
+  "id": 1010,
+  "key": "cotton___alternaria_leaf_spot",
+  "model_label": "cotton___alternaria_leaf_spot",
+  "pv_folder": "cotton___alternaria_leaf_spot",
+  "crop": "cotton",
+  "healthy": false,
+  "model": "extra",
+  "name": "Cotton Alternaria Leaf Spot",
+  "type": "Fungal",
+  "pathogen": "Alternaria macrospora",
+  "impact": "Moderate",
+  "summary": "Brown spots with rings that cause early leaf fall, especially on potassium-hungry plants.",
+  "symptoms": [
+   "Small brown spots with concentric rings on leaves",
+   "Spots join and leaves drop early"
+  ],
+  "conditions": "Warm, humid weather and stressed, potassium-deficient plants.",
+  "weather_profile": {
+   "t_min": 25,
+   "t_max": 30,
+   "rh_min": 80,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove infected leaves and crop debris"
+   ],
+   "organic": [],
+   "chemical": [
+    "Mancozeb 75 WP @ 2.5 g/L or propiconazole 25 EC @ 1 ml/L"
+   ]
+  },
+  "fertilizer": [
+   "Correct potassium deficiency; stressed plants get more spots"
+  ],
+  "prevention": [
+   "Rotate crops",
+   "Use balanced fertilizer"
+  ]
+ },
+ {
+  "id": 1011,
+  "key": "cotton___bacterial_blight",
+  "model_label": "cotton___bacterial_blight",
+  "pv_folder": "cotton___bacterial_blight",
+  "crop": "cotton",
+  "healthy": false,
+  "model": "extra",
+  "name": "Cotton Bacterial Blight",
+  "type": "Bacterial",
+  "pathogen": "Xanthomonas citri pv. malvacearum",
+  "impact": "High",
+  "summary": "Angular leaf spots and black streaks on stems (black arm). Spreads with rain splash and infected seed.",
+  "symptoms": [
+   "Angular, water-soaked spots on leaves that turn brown-black",
+   "Black streaks on stems and bolls"
+  ],
+  "conditions": "Warm, wet weather with wind-driven rain.",
+  "weather_profile": {
+   "t_min": 25,
+   "t_max": 35,
+   "rh_min": 85,
+   "needs_rain": true
+  },
+  "treatment": {
+   "cultural": [
+    "Use acid-delinted, treated seed",
+    "Remove infected crop residue"
+   ],
+   "organic": [],
+   "chemical": [
+    "Copper oxychloride 50 WP @ 3 g/L",
+    "Antibiotic sprays (streptomycin, tetracycline) are banned for farm use in India"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer; avoid excess nitrogen"
+  ],
+  "prevention": [
+   "Grow resistant varieties"
+  ]
+ },
+ {
+  "id": 1012,
+  "key": "cotton___fusarium_wilt",
+  "model_label": "cotton___fusarium_wilt",
+  "pv_folder": "cotton___fusarium_wilt",
+  "crop": "cotton",
+  "healthy": false,
+  "model": "extra",
+  "name": "Cotton Fusarium Wilt",
+  "type": "Fungal (soil-borne)",
+  "pathogen": "Fusarium oxysporum f. sp. vasinfectum",
+  "impact": "High",
+  "summary": "A soil-borne wilt that blocks the plant's water pipes. Once a plant wilts it can't be saved.",
+  "symptoms": [
+   "Leaves yellow and wilt, starting from the lower leaves",
+   "Brown streaks inside the stem when cut"
+  ],
+  "conditions": "Warm soils, sandy acidic soils and root-knot nematodes.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Uproot and burn wilted plants",
+    "Long crop rotation"
+   ],
+   "organic": [
+    "Apply Trichoderma mixed with farmyard manure to the soil"
+   ],
+   "chemical": [
+    "No cure once wilted; seed treatment with carbendazim helps prevent it"
+   ]
+  },
+  "fertilizer": [
+   "Adequate potassium reduces wilt"
+  ],
+  "prevention": [
+   "Grow resistant varieties"
+  ]
+ },
+ {
+  "id": 1013,
+  "key": "cotton___healthy",
+  "model_label": "cotton___healthy",
+  "pv_folder": "cotton___healthy",
+  "crop": "cotton",
+  "healthy": true,
+  "model": "extra",
+  "name": "Healthy Cotton",
+  "type": "Healthy",
+  "pathogen": "",
+  "impact": "None",
+  "summary": "No disease is visible on this cotton leaf. Keep watching for pink bollworm, leaf curl virus (whitefly), bacterial blight.",
+  "symptoms": [],
+  "conditions": "",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [],
+   "organic": [],
+   "chemical": []
+  },
+  "fertilizer": [
+   "General reference: 100-150 : 50-60 : 50-60 kg/ha.",
+   "Flowering and boll formation are critical. Too much water in the vegetative stage causes excess leafy growth."
+  ],
+  "prevention": [
+   "Inspect plants every week, especially in humid weather.",
+   "Keep the field or pot clean of dead leaves and weeds."
+  ]
+ },
+ {
+  "id": 1014,
+  "key": "cotton___verticillium_wilt",
+  "model_label": "cotton___verticillium_wilt",
+  "pv_folder": "cotton___verticillium_wilt",
+  "crop": "cotton",
+  "healthy": false,
+  "model": "extra",
+  "name": "Cotton Verticillium Wilt",
+  "type": "Fungal (soil-borne)",
+  "pathogen": "Verticillium dahliae",
+  "impact": "High",
+  "summary": "A soil-borne wilt that gives leaves a yellow tiger-stripe pattern before they drop.",
+  "symptoms": [
+   "Yellow patches between the veins that turn brown (tiger-stripe look)",
+   "Leaves drop; brown streaks inside the stem"
+  ],
+  "conditions": "Cool, moist soil and heavy irrigation.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Destroy infected stalks after harvest",
+    "Rotate with cereals"
+   ],
+   "organic": [
+    "Apply Trichoderma to the soil"
+   ],
+   "chemical": [
+    "No effective chemical cure"
+   ]
+  },
+  "fertilizer": [
+   "Avoid excess nitrogen"
+  ],
+  "prevention": [
+   "Grow resistant varieties",
+   "Avoid over-irrigation"
+  ]
+ },
+ {
+  "id": 1015,
+  "key": "groundnut___alternaria_leaf_spot",
+  "model_label": "groundnut___alternaria_leaf_spot",
+  "pv_folder": "groundnut___alternaria_leaf_spot",
+  "crop": "groundnut",
+  "healthy": false,
+  "model": "extra",
+  "name": "Groundnut Alternaria Leaf Spot",
+  "type": "Fungal",
+  "pathogen": "Alternaria arachidis",
+  "impact": "Moderate",
+  "summary": "Brown spots that burn the leaf tips, mostly late in the season.",
+  "symptoms": [
+   "Small brown spots with a yellow halo, often at leaf tips",
+   "Leaf tips dry and curl"
+  ],
+  "conditions": "Warm, humid weather late in the season.",
+  "weather_profile": {
+   "t_min": 22,
+   "t_max": 30,
+   "rh_min": 80,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove crop debris"
+   ],
+   "organic": [],
+   "chemical": [
+    "Mancozeb 75 WP @ 2.5 g/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer with gypsum at pegging"
+  ],
+  "prevention": [
+   "Rotate crops"
+  ]
+ },
+ {
+  "id": 1016,
+  "key": "groundnut___healthy",
+  "model_label": "groundnut___healthy",
+  "pv_folder": "groundnut___healthy",
+  "crop": "groundnut",
+  "healthy": true,
+  "model": "extra",
+  "name": "Healthy Groundnut",
+  "type": "Healthy",
+  "pathogen": "",
+  "impact": "None",
+  "summary": "No disease is visible on this groundnut leaf. Keep watching for tikka leaf spot, stem rot, leaf miner.",
+  "symptoms": [],
+  "conditions": "",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [],
+   "organic": [],
+   "chemical": []
+  },
+  "fertilizer": [
+   "General reference: 20-25 : 40-60 : 30-40 kg/ha + gypsum at pegging.",
+   "Pegging and pod development are critical. Keep the soil moist and loose when pegs enter the soil."
+  ],
+  "prevention": [
+   "Inspect plants every week, especially in humid weather.",
+   "Keep the field or pot clean of dead leaves and weeds."
+  ]
+ },
+ {
+  "id": 1017,
+  "key": "groundnut___rosette",
+  "model_label": "groundnut___rosette",
+  "pv_folder": "groundnut___rosette",
+  "crop": "groundnut",
+  "healthy": false,
+  "model": "extra",
+  "name": "Groundnut Rosette",
+  "type": "Viral (aphid-borne)",
+  "pathogen": "Groundnut rosette virus complex",
+  "impact": "High",
+  "summary": "A virus that stunts plants into bushy rosettes with few or no pods. There is no cure.",
+  "symptoms": [
+   "Stunted, bushy plants with small, yellow or mottled leaves",
+   "Few or no pods"
+  ],
+  "conditions": "Spread by aphids.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Pull out infected plants early",
+    "Sow early and at close spacing"
+   ],
+   "organic": [],
+   "chemical": [
+    "No cure; control aphids if numbers are high"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Grow resistant varieties"
+  ]
+ },
+ {
+  "id": 1018,
+  "key": "groundnut___rust",
+  "model_label": "groundnut___rust",
+  "pv_folder": "groundnut___rust",
+  "crop": "groundnut",
+  "healthy": false,
+  "model": "extra",
+  "name": "Groundnut Rust",
+  "type": "Fungal",
+  "pathogen": "Puccinia arachidis",
+  "impact": "High",
+  "summary": "Orange-brown pustules under the leaves that dry the foliage and cut pod yield.",
+  "symptoms": [
+   "Orange-brown powdery pustules on the underside of leaves",
+   "Leaves dry but stay attached"
+  ],
+  "conditions": "Warm, humid weather.",
+  "weather_profile": {
+   "t_min": 20,
+   "t_max": 30,
+   "rh_min": 85,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove volunteer plants"
+   ],
+   "organic": [],
+   "chemical": [
+    "Chlorothalonil 75 WP @ 2 g/L or tebuconazole 25.9 EC @ 1 ml/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Grow resistant varieties"
+  ]
+ },
+ {
+  "id": 1019,
+  "key": "groundnut___tikka_leaf_spot",
+  "model_label": "groundnut___tikka_leaf_spot",
+  "pv_folder": "groundnut___tikka_leaf_spot",
+  "crop": "groundnut",
+  "healthy": false,
+  "model": "extra",
+  "name": "Groundnut Tikka Leaf Spot",
+  "type": "Fungal",
+  "pathogen": "Cercospora arachidicola and Phaeoisariopsis personata",
+  "impact": "High",
+  "summary": "Early and late leaf spots that strip plants of leaves before harvest.",
+  "symptoms": [
+   "Round brown to black spots on leaves, early ones with a yellow halo",
+   "Heavy leaf fall before harvest"
+  ],
+  "conditions": "Warm, humid weather.",
+  "weather_profile": {
+   "t_min": 24,
+   "t_max": 30,
+   "rh_min": 85,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Rotate with cereals",
+    "Remove volunteer plants"
+   ],
+   "organic": [],
+   "chemical": [
+    "Carbendazim 12% + mancozeb 63% WP @ 2 g/L or tebuconazole 25.9 EC @ 1 ml/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Grow resistant varieties"
+  ]
+ },
+ {
+  "id": 1020,
+  "key": "malabar_spinach___anthracnose",
+  "model_label": "malabar_spinach___anthracnose",
+  "pv_folder": "malabar_spinach___anthracnose",
+  "crop": "malabar_spinach",
+  "healthy": false,
+  "model": "extra",
+  "name": "Malabar Spinach Anthracnose",
+  "type": "Fungal",
+  "pathogen": "Colletotrichum species",
+  "impact": "Moderate",
+  "summary": "Water-soaked spots that turn tan with dark specks and spoil the leaves for sale.",
+  "symptoms": [
+   "Small water-soaked spots that turn tan with dark specks"
+  ],
+  "conditions": "Wet, warm weather.",
+  "weather_profile": {
+   "t_min": 18,
+   "t_max": 28,
+   "rh_min": 85,
+   "needs_rain": true
+  },
+  "treatment": {
+   "cultural": [
+    "Remove infected leaves",
+    "Avoid overhead watering"
+   ],
+   "organic": [],
+   "chemical": [
+    "Mancozeb 75 WP @ 2.5 g/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Rotate crops"
+  ]
+ },
+ {
+  "id": 1021,
+  "key": "malabar_spinach___bacterial_spot",
+  "model_label": "malabar_spinach___bacterial_spot",
+  "pv_folder": "malabar_spinach___bacterial_spot",
+  "crop": "malabar_spinach",
+  "healthy": false,
+  "model": "extra",
+  "name": "Malabar Spinach Bacterial Spot",
+  "type": "Bacterial",
+  "pathogen": "Pseudomonas and Xanthomonas species",
+  "impact": "Moderate",
+  "summary": "Small dark angular spots that spread with splashing water.",
+  "symptoms": [
+   "Small dark, water-soaked angular spots"
+  ],
+  "conditions": "Wet leaves and splashing water.",
+  "weather_profile": {
+   "t_min": 15,
+   "t_max": 28,
+   "rh_min": 85,
+   "needs_rain": true
+  },
+  "treatment": {
+   "cultural": [
+    "Avoid overhead watering",
+    "Rotate crops"
+   ],
+   "organic": [],
+   "chemical": [
+    "Copper oxychloride 50 WP @ 2 g/L",
+    "Antibiotic sprays (streptomycin, tetracycline) are banned for farm use in India"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Use clean seed"
+  ]
+ },
+ {
+  "id": 1022,
+  "key": "malabar_spinach___downy_mildew",
+  "model_label": "malabar_spinach___downy_mildew",
+  "pv_folder": "malabar_spinach___downy_mildew",
+  "crop": "malabar_spinach",
+  "healthy": false,
+  "model": "extra",
+  "name": "Malabar Spinach Downy Mildew",
+  "type": "Oomycete",
+  "pathogen": "Downy mildew pathogens (oomycetes)",
+  "impact": "High",
+  "summary": "Yellow patches on top of the leaf with grey fuzz underneath, in damp, humid weather.",
+  "symptoms": [
+   "Yellow patches on top of leaves with grey fuzz underneath"
+  ],
+  "conditions": "Damp, humid weather with wet leaves.",
+  "weather_profile": {
+   "t_min": 18,
+   "t_max": 28,
+   "rh_min": 85,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Space plants for air flow",
+    "Avoid wet leaves"
+   ],
+   "organic": [],
+   "chemical": [
+    "Metalaxyl + mancozeb, as per label"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Grow resistant varieties"
+  ]
+ },
+ {
+  "id": 1023,
+  "key": "malabar_spinach___healthy",
+  "model_label": "malabar_spinach___healthy",
+  "pv_folder": "malabar_spinach___healthy",
+  "crop": "malabar_spinach",
+  "healthy": true,
+  "model": "extra",
+  "name": "Healthy Malabar Spinach",
+  "type": "Healthy",
+  "pathogen": "",
+  "impact": "None",
+  "summary": "No disease is visible on this malabar spinach leaf. Keep watching for cercospora leaf spot, leaf-eating caterpillars.",
+  "symptoms": [],
+  "conditions": "",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [],
+   "organic": [],
+   "chemical": []
+  },
+  "fertilizer": [
+   "General reference: 60-80 : 40 : 40 kg/ha.",
+   "A climbing vine that loves heat and moisture. Give it a trellis, keep the soil moist, and pick leaves often."
+  ],
+  "prevention": [
+   "Inspect plants every week, especially in humid weather.",
+   "Keep the field or pot clean of dead leaves and weeds."
+  ]
+ },
+ {
+  "id": 1024,
+  "key": "malabar_spinach___pest_damage",
+  "model_label": "malabar_spinach___pest_damage",
+  "pv_folder": "malabar_spinach___pest_damage",
+  "crop": "malabar_spinach",
+  "healthy": false,
+  "model": "extra",
+  "name": "Malabar Spinach Pest Damage",
+  "type": "Pest",
+  "pathogen": "Leaf-eating caterpillars, beetles and leaf miners",
+  "impact": "Low",
+  "summary": "Holes, tunnels or chewed edges from leaf-eating insects.",
+  "symptoms": [
+   "Holes, tunnels or chewed edges on leaves"
+  ],
+  "conditions": "Warm weather.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Hand-pick caterpillars",
+    "Remove leaves with miner tunnels"
+   ],
+   "organic": [
+    "Neem oil 1500 ppm @ 3-5 ml/L"
+   ],
+   "chemical": [
+    "Spinosad or another recommended insecticide only if damage is heavy; observe the waiting period before harvest"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Use insect net on small plots"
+  ]
+ },
+ {
+  "id": 1025,
+  "key": "mango___anthracnose",
+  "model_label": "mango___anthracnose",
+  "pv_folder": "mango___anthracnose",
+  "crop": "mango",
+  "healthy": false,
+  "model": "extra",
+  "name": "Mango Anthracnose",
+  "type": "Fungal",
+  "pathogen": "Colletotrichum gloeosporioides",
+  "impact": "High",
+  "summary": "The most common mango disease. It spots leaves, blackens flowers and rots ripening fruit.",
+  "symptoms": [
+   "Dark brown to black irregular spots on leaves",
+   "Spots join and leaves dry; black spots on flowers and fruit"
+  ],
+  "conditions": "Warm, wet weather, especially during new leaf flushes and flowering.",
+  "weather_profile": {
+   "t_min": 24,
+   "t_max": 32,
+   "rh_min": 85,
+   "needs_rain": true
+  },
+  "treatment": {
+   "cultural": [
+    "Prune and burn diseased twigs and fallen leaves",
+    "Open up the canopy for air flow"
+   ],
+   "organic": [
+    "Copper oxychloride 50 WP @ 3 g/L"
+   ],
+   "chemical": [
+    "Carbendazim 50 WP @ 1 g/L or mancozeb 75 WP @ 2.5 g/L at new flush and at flowering"
+   ]
+  },
+  "fertilizer": [
+   "Balanced manure and fertilizer for tree vigour"
+  ],
+  "prevention": [
+   "Spray before flowering in rainy areas"
+  ]
+ },
+ {
+  "id": 1026,
+  "key": "mango___bacterial_canker",
+  "model_label": "mango___bacterial_canker",
+  "pv_folder": "mango___bacterial_canker",
+  "crop": "mango",
+  "healthy": false,
+  "model": "extra",
+  "name": "Mango Bacterial Canker",
+  "type": "Bacterial",
+  "pathogen": "Xanthomonas campestris pv. mangiferaeindicae",
+  "impact": "High",
+  "summary": "Raised black spots on leaves and cracked cankers on twigs and fruit, spread by rain and wind.",
+  "symptoms": [
+   "Small water-soaked spots that turn black and raised, with a yellow halo",
+   "Cracked cankers on twigs and fruit"
+  ],
+  "conditions": "Rain, wind and wounds.",
+  "weather_profile": {
+   "t_min": 25,
+   "t_max": 35,
+   "rh_min": 80,
+   "needs_rain": true
+  },
+  "treatment": {
+   "cultural": [
+    "Prune and burn infected twigs",
+    "Avoid injuring leaves and fruit"
+   ],
+   "organic": [],
+   "chemical": [
+    "Copper oxychloride 50 WP @ 3 g/L sprays",
+    "Antibiotic sprays (streptomycin, tetracycline) are banned for farm use in India"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Plant windbreaks",
+   "Use healthy planting material"
+  ]
+ },
+ {
+  "id": 1027,
+  "key": "mango___cutting_weevil",
+  "model_label": "mango___cutting_weevil",
+  "pv_folder": "mango___cutting_weevil",
+  "crop": "mango",
+  "healthy": false,
+  "model": "extra",
+  "name": "Mango Leaf-cutting Weevil",
+  "type": "Pest",
+  "pathogen": "Deporaus marginatus",
+  "impact": "Moderate",
+  "summary": "A weevil that cuts tender new leaves near the base. Cut leaves fall under the tree with eggs inside.",
+  "symptoms": [
+   "Young tender leaves cut cleanly near the base, as if with scissors",
+   "Cut leaves lying under the tree"
+  ],
+  "conditions": "New leaf flushes in the rainy season.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Collect and destroy fallen cut leaves, which hold the eggs",
+    "Plough the soil around the tree"
+   ],
+   "organic": [],
+   "chemical": [
+    "Spray a recommended insecticide on new flushes if damage is heavy"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Watch new flushes closely"
+  ]
+ },
+ {
+  "id": 1028,
+  "key": "mango___die_back",
+  "model_label": "mango___die_back",
+  "pv_folder": "mango___die_back",
+  "crop": "mango",
+  "healthy": false,
+  "model": "extra",
+  "name": "Mango Die Back",
+  "type": "Fungal",
+  "pathogen": "Lasiodiplodia theobromae",
+  "impact": "High",
+  "summary": "Twigs dry from the tip downward and branches may ooze gum. Stressed trees are hit hardest.",
+  "symptoms": [
+   "Twigs dry from the tip down; leaves turn brown and roll",
+   "Gum oozes from cracks on branches"
+  ],
+  "conditions": "Stressed trees, rainy weather and pruning wounds.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Cut diseased twigs 5-8 cm below the dry part and burn them",
+    "Paint cut ends with Bordeaux paste"
+   ],
+   "organic": [],
+   "chemical": [
+    "Copper oxychloride 50 WP @ 3 g/L after pruning"
+   ]
+  },
+  "fertilizer": [
+   "Balanced manure and fertilizer to keep trees vigorous"
+  ],
+  "prevention": [
+   "Avoid water stress and bark wounds"
+  ]
+ },
+ {
+  "id": 1029,
+  "key": "mango___gall_midge",
+  "model_label": "mango___gall_midge",
+  "pv_folder": "mango___gall_midge",
+  "crop": "mango",
+  "healthy": false,
+  "model": "extra",
+  "name": "Mango Gall Midge",
+  "type": "Pest",
+  "pathogen": "Procontarinia species",
+  "impact": "Moderate",
+  "summary": "Tiny flies whose larvae form wart-like galls on leaves and attack flowers.",
+  "symptoms": [
+   "Small raised wart-like galls on leaves",
+   "Deformed leaves; galls on flowers cause flower drop"
+  ],
+  "conditions": "Flushing and flowering periods.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Remove and destroy galled leaves and shoots",
+    "Plough under the tree to expose pupae"
+   ],
+   "organic": [],
+   "chemical": [
+    "Spray a recommended insecticide at bud burst if galls were heavy last season"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Monitor new flushes"
+  ]
+ },
+ {
+  "id": 1030,
+  "key": "mango___healthy",
+  "model_label": "mango___healthy",
+  "pv_folder": "mango___healthy",
+  "crop": "mango",
+  "healthy": true,
+  "model": "extra",
+  "name": "Healthy Mango",
+  "type": "Healthy",
+  "pathogen": "",
+  "impact": "None",
+  "summary": "No disease is visible on this mango leaf. Keep watching for powdery mildew, anthracnose, mango hopper.",
+  "symptoms": [],
+  "conditions": "",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [],
+   "organic": [],
+   "chemical": []
+  },
+  "fertilizer": [
+   "General reference: About 1 kg N, 0.5 kg P2O5 and 1 kg K2O per year for a 10-year tree, in splits.",
+   "Stop irrigation for 2-3 months before flowering to encourage blossoms, then irrigate during fruit development."
+  ],
+  "prevention": [
+   "Inspect plants every week, especially in humid weather.",
+   "Keep the field or pot clean of dead leaves and weeds."
+  ]
+ },
+ {
+  "id": 1031,
+  "key": "mango___powdery_mildew",
+  "model_label": "mango___powdery_mildew",
+  "pv_folder": "mango___powdery_mildew",
+  "crop": "mango",
+  "healthy": false,
+  "model": "extra",
+  "name": "Mango Powdery Mildew",
+  "type": "Fungal",
+  "pathogen": "Oidium mangiferae",
+  "impact": "High",
+  "summary": "White powder on flowers and tiny fruits that makes them drop. Can wipe out a season's fruit set.",
+  "symptoms": [
+   "White powdery coating on young leaves, flowers and tiny fruits",
+   "Flowers and young fruits drop"
+  ],
+  "conditions": "Cool nights, warm days and cloudy, humid weather at flowering.",
+  "weather_profile": {
+   "t_min": 15,
+   "t_max": 28,
+   "rh_min": 60,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Prune for air flow"
+   ],
+   "organic": [
+    "Wettable sulphur 80 WP @ 2 g/L when panicles emerge"
+   ],
+   "chemical": [
+    "Hexaconazole 5 EC @ 1 ml/L or propiconazole 25 EC @ 1 ml/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Spray at the start of flowering in prone areas"
+  ]
+ },
+ {
+  "id": 1032,
+  "key": "mango___sooty_mould",
+  "model_label": "mango___sooty_mould",
+  "pv_folder": "mango___sooty_mould",
+  "crop": "mango",
+  "healthy": false,
+  "model": "extra",
+  "name": "Mango Sooty Mould",
+  "type": "Fungal (grows on insect honeydew)",
+  "pathogen": "Capnodium and related fungi",
+  "impact": "Moderate",
+  "summary": "A black coating that grows on the sticky honeydew of hoppers, scales and mealybugs. It blocks light rather than infecting the leaf.",
+  "symptoms": [
+   "Black, soot-like coating on the upper leaf that can be rubbed off",
+   "Sap-sucking insects such as hoppers or scales nearby"
+  ],
+  "conditions": "Heavy populations of honeydew-producing insects.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Control the sap-sucking insects causing the honeydew",
+    "Spray a 2% starch solution; it dries and peels off with the mould"
+   ],
+   "organic": [
+    "Neem oil 1500 ppm @ 3-5 ml/L against hoppers and scales"
+   ],
+   "chemical": [
+    "Spray a recommended insecticide against hoppers if numbers are high"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Control mango hoppers at flowering"
+  ]
+ },
+ {
+  "id": 1033,
+  "key": "masoor___ascochyta_blight",
+  "model_label": "masoor___ascochyta_blight",
+  "pv_folder": "masoor___ascochyta_blight",
+  "crop": "masoor",
+  "healthy": false,
+  "model": "extra",
+  "name": "Lentil Ascochyta Blight",
+  "type": "Fungal",
+  "pathogen": "Ascochyta lentis",
+  "impact": "High",
+  "summary": "Tan spots on leaves, stems and pods that can break stems in wet weather.",
+  "symptoms": [
+   "Tan spots with dark borders on leaves, stems and pods",
+   "Leaves drop; stems break in severe cases"
+  ],
+  "conditions": "Cool, wet weather.",
+  "weather_profile": {
+   "t_min": 15,
+   "t_max": 25,
+   "rh_min": 85,
+   "needs_rain": true
+  },
+  "treatment": {
+   "cultural": [
+    "Remove crop debris"
+   ],
+   "organic": [],
+   "chemical": [
+    "Mancozeb 75 WP @ 2.5 g/L or chlorothalonil 75 WP @ 2 g/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Use healthy seed",
+   "Rotate crops"
+  ]
+ },
+ {
+  "id": 1034,
+  "key": "masoor___healthy",
+  "model_label": "masoor___healthy",
+  "pv_folder": "masoor___healthy",
+  "crop": "masoor",
+  "healthy": true,
+  "model": "extra",
+  "name": "Healthy Lentil",
+  "type": "Healthy",
+  "pathogen": "",
+  "impact": "None",
+  "summary": "No disease is visible on this lentil leaf. Keep watching for rust, wilt.",
+  "symptoms": [],
+  "conditions": "",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [],
+   "organic": [],
+   "chemical": []
+  },
+  "fertilizer": [
+   "General reference: 20 : 40 : 20 kg/ha.",
+   "One or two light irrigations, at branching and at pod filling, are usually enough."
+  ],
+  "prevention": [
+   "Inspect plants every week, especially in humid weather.",
+   "Keep the field or pot clean of dead leaves and weeds."
+  ]
+ },
+ {
+  "id": 1035,
+  "key": "masoor___powdery_mildew",
+  "model_label": "masoor___powdery_mildew",
+  "pv_folder": "masoor___powdery_mildew",
+  "crop": "masoor",
+  "healthy": false,
+  "model": "extra",
+  "name": "Lentil Powdery Mildew",
+  "type": "Fungal",
+  "pathogen": "Erysiphe species",
+  "impact": "Moderate",
+  "summary": "White powder on leaves and stems late in the season.",
+  "symptoms": [
+   "White powder on leaves and stems"
+  ],
+  "conditions": "Dry days with cool nights.",
+  "weather_profile": {
+   "t_min": 15,
+   "t_max": 28,
+   "rh_min": 50,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove the worst affected plants"
+   ],
+   "organic": [
+    "Wettable sulphur 80 WP @ 2 g/L"
+   ],
+   "chemical": [
+    "Hexaconazole 5 EC @ 1 ml/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Sow on time"
+  ]
+ },
+ {
+  "id": 1036,
+  "key": "masoor___rust",
+  "model_label": "masoor___rust",
+  "pv_folder": "masoor___rust",
+  "crop": "masoor",
+  "healthy": false,
+  "model": "extra",
+  "name": "Lentil Rust",
+  "type": "Fungal",
+  "pathogen": "Uromyces viciae-fabae",
+  "impact": "High",
+  "summary": "Pustules on leaves and stems that dry plants early and shrivel the seed.",
+  "symptoms": [
+   "Yellowish, then brown-black pustules on leaves and stems",
+   "Plants dry early"
+  ],
+  "conditions": "Mild, humid weather.",
+  "weather_profile": {
+   "t_min": 17,
+   "t_max": 25,
+   "rh_min": 80,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove volunteer plants"
+   ],
+   "organic": [],
+   "chemical": [
+    "Mancozeb 75 WP @ 2.5 g/L or hexaconazole 5 EC @ 1 ml/L at first appearance"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Grow resistant varieties",
+   "Sow on time"
+  ]
+ },
+ {
+  "id": 1037,
+  "key": "money_plant___bacterial_wilt",
+  "model_label": "money_plant___bacterial_wilt",
+  "pv_folder": "money_plant___bacterial_wilt",
+  "crop": "money_plant",
+  "healthy": false,
+  "model": "extra",
+  "name": "Money Plant Bacterial Wilt",
+  "type": "Bacterial",
+  "pathogen": "Bacteria such as Ralstonia and Xanthomonas species",
+  "impact": "High",
+  "summary": "A bacterial infection that causes dark, water-soaked patches, yellowing and drooping vines. It spreads quickly in warm, wet conditions and through cuttings and scissors.",
+  "symptoms": [
+   "Dark brown or black water-soaked patches on leaves, often with a yellow halo",
+   "Vines droop even though the soil is moist"
+  ],
+  "conditions": "Warm temperatures, overwatering, leaves that stay wet, and infected cuttings or tools.",
+  "weather_profile": {
+   "t_min": 24,
+   "t_max": 35,
+   "rh_min": 80,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Cut off and throw away infected leaves and vines; don't compost them",
+    "Let the topsoil dry between waterings and water the soil, not the leaves",
+    "Wipe scissors with alcohol after every cut"
+   ],
+   "organic": [
+    "Keep the plant apart from your other plants until new growth is clean"
+   ],
+   "chemical": [
+    "Copper oxychloride 50 WP @ 2 g/L as a protective spray on the remaining leaves",
+    "Antibiotic sprays (streptomycin, tetracycline) are banned for farm use in India"
+   ]
+  },
+  "fertilizer": [
+   "Stop feeding until the plant recovers, then go back to light monthly feeding"
+  ],
+  "prevention": [
+   "Take cuttings only from healthy vines",
+   "Use a pot with a drainage hole and fresh potting mix"
+  ]
+ },
+ {
+  "id": 1038,
+  "key": "money_plant___healthy",
+  "model_label": "money_plant___healthy",
+  "pv_folder": "money_plant___healthy",
+  "crop": "money_plant",
+  "healthy": true,
+  "model": "extra",
+  "name": "Healthy Money Plant",
+  "type": "Healthy",
+  "pathogen": "",
+  "impact": "None",
+  "summary": "No disease is visible on this money plant leaf. Keep watching for root rot (overwatering), brown, crispy leaf edges, mealybugs.",
+  "symptoms": [],
+  "conditions": "",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [],
+   "organic": [],
+   "chemical": []
+  },
+  "fertilizer": [
+   "General reference: Balanced liquid fertilizer once a month in spring and summer.",
+   "Most money plant problems come from overwatering, not underwatering."
+  ],
+  "prevention": [
+   "Inspect plants every week, especially in humid weather.",
+   "Keep the field or pot clean of dead leaves and weeds."
+  ]
+ },
+ {
+  "id": 1039,
+  "key": "money_plant___manganese_toxicity",
+  "model_label": "money_plant___manganese_toxicity",
+  "pv_folder": "money_plant___manganese_toxicity",
+  "crop": "money_plant",
+  "healthy": false,
+  "model": "extra",
+  "name": "Money Plant Manganese Toxicity",
+  "type": "Nutritional disorder",
+  "pathogen": "Not an infection: too much manganese in the soil",
+  "impact": "Moderate",
+  "summary": "Too much manganese reaches the plant, usually from acidic, waterlogged potting mix or extra micronutrient fertilizer. Leaves get brown speckles and yellowing.",
+  "symptoms": [
+   "Small brown or black specks on older leaves",
+   "Yellowing between the veins and crinkled leaf edges"
+  ],
+  "conditions": "Very acidic or waterlogged potting mix, and fertilizers or sprays rich in micronutrients.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Flush the pot with plenty of clean water to wash out excess salts",
+    "Repot into fresh, well-draining potting mix"
+   ],
+   "organic": [
+    "If the mix is very acidic, stir in a little garden lime or wood ash (check the pH first)"
+   ],
+   "chemical": [
+    "Stop micronutrient sprays and fertilizers that contain manganese"
+   ]
+  },
+  "fertilizer": [
+   "Use a plain balanced NPK fertilizer without micronutrients until new leaves come out clean"
+  ],
+  "prevention": [
+   "Avoid overwatering: waterlogged, acidic soil releases more manganese",
+   "Repot every 1-2 years"
+  ]
+ },
+ {
+  "id": 1040,
+  "key": "onion___healthy",
+  "model_label": "onion___healthy",
+  "pv_folder": "onion___healthy",
+  "crop": "onion",
+  "healthy": true,
+  "model": "extra",
+  "name": "Healthy Onion",
+  "type": "Healthy",
+  "pathogen": "",
+  "impact": "None",
+  "summary": "No disease is visible on this onion leaf. Keep watching for purple blotch, thrips.",
+  "symptoms": [],
+  "conditions": "",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [],
+   "organic": [],
+   "chemical": []
+  },
+  "fertilizer": [
+   "General reference: 100-120 : 50-60 : 50-80 kg/ha.",
+   "Onion has shallow roots and needs frequent light irrigation during bulb development. Stop irrigation 10-15 days before harvest."
+  ],
+  "prevention": [
+   "Inspect plants every week, especially in humid weather.",
+   "Keep the field or pot clean of dead leaves and weeds."
+  ]
+ },
+ {
+  "id": 1041,
+  "key": "onion___iris_yellow_spot_virus",
+  "model_label": "onion___iris_yellow_spot_virus",
+  "pv_folder": "onion___iris_yellow_spot_virus",
+  "crop": "onion",
+  "healthy": false,
+  "model": "extra",
+  "name": "Onion Iris Yellow Spot Virus",
+  "type": "Viral (thrips-borne)",
+  "pathogen": "Iris yellow spot virus, spread by onion thrips",
+  "impact": "Moderate",
+  "summary": "A thrips-spread virus that makes eye-shaped straw-coloured spots and early leaf drying.",
+  "symptoms": [
+   "Straw-coloured, diamond- or eye-shaped spots on leaves and flower stalks",
+   "Leaves fall over and dry early"
+  ],
+  "conditions": "High thrips numbers in hot, dry weather.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Control thrips",
+    "Remove volunteer onions and weeds"
+   ],
+   "organic": [
+    "Blue sticky traps"
+   ],
+   "chemical": [
+    "No cure; control thrips with a recommended insecticide"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Rotate crops and avoid planting next to older onion fields"
+  ]
+ },
+ {
+  "id": 1042,
+  "key": "onion___leaf_blight",
+  "model_label": "onion___leaf_blight",
+  "pv_folder": "onion___leaf_blight",
+  "crop": "onion",
+  "healthy": false,
+  "model": "extra",
+  "name": "Onion Leaf Blight",
+  "type": "Fungal",
+  "pathogen": "Stemphylium vesicarium and Colletotrichum species",
+  "impact": "High",
+  "summary": "Spots that grow into long lesions and burn the leaf tips, cutting bulb size.",
+  "symptoms": [
+   "Small yellow to brown water-soaked spots that grow into long lesions",
+   "Leaf tips burn and dry"
+  ],
+  "conditions": "Warm, humid weather and long dew periods.",
+  "weather_profile": {
+   "t_min": 18,
+   "t_max": 30,
+   "rh_min": 85,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove crop debris",
+    "Improve drainage"
+   ],
+   "organic": [],
+   "chemical": [
+    "Mancozeb 75 WP @ 2.5 g/L with a sticker, or tebuconazole 25.9 EC @ 1 ml/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Rotate crops",
+   "Avoid overhead irrigation"
+  ]
+ },
+ {
+  "id": 1043,
+  "key": "onion___purple_blotch",
+  "model_label": "onion___purple_blotch",
+  "pv_folder": "onion___purple_blotch",
+  "crop": "onion",
+  "healthy": false,
+  "model": "extra",
+  "name": "Onion Purple Blotch",
+  "type": "Fungal",
+  "pathogen": "Alternaria porri",
+  "impact": "High",
+  "summary": "Purple lesions with yellow margins that can collapse leaves and seed stalks.",
+  "symptoms": [
+   "Small white sunken spots that become purple lesions with yellow margins",
+   "Leaves collapse"
+  ],
+  "conditions": "Warm, humid weather.",
+  "weather_profile": {
+   "t_min": 20,
+   "t_max": 30,
+   "rh_min": 80,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove crop debris"
+   ],
+   "organic": [],
+   "chemical": [
+    "Mancozeb 75 WP @ 2.5 g/L with a sticker every 10 days"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Rotate crops",
+   "Use healthy seed"
+  ]
+ },
+ {
+  "id": 1044,
+  "key": "papaya___healthy",
+  "model_label": "papaya___healthy",
+  "pv_folder": "papaya___healthy",
+  "crop": "papaya",
+  "healthy": true,
+  "model": "extra",
+  "name": "Healthy Papaya",
+  "type": "Healthy",
+  "pathogen": "",
+  "impact": "None",
+  "summary": "No disease is visible on this papaya leaf. Keep watching for ring spot virus, foot rot.",
+  "symptoms": [],
+  "conditions": "",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [],
+   "organic": [],
+   "chemical": []
+  },
+  "fertilizer": [
+   "General reference: 200 : 200 : 400 g per plant per year, in splits.",
+   "Very sensitive to waterlogging; a few hours of standing water can kill plants. Use raised beds."
+  ],
+  "prevention": [
+   "Inspect plants every week, especially in humid weather.",
+   "Keep the field or pot clean of dead leaves and weeds."
+  ]
+ },
+ {
+  "id": 1045,
+  "key": "papaya___leaf_curl",
+  "model_label": "papaya___leaf_curl",
+  "pv_folder": "papaya___leaf_curl",
+  "crop": "papaya",
+  "healthy": false,
+  "model": "extra",
+  "name": "Papaya Leaf Curl",
+  "type": "Viral (whitefly-borne)",
+  "pathogen": "Papaya leaf curl virus",
+  "impact": "Severe",
+  "summary": "A whitefly-spread virus that curls the leaves into cups and stunts the plant. There is no cure.",
+  "symptoms": [
+   "Leaves curl downward and inward into cups, with thickened veins",
+   "Stunted plants with few fruits"
+  ],
+  "conditions": "High whitefly numbers in warm weather.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Uproot and destroy infected plants",
+    "Raise seedlings under insect net"
+   ],
+   "organic": [
+    "Yellow sticky traps and neem oil"
+   ],
+   "chemical": [
+    "No cure; control whitefly with a recommended insecticide"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Don't grow papaya next to tomato or chilli with leaf curl"
+  ]
+ },
+ {
+  "id": 1046,
+  "key": "papaya___mealybug",
+  "model_label": "papaya___mealybug",
+  "pv_folder": "papaya___mealybug",
+  "crop": "papaya",
+  "healthy": false,
+  "model": "extra",
+  "name": "Papaya Mealybug",
+  "type": "Pest",
+  "pathogen": "Paracoccus marginatus",
+  "impact": "High",
+  "summary": "White, cottony insects that cover leaves, stems and fruit and cause sooty mould.",
+  "symptoms": [
+   "White cottony masses on leaves, stems and fruit",
+   "Yellow, crinkled leaves and black sooty mould"
+  ],
+  "conditions": "Warm, dry weather.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Prune and burn heavily infested parts"
+   ],
+   "organic": [
+    "Neem oil 1500 ppm @ 5 ml/L with a little soap",
+    "Release of the parasitoid Acerophagus papayae where available"
+   ],
+   "chemical": [
+    "Spray a recommended insecticide on heavy infestations"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Check new plants before planting"
+  ]
+ },
+ {
+  "id": 1047,
+  "key": "papaya___mites",
+  "model_label": "papaya___mites",
+  "pv_folder": "papaya___mites",
+  "crop": "papaya",
+  "healthy": false,
+  "model": "extra",
+  "name": "Papaya Mites",
+  "type": "Pest",
+  "pathogen": "Red spider mite",
+  "impact": "Moderate",
+  "summary": "Tiny mites that speckle and bronze the leaves in hot, dry weather.",
+  "symptoms": [
+   "Fine yellow speckling and bronzing on leaves",
+   "Fine webbing under the leaves"
+  ],
+  "conditions": "Hot, dry weather.",
+  "weather_profile": {
+   "t_min": 28,
+   "t_max": 38,
+   "rh_max": 55,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Spray water under the leaves"
+   ],
+   "organic": [
+    "Wettable sulphur 80 WP @ 2 g/L"
+   ],
+   "chemical": [
+    "A recommended miticide such as spiromesifen, as per label"
+   ]
+  },
+  "fertilizer": [
+   "Keep plants well watered"
+  ],
+  "prevention": [
+   "Check leaf undersides weekly in summer"
+  ]
+ },
+ {
+  "id": 1048,
+  "key": "papaya___mosaic",
+  "model_label": "papaya___mosaic",
+  "pv_folder": "papaya___mosaic",
+  "crop": "papaya",
+  "healthy": false,
+  "model": "extra",
+  "name": "Papaya Mosaic",
+  "type": "Viral (aphid-borne)",
+  "pathogen": "Papaya mosaic and related viruses",
+  "impact": "High",
+  "summary": "A virus that mottles and distorts young leaves. There is no cure.",
+  "symptoms": [
+   "Light and dark green mosaic pattern on young leaves",
+   "Small, distorted leaves"
+  ],
+  "conditions": "Spread by aphids.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Remove infected plants",
+    "Grow maize as a border crop to intercept aphids"
+   ],
+   "organic": [],
+   "chemical": [
+    "No cure; manage aphids"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Use healthy seedlings"
+  ]
+ },
+ {
+  "id": 1049,
+  "key": "papaya___ring_spot",
+  "model_label": "papaya___ring_spot",
+  "pv_folder": "papaya___ring_spot",
+  "crop": "papaya",
+  "healthy": false,
+  "model": "extra",
+  "name": "Papaya Ring Spot",
+  "type": "Viral (aphid-borne)",
+  "pathogen": "Papaya ringspot virus",
+  "impact": "Severe",
+  "summary": "The most destructive papaya disease. Leaves become thin and mottled, and fruit shows dark rings.",
+  "symptoms": [
+   "Mottling and narrow, shoestring-like leaves",
+   "Dark green rings on the fruit"
+  ],
+  "conditions": "Spread by aphids.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Remove infected plants early",
+    "Grow maize as a border crop"
+   ],
+   "organic": [],
+   "chemical": [
+    "No cure; manage aphids"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Use healthy seedlings and isolate new plantings"
+  ]
+ },
+ {
+  "id": 1050,
+  "key": "radish___black_leaf_spot",
+  "model_label": "radish___black_leaf_spot",
+  "pv_folder": "radish___black_leaf_spot",
+  "crop": "radish",
+  "healthy": false,
+  "model": "extra",
+  "name": "Radish Black Leaf Spot",
+  "type": "Fungal",
+  "pathogen": "Alternaria species",
+  "impact": "Moderate",
+  "summary": "Dark spots with rings that dry the leaves.",
+  "symptoms": [
+   "Dark brown to black round spots with rings on leaves"
+  ],
+  "conditions": "Warm, humid weather.",
+  "weather_profile": {
+   "t_min": 18,
+   "t_max": 28,
+   "rh_min": 80,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove crop debris"
+   ],
+   "organic": [],
+   "chemical": [
+    "Mancozeb 75 WP @ 2.5 g/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Rotate crops",
+   "Use healthy seed"
+  ]
+ },
+ {
+  "id": 1051,
+  "key": "radish___downy_mildew",
+  "model_label": "radish___downy_mildew",
+  "pv_folder": "radish___downy_mildew",
+  "crop": "radish",
+  "healthy": false,
+  "model": "extra",
+  "name": "Radish Downy Mildew",
+  "type": "Oomycete",
+  "pathogen": "Hyaloperonospora parasitica",
+  "impact": "Moderate",
+  "summary": "Yellow patches above and white-grey growth below the leaf in cool, damp weather.",
+  "symptoms": [
+   "Yellow patches on top of leaves, white-grey growth underneath"
+  ],
+  "conditions": "Cool, damp weather.",
+  "weather_profile": {
+   "t_min": 10,
+   "t_max": 22,
+   "rh_min": 85,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Space plants for air flow"
+   ],
+   "organic": [],
+   "chemical": [
+    "Metalaxyl + mancozeb, as per label"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Rotate crops"
+  ]
+ },
+ {
+  "id": 1052,
+  "key": "radish___flea_beetle",
+  "model_label": "radish___flea_beetle",
+  "pv_folder": "radish___flea_beetle",
+  "crop": "radish",
+  "healthy": false,
+  "model": "extra",
+  "name": "Radish Flea Beetle",
+  "type": "Pest",
+  "pathogen": "Flea beetles",
+  "impact": "Moderate",
+  "summary": "Small jumping beetles that riddle young leaves with tiny holes.",
+  "symptoms": [
+   "Many small round shot holes in leaves"
+  ],
+  "conditions": "Warm, dry weather.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Keep seedlings well watered"
+   ],
+   "organic": [
+    "Neem oil",
+    "Insect net on young plants"
+   ],
+   "chemical": [
+    "A recommended insecticide only if seedlings are badly damaged"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Rotate crops"
+  ]
+ },
+ {
+  "id": 1053,
+  "key": "radish___healthy",
+  "model_label": "radish___healthy",
+  "pv_folder": "radish___healthy",
+  "crop": "radish",
+  "healthy": true,
+  "model": "extra",
+  "name": "Healthy Radish",
+  "type": "Healthy",
+  "pathogen": "",
+  "impact": "None",
+  "summary": "No disease is visible on this radish leaf. Keep watching for aphids.",
+  "symptoms": [],
+  "conditions": "",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [],
+   "organic": [],
+   "chemical": []
+  },
+  "fertilizer": [
+   "General reference: 60 : 40 : 40 kg/ha.",
+   "Shallow roots. Water lightly and often; dry soil makes roots pithy and hot."
+  ],
+  "prevention": [
+   "Inspect plants every week, especially in humid weather.",
+   "Keep the field or pot clean of dead leaves and weeds."
+  ]
+ },
+ {
+  "id": 1054,
+  "key": "radish___mosaic",
+  "model_label": "radish___mosaic",
+  "pv_folder": "radish___mosaic",
+  "crop": "radish",
+  "healthy": false,
+  "model": "extra",
+  "name": "Radish Mosaic",
+  "type": "Viral (aphid-borne)",
+  "pathogen": "Turnip mosaic virus",
+  "impact": "Moderate",
+  "summary": "Mottled, distorted leaves from an aphid-spread virus. There is no cure.",
+  "symptoms": [
+   "Mottled light and dark green leaves",
+   "Distorted leaves"
+  ],
+  "conditions": "Spread by aphids.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Remove infected plants",
+    "Control weeds"
+   ],
+   "organic": [],
+   "chemical": [
+    "No cure; control aphids"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Use insect net on seedlings"
+  ]
+ },
+ {
+  "id": 1055,
+  "key": "rice___bacterial_blight",
+  "model_label": "rice___bacterial_blight",
+  "pv_folder": "rice___bacterial_blight",
+  "crop": "rice",
+  "healthy": false,
+  "model": "extra",
+  "name": "Rice Bacterial Leaf Blight",
+  "type": "Bacterial",
+  "pathogen": "Xanthomonas oryzae pv. oryzae",
+  "impact": "High",
+  "summary": "One of the most damaging rice diseases in India. Leaves dry from the tip in wavy yellow-white stripes, and early attacks (kresek) can kill young plants.",
+  "symptoms": [
+   "Leaves dry from the tip and edges in wavy yellow-white stripes",
+   "Milky drops of bacterial ooze on young lesions in the morning"
+  ],
+  "conditions": "Warm, humid, windy and rainy weather, flooding, and heavy nitrogen.",
+  "weather_profile": {
+   "t_min": 25,
+   "t_max": 34,
+   "rh_min": 80,
+   "needs_rain": true
+  },
+  "treatment": {
+   "cultural": [
+    "Drain the field for a few days during severe attack",
+    "Apply nitrogen in splits and avoid excess"
+   ],
+   "organic": [
+    "Pseudomonas fluorescens seed treatment and spray, as per label"
+   ],
+   "chemical": [
+    "Copper hydroxide 77 WP @ 2 g/L can slow the spread",
+    "Antibiotic sprays (streptomycin, tetracycline) are banned for farm use in India"
+   ]
+  },
+  "fertilizer": [
+   "Keep potassium adequate; it reduces blight"
+  ],
+  "prevention": [
+   "Grow resistant varieties",
+   "Remove weeds and stubble that carry the bacteria"
+  ]
+ },
+ {
+  "id": 1056,
+  "key": "rice___blast",
+  "model_label": "rice___blast",
+  "pv_folder": "rice___blast",
+  "crop": "rice",
+  "healthy": false,
+  "model": "extra",
+  "name": "Rice Blast",
+  "type": "Fungal",
+  "pathogen": "Magnaporthe oryzae",
+  "impact": "Severe",
+  "summary": "A fungal disease that attacks leaves, nodes and the panicle neck. Neck blast can cause heavy grain loss.",
+  "symptoms": [
+   "Spindle-shaped spots with grey centres and brown edges on leaves",
+   "The panicle neck turns black and the panicle breaks (neck blast)"
+  ],
+  "conditions": "Cool nights, long dew periods, high humidity and excess nitrogen.",
+  "weather_profile": {
+   "t_min": 20,
+   "t_max": 28,
+   "rh_min": 85,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Avoid excess nitrogen and apply it in splits",
+    "Destroy infected straw and stubble"
+   ],
+   "organic": [
+    "Seed treatment with Pseudomonas fluorescens or Trichoderma"
+   ],
+   "chemical": [
+    "Tricyclazole 75 WP @ 0.6 g/L at first symptoms and again at heading",
+    "Or azoxystrobin 23 SC @ 1 ml/L (rotate groups)"
+   ]
+  },
+  "fertilizer": [
+   "Hold back the nitrogen top dressing while blast is active; keep potassium adequate"
+  ],
+  "prevention": [
+   "Grow resistant varieties",
+   "Treat seed with carbendazim or tricyclazole"
+  ]
+ },
+ {
+  "id": 1057,
+  "key": "rice___brown_spot",
+  "model_label": "rice___brown_spot",
+  "pv_folder": "rice___brown_spot",
+  "crop": "rice",
+  "healthy": false,
+  "model": "extra",
+  "name": "Rice Brown Spot",
+  "type": "Fungal",
+  "pathogen": "Bipolaris oryzae",
+  "impact": "Moderate",
+  "summary": "A fungal leaf spot that is worst on poorly fed or drought-stressed rice. It also discolours grain.",
+  "symptoms": [
+   "Oval brown spots with grey centres, like sesame seeds, scattered over the leaf",
+   "Dark spots on husks and discoloured grain"
+  ],
+  "conditions": "Nutrient-poor soils (low potassium, silicon or zinc), water stress and humid weather.",
+  "weather_profile": {
+   "t_min": 25,
+   "t_max": 30,
+   "rh_min": 85,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Correct soil fertility, especially potassium",
+    "Avoid water stress"
+   ],
+   "organic": [
+    "Seed treatment with Trichoderma or Pseudomonas fluorescens"
+   ],
+   "chemical": [
+    "Mancozeb 75 WP @ 2.5 g/L or propiconazole 25 EC @ 1 ml/L"
+   ]
+  },
+  "fertilizer": [
+   "Apply balanced NPK with potassium and zinc; brown spot is often a sign of poor nutrition"
+  ],
+  "prevention": [
+   "Use clean, treated seed",
+   "Keep soil fertility up with organic manure"
+  ]
+ },
+ {
+  "id": 1058,
+  "key": "rice___tungro",
+  "model_label": "rice___tungro",
+  "pv_folder": "rice___tungro",
+  "crop": "rice",
+  "healthy": false,
+  "model": "extra",
+  "name": "Rice Tungro",
+  "type": "Viral (leafhopper-borne)",
+  "pathogen": "Rice tungro viruses, spread by green leafhoppers",
+  "impact": "Severe",
+  "summary": "A virus disease spread by green leafhoppers. Infected plants turn yellow-orange and stay stunted. There is no cure.",
+  "symptoms": [
+   "Yellow to orange leaves, starting from the tip",
+   "Stunted plants with fewer tillers"
+  ],
+  "conditions": "High green leafhopper numbers and fields planted at different times in the same area.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Pull out and destroy infected hills early",
+    "Plant at the same time as neighbouring fields"
+   ],
+   "organic": [
+    "Light traps to monitor leafhoppers"
+   ],
+   "chemical": [
+    "No cure for the virus; control green leafhoppers with a recommended insecticide when numbers are high"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer; avoid excess nitrogen, which attracts leafhoppers"
+  ],
+  "prevention": [
+   "Grow resistant varieties",
+   "Remove ratoons and volunteer rice between seasons"
+  ]
+ },
+ {
+  "id": 1059,
+  "key": "sugarcane___banded_chlorosis",
+  "model_label": "sugarcane___banded_chlorosis",
+  "pv_folder": "sugarcane___banded_chlorosis",
+  "crop": "sugarcane",
+  "healthy": false,
+  "model": "extra",
+  "name": "Sugarcane Banded Chlorosis",
+  "type": "Physiological (cold injury)",
+  "pathogen": "Not an infection: low night temperature",
+  "impact": "Low",
+  "summary": "Pale bands across the leaves caused by cold nights. The cane usually grows out of it when the weather warms.",
+  "symptoms": [
+   "Pale yellow-white bands running across the leaf blade",
+   "Bands appear after cold nights"
+  ],
+  "conditions": "Night temperatures below about 10 °C.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "No spray is needed; new leaves come out normal as it warms up",
+    "A light irrigation before a forecast cold night reduces injury"
+   ],
+   "organic": [],
+   "chemical": [
+    "No chemical treatment needed"
+   ]
+  },
+  "fertilizer": [
+   "Balanced nutrition helps new leaves grow out healthy"
+  ],
+  "prevention": [
+   "Plant at the recommended time so young cane escapes cold spells"
+  ]
+ },
+ {
+  "id": 1060,
+  "key": "sugarcane___brown_rust",
+  "model_label": "sugarcane___brown_rust",
+  "pv_folder": "sugarcane___brown_rust",
+  "crop": "sugarcane",
+  "healthy": false,
+  "model": "extra",
+  "name": "Sugarcane Brown Rust",
+  "type": "Fungal",
+  "pathogen": "Puccinia melanocephala",
+  "impact": "Moderate",
+  "summary": "A rust that forms brown pustules under the leaves and dries them early, reducing cane growth.",
+  "symptoms": [
+   "Long orange-brown to dark brown pustules on the underside of leaves",
+   "Leaves turn brown and dry"
+  ],
+  "conditions": "Mild temperatures with high humidity and heavy dew.",
+  "weather_profile": {
+   "t_min": 18,
+   "t_max": 28,
+   "rh_min": 85,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Grow resistant varieties",
+    "Avoid excess nitrogen"
+   ],
+   "organic": [],
+   "chemical": [
+    "Propiconazole 25 EC @ 1 ml/L or mancozeb 75 WP @ 2.5 g/L at first appearance"
+   ]
+  },
+  "fertilizer": [
+   "Avoid excess nitrogen"
+  ],
+  "prevention": [
+   "Grow resistant varieties"
+  ]
+ },
+ {
+  "id": 1061,
+  "key": "sugarcane___brown_spot",
+  "model_label": "sugarcane___brown_spot",
+  "pv_folder": "sugarcane___brown_spot",
+  "crop": "sugarcane",
+  "healthy": false,
+  "model": "extra",
+  "name": "Sugarcane Brown Spot",
+  "type": "Fungal",
+  "pathogen": "Cercospora longipes",
+  "impact": "Moderate",
+  "summary": "Reddish-brown leaf spots that join up and dry the leaves early in humid weather.",
+  "symptoms": [
+   "Small reddish-brown oval spots with a yellow halo on both leaf surfaces",
+   "Spots join and leaves dry early"
+  ],
+  "conditions": "Warm, humid monsoon weather.",
+  "weather_profile": {
+   "t_min": 24,
+   "t_max": 32,
+   "rh_min": 85,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Strip and burn badly infected lower leaves",
+    "Avoid very dense planting"
+   ],
+   "organic": [],
+   "chemical": [
+    "Mancozeb 75 WP @ 2.5 g/L or carbendazim 50 WP @ 1 g/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced NPK"
+  ],
+  "prevention": [
+   "Grow resistant varieties"
+  ]
+ },
+ {
+  "id": 1062,
+  "key": "sugarcane___grassy_shoot",
+  "model_label": "sugarcane___grassy_shoot",
+  "pv_folder": "sugarcane___grassy_shoot",
+  "crop": "sugarcane",
+  "healthy": false,
+  "model": "extra",
+  "name": "Sugarcane Grassy Shoot",
+  "type": "Phytoplasma (insect-borne)",
+  "pathogen": "Sugarcane grassy shoot phytoplasma",
+  "impact": "High",
+  "summary": "A phytoplasma disease that makes a clump produce many thin, pale, grassy shoots and no usable cane.",
+  "symptoms": [
+   "Many thin, pale or white grassy shoots from one clump",
+   "Stunted stalks with no millable cane"
+  ],
+  "conditions": "Spread through infected seed cane and leafhoppers.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Uproot and burn affected clumps",
+    "Don't ratoon infected fields"
+   ],
+   "organic": [],
+   "chemical": [
+    "No cure; control leafhoppers with a recommended insecticide"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer keeps healthy clumps vigorous"
+  ],
+  "prevention": [
+   "Plant seed cane treated with hot water or moist hot air (50-54 °C)",
+   "Buy seed from certified, disease-free nurseries"
+  ]
+ },
+ {
+  "id": 1063,
+  "key": "sugarcane___healthy",
+  "model_label": "sugarcane___healthy",
+  "pv_folder": "sugarcane___healthy",
+  "crop": "sugarcane",
+  "healthy": true,
+  "model": "extra",
+  "name": "Healthy Sugarcane",
+  "type": "Healthy",
+  "pathogen": "",
+  "impact": "None",
+  "summary": "No disease is visible on this sugarcane leaf. Keep watching for red rot, early shoot borer, grassy shoot.",
+  "symptoms": [],
+  "conditions": "",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [],
+   "organic": [],
+   "chemical": []
+  },
+  "fertilizer": [
+   "General reference: 150-250 : 60-80 : 60 kg/ha.",
+   "The grand growth phase needs the most water. Drip irrigation with trash mulching saves a large share of water in sugarcane."
+  ],
+  "prevention": [
+   "Inspect plants every week, especially in humid weather.",
+   "Keep the field or pot clean of dead leaves and weeds."
+  ]
+ },
+ {
+  "id": 1064,
+  "key": "sugarcane___mosaic",
+  "model_label": "sugarcane___mosaic",
+  "pv_folder": "sugarcane___mosaic",
+  "crop": "sugarcane",
+  "healthy": false,
+  "model": "extra",
+  "name": "Sugarcane Mosaic",
+  "type": "Viral (aphid-borne)",
+  "pathogen": "Sugarcane mosaic virus and related viruses",
+  "impact": "Moderate",
+  "summary": "A virus disease that causes mosaic streaks on young leaves and can stunt the crop. It travels in seed cane.",
+  "symptoms": [
+   "Light and dark green mosaic patches or streaks on young leaves",
+   "Stunted growth in severe cases"
+  ],
+  "conditions": "Spread through infected seed cane and aphids.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Remove infected clumps",
+    "Control weeds that host aphids"
+   ],
+   "organic": [],
+   "chemical": [
+    "No cure; use virus-free seed cane"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Plant virus-free seed cane and resistant varieties"
+  ]
+ },
+ {
+  "id": 1065,
+  "key": "sugarcane___pokkah_boeng",
+  "model_label": "sugarcane___pokkah_boeng",
+  "pv_folder": "sugarcane___pokkah_boeng",
+  "crop": "sugarcane",
+  "healthy": false,
+  "model": "extra",
+  "name": "Sugarcane Pokkah Boeng",
+  "type": "Fungal",
+  "pathogen": "Fusarium species",
+  "impact": "Moderate",
+  "summary": "A fungal disease of the youngest leaves during fast monsoon growth. Tops become twisted and pale; severe cases rot the top.",
+  "symptoms": [
+   "Young top leaves are crinkled, twisted and yellow-white at the base",
+   "The top rots in severe cases"
+  ],
+  "conditions": "Hot, humid weather following a dry spell, during rapid growth.",
+  "weather_profile": {
+   "t_min": 25,
+   "t_max": 32,
+   "rh_min": 80,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove and destroy severely affected tops"
+   ],
+   "organic": [],
+   "chemical": [
+    "Carbendazim 50 WP @ 1 g/L or copper oxychloride 50 WP @ 2 g/L, 2-3 sprays 10-15 days apart"
+   ]
+  },
+  "fertilizer": [
+   "Balanced nutrition"
+  ],
+  "prevention": [
+   "Grow tolerant varieties"
+  ]
+ },
+ {
+  "id": 1066,
+  "key": "sugarcane___smut",
+  "model_label": "sugarcane___smut",
+  "pv_folder": "sugarcane___smut",
+  "crop": "sugarcane",
+  "healthy": false,
+  "model": "extra",
+  "name": "Sugarcane Smut",
+  "type": "Fungal",
+  "pathogen": "Sporisorium scitamineum",
+  "impact": "High",
+  "summary": "A smut fungus that grows a long black whip from the top of the cane. Spores spread by wind to nearby clumps.",
+  "symptoms": [
+   "A long black whip grows out of the top of the cane",
+   "Thin, grassy stalks with many tillers"
+  ],
+  "conditions": "Spread by wind-blown spores and infected setts; worse in ratoon crops.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Cover the whip with a bag, then cut and burn it before spores spread",
+    "Don't ratoon heavily infected fields"
+   ],
+   "organic": [],
+   "chemical": [
+    "Dip setts in a recommended fungicide (such as propiconazole) before planting"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Grow resistant varieties and plant healthy, treated setts"
+  ]
+ },
+ {
+  "id": 1067,
+  "key": "sugarcane___yellow_leaf",
+  "model_label": "sugarcane___yellow_leaf",
+  "pv_folder": "sugarcane___yellow_leaf",
+  "crop": "sugarcane",
+  "healthy": false,
+  "model": "extra",
+  "name": "Sugarcane Yellow Leaf",
+  "type": "Viral (aphid-borne)",
+  "pathogen": "Sugarcane yellow leaf virus",
+  "impact": "Moderate",
+  "summary": "A virus disease that yellows the leaf midrib and can reduce cane yield and sugar.",
+  "symptoms": [
+   "Yellowing of the midrib on the underside of older leaves, spreading into the blade",
+   "Leaves dry from the tip; tops look bunched"
+  ],
+  "conditions": "Spread through infected seed cane and aphids.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Use healthy seed cane",
+    "Control aphids"
+   ],
+   "organic": [],
+   "chemical": [
+    "No cure; manage aphids if numbers are high"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Plant virus-free (tissue-culture) seed cane",
+   "Grow resistant varieties"
+  ]
+ },
+ {
+  "id": 1068,
+  "key": "tea___healthy",
+  "model_label": "tea___healthy",
+  "pv_folder": "tea___healthy",
+  "crop": "tea",
+  "healthy": true,
+  "model": "extra",
+  "name": "Healthy Tea",
+  "type": "Healthy",
+  "pathogen": "",
+  "impact": "None",
+  "summary": "No disease is visible on this tea leaf. Keep watching for blister blight, tea mosquito bug.",
+  "symptoms": [],
+  "conditions": "",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [],
+   "organic": [],
+   "chemical": []
+  },
+  "fertilizer": [
+   "General reference: Based on yield and soil test; split through the plucking season.",
+   "Needs well-distributed rain; sprinkler irrigation in dry months keeps bushes flushing."
+  ],
+  "prevention": [
+   "Inspect plants every week, especially in humid weather.",
+   "Keep the field or pot clean of dead leaves and weeds."
+  ]
+ },
+ {
+  "id": 1069,
+  "key": "tea___leaf_blight",
+  "model_label": "tea___leaf_blight",
+  "pv_folder": "tea___leaf_blight",
+  "crop": "tea",
+  "healthy": false,
+  "model": "extra",
+  "name": "Tea Leaf Blight",
+  "type": "Fungal",
+  "pathogen": "Colletotrichum and Pestalotiopsis species (brown and grey blight)",
+  "impact": "Moderate",
+  "summary": "Brown patches that start at the leaf edge or tip, often after plucking or hail injury.",
+  "symptoms": [
+   "Brown patches with dark margins starting at the leaf edge or tip",
+   "Grey centres with tiny black dots"
+  ],
+  "conditions": "Wounds from plucking or hail, and humid weather.",
+  "weather_profile": {
+   "t_min": 22,
+   "t_max": 30,
+   "rh_min": 85,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Prune affected shoots",
+    "Avoid injuries during plucking"
+   ],
+   "organic": [],
+   "chemical": [
+    "Copper oxychloride 50 WP @ 2.5 g/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced nutrition"
+  ],
+  "prevention": [
+   "Keep bushes vigorous"
+  ]
+ },
+ {
+  "id": 1070,
+  "key": "tea___red_leaf_spot",
+  "model_label": "tea___red_leaf_spot",
+  "pv_folder": "tea___red_leaf_spot",
+  "crop": "tea",
+  "healthy": false,
+  "model": "extra",
+  "name": "Tea Red Leaf Spot",
+  "type": "Fungal",
+  "pathogen": "Leaf-spotting fungi",
+  "impact": "Low",
+  "summary": "Small reddish-brown spots on mature leaves that can cause early leaf fall.",
+  "symptoms": [
+   "Small reddish-brown spots on mature leaves",
+   "Spots enlarge and leaves fall early"
+  ],
+  "conditions": "Humid weather and stressed bushes.",
+  "weather_profile": {
+   "t_min": 22,
+   "t_max": 30,
+   "rh_min": 80,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove and destroy fallen leaves"
+   ],
+   "organic": [],
+   "chemical": [
+    "Copper oxychloride 50 WP @ 2.5 g/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced nutrition"
+  ],
+  "prevention": [
+   "Keep bushes vigorous"
+  ]
+ },
+ {
+  "id": 1071,
+  "key": "tea___red_scab",
+  "model_label": "tea___red_scab",
+  "pv_folder": "tea___red_scab",
+  "crop": "tea",
+  "healthy": false,
+  "model": "extra",
+  "name": "Tea Red Scab",
+  "type": "Algal / fungal",
+  "pathogen": "Often linked to red rust (Cephaleuros) on weak bushes",
+  "impact": "Moderate",
+  "summary": "Orange-red scabby patches on leaves and stems, usually on bushes weakened by poor drainage or nutrition.",
+  "symptoms": [
+   "Orange-red scabby or velvety patches on leaves and stems",
+   "Affected shoots die back"
+  ],
+  "conditions": "Poor drainage, low potassium and humid weather.",
+  "weather_profile": {
+   "t_min": 22,
+   "t_max": 32,
+   "rh_min": 85,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Improve drainage and nutrition, especially potassium"
+   ],
+   "organic": [],
+   "chemical": [
+    "Copper oxychloride 50 WP @ 2.5 g/L"
+   ]
+  },
+  "fertilizer": [
+   "Adequate potassium"
+  ],
+  "prevention": [
+   "Keep bushes vigorous"
+  ]
+ },
+ {
+  "id": 1072,
+  "key": "turmeric___aphids",
+  "model_label": "turmeric___aphids",
+  "pv_folder": "turmeric___aphids",
+  "crop": "turmeric",
+  "healthy": false,
+  "model": "extra",
+  "name": "Turmeric Aphids",
+  "type": "Pest",
+  "pathogen": "Aphid species",
+  "impact": "Low",
+  "summary": "Soft-bodied insects that suck sap from young leaves, leaving them curled and sticky.",
+  "symptoms": [
+   "Colonies of small soft insects on young leaves",
+   "Leaves curl and become sticky"
+  ],
+  "conditions": "Mild weather and lush new growth.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Spray a strong jet of water to knock them off"
+   ],
+   "organic": [
+    "Neem oil 1500 ppm @ 3-5 ml/L"
+   ],
+   "chemical": [
+    "Imidacloprid 17.8 SL @ 0.3 ml/L only for heavy infestations"
+   ]
+  },
+  "fertilizer": [
+   "Avoid excess nitrogen"
+  ],
+  "prevention": [
+   "Conserve ladybird beetles"
+  ]
+ },
+ {
+  "id": 1073,
+  "key": "turmeric___healthy",
+  "model_label": "turmeric___healthy",
+  "pv_folder": "turmeric___healthy",
+  "crop": "turmeric",
+  "healthy": true,
+  "model": "extra",
+  "name": "Healthy Turmeric",
+  "type": "Healthy",
+  "pathogen": "",
+  "impact": "None",
+  "summary": "No disease is visible on this turmeric leaf. Keep watching for rhizome rot, leaf blotch.",
+  "symptoms": [],
+  "conditions": "",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [],
+   "organic": [],
+   "chemical": []
+  },
+  "fertilizer": [
+   "General reference: 60 : 50 : 120 kg/ha + farmyard manure.",
+   "Needs steady moisture and good drainage. Mulch the beds with leaves after planting."
+  ],
+  "prevention": [
+   "Inspect plants every week, especially in humid weather.",
+   "Keep the field or pot clean of dead leaves and weeds."
+  ]
+ },
+ {
+  "id": 1074,
+  "key": "turmeric___leaf_blotch",
+  "model_label": "turmeric___leaf_blotch",
+  "pv_folder": "turmeric___leaf_blotch",
+  "crop": "turmeric",
+  "healthy": false,
+  "model": "extra",
+  "name": "Turmeric Leaf Blotch",
+  "type": "Fungal",
+  "pathogen": "Taphrina maculans",
+  "impact": "Moderate",
+  "summary": "Many small yellowish spots that join and give the leaves a reddish-brown, dried look.",
+  "symptoms": [
+   "Many small yellowish spots on both sides of leaves",
+   "Spots join; leaves look reddish-brown and dry"
+  ],
+  "conditions": "Humid weather in the monsoon.",
+  "weather_profile": {
+   "t_min": 20,
+   "t_max": 28,
+   "rh_min": 80,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove infected leaves"
+   ],
+   "organic": [],
+   "chemical": [
+    "Mancozeb 75 WP @ 2.5 g/L or propiconazole 25 EC @ 1 ml/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Rotate crops"
+  ]
+ },
+ {
+  "id": 1075,
+  "key": "turmeric___leaf_spot",
+  "model_label": "turmeric___leaf_spot",
+  "pv_folder": "turmeric___leaf_spot",
+  "crop": "turmeric",
+  "healthy": false,
+  "model": "extra",
+  "name": "Turmeric Leaf Spot",
+  "type": "Fungal",
+  "pathogen": "Colletotrichum capsici",
+  "impact": "Moderate",
+  "summary": "Oval brown spots with grey-white centres that dry the leaves.",
+  "symptoms": [
+   "Oval brown spots with grey-white centres on leaves",
+   "Spots join and leaves dry"
+  ],
+  "conditions": "Humid weather.",
+  "weather_profile": {
+   "t_min": 22,
+   "t_max": 30,
+   "rh_min": 80,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove infected leaves"
+   ],
+   "organic": [],
+   "chemical": [
+    "Carbendazim 50 WP @ 1 g/L or mancozeb 75 WP @ 2.5 g/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Use healthy seed rhizomes",
+   "Rotate crops"
+  ]
+ },
+ {
+  "id": 1076,
+  "key": "urad___anthracnose",
+  "model_label": "urad___anthracnose",
+  "pv_folder": "urad___anthracnose",
+  "crop": "urad",
+  "healthy": false,
+  "model": "extra",
+  "name": "Black Gram Anthracnose",
+  "type": "Fungal",
+  "pathogen": "Colletotrichum lindemuthianum",
+  "impact": "Moderate",
+  "summary": "Dark sunken spots on leaves, stems and pods, worse in wet weather.",
+  "symptoms": [
+   "Dark brown sunken spots with red-brown edges on leaves, stems and pods"
+  ],
+  "conditions": "Warm, wet weather.",
+  "weather_profile": {
+   "t_min": 22,
+   "t_max": 30,
+   "rh_min": 85,
+   "needs_rain": true
+  },
+  "treatment": {
+   "cultural": [
+    "Remove crop debris"
+   ],
+   "organic": [],
+   "chemical": [
+    "Carbendazim 50 WP @ 1 g/L or mancozeb 75 WP @ 2.5 g/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Use treated seed",
+   "Rotate crops"
+  ]
+ },
+ {
+  "id": 1077,
+  "key": "urad___healthy",
+  "model_label": "urad___healthy",
+  "pv_folder": "urad___healthy",
+  "crop": "urad",
+  "healthy": true,
+  "model": "extra",
+  "name": "Healthy Black Gram",
+  "type": "Healthy",
+  "pathogen": "",
+  "impact": "None",
+  "summary": "No disease is visible on this black gram leaf. Keep watching for yellow mosaic virus, leaf crinkle virus.",
+  "symptoms": [],
+  "conditions": "",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [],
+   "organic": [],
+   "chemical": []
+  },
+  "fertilizer": [
+   "General reference: 20 : 40 : 20 kg/ha + Rhizobium.",
+   "Sensitive to waterlogging; make drainage channels in the rainy season."
+  ],
+  "prevention": [
+   "Inspect plants every week, especially in humid weather.",
+   "Keep the field or pot clean of dead leaves and weeds."
+  ]
+ },
+ {
+  "id": 1078,
+  "key": "urad___leaf_crinkle",
+  "model_label": "urad___leaf_crinkle",
+  "pv_folder": "urad___leaf_crinkle",
+  "crop": "urad",
+  "healthy": false,
+  "model": "extra",
+  "name": "Black Gram Leaf Crinkle",
+  "type": "Viral",
+  "pathogen": "Urdbean leaf crinkle virus",
+  "impact": "High",
+  "summary": "A seed-borne virus that makes leaves large and crinkled and causes flower drop.",
+  "symptoms": [
+   "Leaves become large, crinkled and puckered",
+   "Flowers drop; few pods"
+  ],
+  "conditions": "Infected seed and insects.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Pull out infected plants early"
+   ],
+   "organic": [],
+   "chemical": [
+    "No cure"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Use healthy seed from disease-free fields"
+  ]
+ },
+ {
+  "id": 1079,
+  "key": "urad___powdery_mildew",
+  "model_label": "urad___powdery_mildew",
+  "pv_folder": "urad___powdery_mildew",
+  "crop": "urad",
+  "healthy": false,
+  "model": "extra",
+  "name": "Black Gram Powdery Mildew",
+  "type": "Fungal",
+  "pathogen": "Erysiphe polygoni",
+  "impact": "Moderate",
+  "summary": "White powder on leaves that dries them early.",
+  "symptoms": [
+   "White powder on the upper leaf surface"
+  ],
+  "conditions": "Dry days with cool nights.",
+  "weather_profile": {
+   "t_min": 18,
+   "t_max": 30,
+   "rh_min": 50,
+   "needs_rain": false
+  },
+  "treatment": {
+   "cultural": [
+    "Remove the worst affected plants"
+   ],
+   "organic": [
+    "Wettable sulphur 80 WP @ 2 g/L"
+   ],
+   "chemical": [
+    "Hexaconazole 5 EC @ 1 ml/L"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Grow tolerant varieties"
+  ]
+ },
+ {
+  "id": 1080,
+  "key": "urad___yellow_mosaic",
+  "model_label": "urad___yellow_mosaic",
+  "pv_folder": "urad___yellow_mosaic",
+  "crop": "urad",
+  "healthy": false,
+  "model": "extra",
+  "name": "Black Gram Yellow Mosaic",
+  "type": "Viral (whitefly-borne)",
+  "pathogen": "Mungbean yellow mosaic India virus",
+  "impact": "Severe",
+  "summary": "The most serious disease of urad and moong in India. Bright yellow patches and very poor pod set.",
+  "symptoms": [
+   "Bright yellow and green patches on leaves",
+   "Small, few pods"
+  ],
+  "conditions": "High whitefly numbers.",
+  "weather_profile": null,
+  "treatment": {
+   "cultural": [
+    "Pull out infected plants early",
+    "Use yellow sticky traps"
+   ],
+   "organic": [
+    "Neem oil against whitefly"
+   ],
+   "chemical": [
+    "No cure; control whitefly with a recommended insecticide"
+   ]
+  },
+  "fertilizer": [
+   "Balanced fertilizer"
+  ],
+  "prevention": [
+   "Grow resistant varieties"
+  ]
+ }
+]
