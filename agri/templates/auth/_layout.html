@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, flash_messages %}
+{% set bare = true %}
+{% block content %}
+<div class="auth-split">
+  <div class="auth-main">
+    <div class="auth-top">
+      <a class="brand" href="{{ url_for('main.index') }}"><span class="brand-mark">{{ icon("sprout") }}</span>SmartAgri</a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark theme">{{ icon("moon") }}<span class="sr-only">Toggle theme</span></button>
+    </div>
+    <div class="auth-body">
+      <div class="auth-form">
+        {% block form %}{% endblock %}
+      </div>
+    </div>
+    <p class="auth-legal">© {{ now.year }} SmartAgri · <a href="{{ url_for('main.index') }}#faq">Help and FAQ</a></p>
+  </div>
+
+  <aside class="auth-side" aria-hidden="true">
+    {% block side %}
+    <h2>Healthier crops, and no more guessing when to irrigate.</h2>
+    <p>One photo tells you what's wrong with the leaf and what to do. The forecast tells you when your field needs water.</p>
+    <ul>
+      <li>{{ icon("tick") }} {{ kb.all_diseases()|length }} diseases and healthy states across {{ kb.model_crops()|length }} crops, including money plant</li>
+      <li>{{ icon("tick") }} 7-day irrigation schedule from live weather</li>
+      <li>{{ icon("tick") }} Pump hours and electricity cost for every plan</li>
+    </ul>
+    <div class="frame-browser">
+      <div class="frame-bar"><span></span><span></span><span></span></div>
+      <img src="{{ url_for('static', filename='img/product/feat-diagnosis.webp') }}" width="1400" height="780" alt="">
+    </div>
+    {% endblock %}
+  </aside>
+</div>
+{% endblock %}

@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, crop_select, stage_select, soil_select, method_select, location_picker %}
+{% block title %}Check a leaf{% endblock %}
+{% block content %}
+<div class="container page">
+  <div class="page-head">
+    <div>
+      <h1>Check a leaf</h1>
+      <p>Tell us about the crop and add a clear photo of an affected leaf. You'll get the most likely problem, what to do about it, and an irrigation check.</p>
+    </div>
+  </div>
+
+  <form method="post" enctype="multipart/form-data" id="analyze-form" data-busy="Checking the leaf..."
+        data-model-crops='{{ model_crops|tojson }}'>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="layout-split">
+      <div class="card">
+        <div class="card-head"><h2>About your crop</h2></div>
+        <div class="form-grid">
+          <div class="field">
+            <label for="crop">Crop</label>
+            {{ crop_select("crop", values.crop) }}
+            <div class="support-note" data-support-note hidden>{{ icon("info") }}<span></span></div>
+          </div>
+          <div class="field">
+            <label for="stage">Growth stage</label>
+            {{ stage_select("stage", values.stage) }}
+          </div>
+          <div class="field">
+            <label for="soil">Soil type</label>
+            {{ soil_select("soil", values.soil) }}
+          </div>
+          <div class="field">
+            <label for="last_irrigation">Last irrigated on</label>
+            <input class="input" type="date" id="last_irrigation" name="last_irrigation" value="{{ values.last_irrigation or '' }}" max="{{ now.strftime('%Y-%m-%d') }}">
+            <div class="hint">Leave empty if you don't remember.</div>
+          </div>
+          <div class="full">{{ location_picker(values.location) }}</div>
+          <div class="field">
+            <label for="area_acres">Field area</label>
+            <div class="input-suffix"><input class="input" type="number" step="0.01" min="0.01" id="area_acres" name="area_acres" value="{{ values.area_acres }}"><span>acres</span></div>
+          </div>
+          <div class="field">
+            <label for="method">Irrigation method</label>
+            {{ method_select("method", values.method) }}
+          </div>
+          <details class="advanced full">
+            <summary>Pump and electricity details (for energy estimate)</summary>
+            <div class="form-grid" style="margin-top: 10px">
+              <div class="field"><label for="pump_hp">Pump power</label>
+                <div class="input-suffix"><input class="input" type="number" step="0.5" min="0.5" id="pump_hp" name="pump_hp" value="{{ values.pump_hp }}"><span>HP</span></div></div>
+              <div class="field"><label for="pump_head_m">Water depth / total head</label>
+                <div class="input-suffix"><input class="input" type="number" step="1" min="3" id="pump_head_m" name="pump_head_m" value="{{ values.pump_head_m }}"><span>m</span></div></div>
+              <div class="field"><label for="tariff">Electricity tariff</label>
+                <div class="input-suffix"><input class="input" type="number" step="0.1" min="0" id="tariff" name="tariff" value="{{ values.tariff }}"><span>₹/kWh</span></div></div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h2>The photo</h2></div>
+        <div class="dropzone" data-dropzone>
+          <input type="file" name="image" id="image" accept="image/*" data-file-input aria-label="Choose a leaf photo">
+          <div class="dz-empty">
+            <div class="dz-icon">{{ icon("upload", "icon-lg") }}</div>
+            <strong>Drop a photo here or tap to choose</strong>
+            <div class="small muted">JPG, PNG or WEBP, up to 12 MB</div>
+          </div>
+          <div class="dz-preview"><img alt="Selected leaf photo" data-preview><div class="dz-name" data-file-name></div></div>
+        </div>
+        <div class="capture-row">
+          <button class="btn btn-ghost" type="button" data-camera>{{ icon("camera") }} Take photo</button>
+          <button class="btn btn-ghost" type="button" data-pick>{{ icon("image") }} Choose file</button>
+          <input type="file" accept="image/*" capture="environment" hidden data-capture-input>
+        </div>
+        <a class="btn btn-soft btn-block" style="margin-top: 8px" href="{{ url_for('main.live') }}">{{ icon("scan") }} Scan live with the camera instead</a>
+
+        <div style="margin-top: 18px">
+          <div class="label">No photo handy? Try a sample leaf</div>
+          <div class="samples">
+            {% for s in samples %}
+              <button type="button" class="sample" data-sample="{{ url_for('static', filename='samples/' + s.file) }}" data-sample-crop="{{ s.crop }}" title="{{ s.label }}">
+                <img src="{{ url_for('static', filename='samples/' + s.file) }}" alt="" loading="lazy"><span>{{ s.label }}</span>
+              </button>
+            {% endfor %}
+          </div>
+          <p class="small muted" style="margin: 8px 0 0">Sample images are from PlantVillage (Hughes &amp; Salathé, 2015) and open AgML datasets (CC BY 4.0); see <a href="{{ url_for('main.model_info') }}#extra">credits</a>.</p>
+        </div>
+
+        <hr class="divider">
+        <div class="label">For a good photo</div>
+        <ul class="tips-list">
+          <li>Photograph one leaf that shows the symptoms clearly, filling most of the frame.</li>
+          <li>Use daylight; avoid harsh shadows and glare.</li>
+          <li>Hold the camera steady so the image is sharp.</li>
+          <li>A plain background (paper or your palm) improves accuracy.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 18px; justify-content: flex-end">
+      <button class="btn btn-primary btn-lg" type="submit">Check this leaf</button>
+    </div>
+  </form>
+</div>
+
+<div class="modal" id="camera-modal" role="dialog" aria-modal="true" aria-labelledby="camera-title">
+  <div class="modal-box">
+    <div class="card-head"><h3 id="camera-title">Take a photo</h3>
+      <button class="icon-btn" type="button" data-camera-close>{{ icon("x") }}<span class="sr-only">Close</span></button></div>
+    <video autoplay playsinline muted data-camera-video></video>
+    <div class="row" style="margin-top: 12px; justify-content: flex-end">
+      <button class="btn btn-ghost" type="button" data-camera-close>Cancel</button>
+      <button class="btn btn-primary" type="button" data-camera-snap>{{ icon("camera") }} Capture</button>
+    </div>
+  </div>
+</div>
+{% endblock %}

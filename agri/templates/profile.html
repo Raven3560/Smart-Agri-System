@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, crop_select_all, soil_select, method_select, location_picker %}
+{% block title %}Your farm{% endblock %}
+{% block content %}
+{% set u = g.user %}
+{% set loc = {"name": u.location_name, "lat": u.lat, "lon": u.lon} %}
+<div class="container page">
+  <div class="page-head">
+    <div>
+      <h1>Your farm</h1>
+      <p>We use these to fill in the forms for you, so you don't have to type them every time.</p>
+    </div>
+  </div>
+  {% if welcome %}
+    <div class="alert alert-info" style="margin-bottom: 18px">{{ icon("pin") }}<div>Search for your village or town, or tap the location button, then save.</div></div>
+  {% endif %}
+  <form method="post" class="layout-split">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="card">
+      <div class="card-head"><h2>Your details</h2></div>
+      <div class="form-grid">
+        <div class="field full"><label for="name">Full name</label><input class="input" id="name" name="name" value="{{ u.name }}" required></div>
+        <div class="field"><label for="phone">Mobile number</label><input class="input" type="tel" id="phone" name="phone" value="{{ u.phone or '' }}"></div>
+        <div class="field"><label for="farm_name">Farm name</label><input class="input" id="farm_name" name="farm_name" value="{{ u.farm_name or '' }}"></div>
+        <div class="field full"><label>Email</label><input class="input" value="{{ u.email }}" disabled></div>
+        <div class="full">{{ location_picker(loc) }}</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h2>Usual crop and setup</h2></div>
+      <div class="form-grid">
+        <div class="field"><label for="default_crop">Main crop</label>
+          {{ crop_select_all("default_crop", u.default_crop) }}</div>
+        <div class="field"><label for="default_soil">Soil type</label>{{ soil_select("default_soil", u.default_soil) }}</div>
+        <div class="field"><label for="default_method">Irrigation method</label>{{ method_select("default_method", u.default_method) }}</div>
+        <div class="field"><label for="area_acres">Field area</label>
+          <div class="input-suffix"><input class="input" type="number" step="0.01" min="0.01" id="area_acres" name="area_acres" value="{{ u.area_acres }}"><span>acres</span></div></div>
+        <div class="field"><label for="pump_hp">Pump power</label>
+          <div class="input-suffix"><input class="input" type="number" step="0.5" min="0.5" id="pump_hp" name="pump_hp" value="{{ u.pump_hp }}"><span>HP</span></div></div>
+        <div class="field"><label for="pump_head_m">Water depth / total head</label>
+          <div class="input-suffix"><input class="input" type="number" step="1" min="3" id="pump_head_m" name="pump_head_m" value="{{ u.pump_head_m }}"><span>m</span></div></div>
+        <div class="field"><label for="tariff">Electricity tariff</label>
+          <div class="input-suffix"><input class="input" type="number" step="0.1" min="0" id="tariff" name="tariff" value="{{ u.tariff }}"><span>₹/kWh</span></div></div>
+      </div>
+      <div class="row" style="justify-content: flex-end; margin-top: 18px">
+        <button class="btn btn-primary btn-lg" type="submit">Save</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

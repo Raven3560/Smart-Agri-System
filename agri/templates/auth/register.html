@@ -1,0 +1,50 @@
+{% extends "auth/_layout.html" %}
+{% from "_macros.html" import icon, flash_messages %}
+{% block title %}Create your account{% endblock %}
+{% block form %}
+<h1>Create your account</h1>
+<p class="sub">Free, and it takes less than a minute.</p>
+{{ flash_messages() }}
+<form method="post" novalidate>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <div class="field">
+    <label for="name">Full name</label>
+    <input class="input" id="name" name="name" value="{{ form.name }}" autocomplete="name" required autofocus>
+  </div>
+  <div class="field">
+    <label for="email">Email</label>
+    <input class="input" type="email" id="email" name="email" value="{{ form.email }}" autocomplete="email" required>
+  </div>
+  <div class="field">
+    <label for="phone">Mobile number <span class="muted">(optional)</span></label>
+    <input class="input" type="tel" id="phone" name="phone" value="{{ form.phone }}" autocomplete="tel" inputmode="tel">
+  </div>
+  <div class="field">
+    <label for="password">Password</label>
+    <div class="pw-wrap">
+      <input class="input" type="password" id="password" name="password" autocomplete="new-password" minlength="6" required>
+      <button class="pw-toggle" type="button" data-pw-toggle="password">Show</button>
+    </div>
+    <div class="hint">At least 6 characters.</div>
+  </div>
+  <div class="field">
+    <label for="confirm">Confirm password</label>
+    <input class="input" type="password" id="confirm" name="confirm" autocomplete="new-password" required>
+  </div>
+  <button class="btn btn-primary btn-block btn-lg" type="submit" style="margin-top: 20px">Create account</button>
+</form>
+<p class="auth-switch">Already have an account? <a href="{{ url_for('auth.login') }}">Log in</a></p>
+{% endblock %}
+{% block side %}
+<h2>Your field, your crop, your weather.</h2>
+<p>Set your location and soil once. Every leaf check and irrigation plan after that is worked out for your farm.</p>
+<ul>
+  <li>{{ icon("tick") }} Leaf checks saved to your history</li>
+  <li>{{ icon("tick") }} Spray days picked around rain and wind</li>
+  <li>{{ icon("tick") }} Water and electricity savings tracked over time</li>
+</ul>
+<div class="frame-browser">
+  <div class="frame-bar"><span></span><span></span><span></span></div>
+  <img src="{{ url_for('static', filename='img/product/feat-irrigation.webp') }}" width="1358" height="838" alt="">
+</div>
+{% endblock %}

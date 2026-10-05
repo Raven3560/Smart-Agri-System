@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon %}
+{% block title %}Crop guide{% endblock %}
+{% block content %}
+<div class="container page">
+  <div class="page-head">
+    <div>
+      <h1>Crop guide</h1>
+      <p>Water needs, fertilizer and common problems for {{ entries|length }} crops and plants grown in India.
+        {{ entries|selectattr("photo_check")|list|length }} of them can also be checked from a leaf photo.</p>
+    </div>
+  </div>
+
+  <div class="guide-tools" data-guide>
+    <input class="input" type="search" placeholder="Search by name, Hindi name or problem (e.g. bajra, lauki, rust)" data-guide-search aria-label="Search crops">
+    <div class="chips" role="group" aria-label="Filter by group">
+      <button type="button" class="chip active" data-guide-group="">All</button>
+      <button type="button" class="chip" data-guide-group="photo">Photo check</button>
+      {% for g in groups %}<button type="button" class="chip" data-guide-group="{{ g }}">{{ g }}</button>{% endfor %}
+    </div>
+    <p class="small muted" data-guide-count>Showing {{ entries|length }} crops</p>
+  </div>
+
+  <div class="guide-grid">
+    {% for e in entries %}
+      {% set c = e.crop %}
+      <article class="card guide-card" id="{{ e.key }}" data-guide-card data-group="{{ e.group }}" data-photo="{{ 1 if e.photo_check else 0 }}"
+               data-text="{{ (e.label ~ ' ' ~ e.group ~ ' ' ~ (e.problems|map(attribute='name')|join(' ')))|lower }}">
+        <div class="guide-head">
+          <h3>{{ e.label }}</h3>
+          <div class="row">
+            <span class="badge badge-neutral">{{ e.group }}</span>
+            {% if e.photo_check %}<span class="badge badge-good">{{ icon("camera") }} Photo check</span>{% endif %}
+          </div>
+        </div>
+        <dl class="guide-facts">
+          <div><dt>Season</dt><dd>{{ c.season or "-" }}</dd></div>
+          {% if e.houseplant %}
+            <div><dt>Water</dt><dd>Every {{ c.care.water_days.hot }}-{{ c.care.water_days.cool }} days</dd></div>
+          {% else %}
+            <div><dt>Peak water use</dt><dd>Kc {{ "%.2f"|format(c.kc[1]) }}{% if c.kc_source != "FAO-56" %} <span class="muted small">(approx.)</span>{% endif %}</dd></div>
+            <div><dt>Root depth</dt><dd>{{ c.root_m }} m</dd></div>
+            <div><dt>Dry spells</dt><dd>{{ "Sensitive" if c.p <= 0.35 else "Moderate" if c.p < 0.55 else "Tolerant" }}</dd></div>
+          {% endif %}
+        </dl>
+        <p class="small"><strong>Fertilizer:</strong> <span class="text-2">{{ c.npk }}</span></p>
+        <p class="small text-2">{{ c.tip }}</p>
+        {% if e.problems %}
+          <details class="guide-problems">
+            <summary>Common problems ({{ e.problems|length }})</summary>
+            {% for pr in e.problems %}
+              <div class="problem">
+                <h4>{{ pr.name }} <span class="muted small">· {{ pr.type }}</span></h4>
+                <p><strong>Signs:</strong> {{ pr.signs }}</p>
+                <p><strong>What to do:</strong> {{ pr.manage }}</p>
+              </div>
+            {% endfor %}
+          </details>
+        {% endif %}
+        <div class="guide-actions">
+          <a class="btn btn-soft btn-sm" href="{{ url_for('main.irrigation_planner', crop=e.key) }}">{{ "Plan watering" if e.houseplant else "Plan irrigation" }}</a>
+          {% if e.photo_check %}<a class="btn btn-ghost btn-sm" href="{{ url_for('main.analyze', crop=e.key) }}">Check a leaf</a>{% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+  <p class="small muted" style="margin-top: 22px">Water figures come from FAO Irrigation and Drainage Paper 56. Crops marked "approx." are not listed by FAO and use values from the closest similar crop. Fertilizer ranges are general guides; get a soil test (Soil Health Card) for your field.</p>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, crop_select_all, stage_select, soil_select, method_select, location_picker %}
+{% block title %}Irrigation planner{% endblock %}
+{% block content %}
+<div class="container page">
+  <div class="page-head">
+    <div>
+      <h1>Irrigation planner</h1>
+      <p>Tell us about the field and when you last watered it. We'll check the forecast and work out the next 7 days.</p>
+    </div>
+    <a class="btn btn-ghost" href="{{ url_for('main.crop_guide') }}">Browse all {{ kb.crops()|length }} crops</a>
+  </div>
+  <div class="layout-main">
+    <form class="card" method="post" data-busy="Working out your schedule..." data-houseplant-form
+          data-houseplants='{{ kb.houseplant_keys()|tojson }}'>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="form-grid">
+        <div class="field">
+          <label for="crop">Crop or plant</label>
+          {{ crop_select_all("crop", values.crop) }}
+        </div>
+        <div class="field" data-field-only><label for="stage">Growth stage</label>{{ stage_select("stage", values.stage) }}</div>
+        <div class="field full" data-pot-only hidden>
+          <div class="alert alert-info">{{ icon("info") }}<div>For pot plants we only need when you last watered it and where you live. We'll suggest how often to water for the coming weather.</div></div>
+        </div>
+        <div class="field" data-field-only><label for="soil">Soil type</label>{{ soil_select("soil", values.soil) }}</div>
+        <div class="field">
+          <label for="last_irrigation" data-label-field>Last irrigated on</label>
+          <input class="input" type="date" id="last_irrigation" name="last_irrigation" value="{{ values.last_irrigation or '' }}" max="{{ now.strftime('%Y-%m-%d') }}">
+          <div class="hint">Leave empty if you don't remember.</div>
+        </div>
+        <div class="full">{{ location_picker(values.location) }}</div>
+        <div class="field" data-field-only>
+          <label for="area_acres">Field area</label>
+          <div class="input-suffix"><input class="input" type="number" step="0.01" min="0.01" id="area_acres" name="area_acres" value="{{ values.area_acres }}" required><span>acres</span></div>
+        </div>
+        <div class="field" data-field-only><label for="method">Irrigation method</label>{{ method_select("method", values.method) }}</div>
+        <div class="field" data-field-only><label for="pump_hp">Pump power</label>
+          <div class="input-suffix"><input class="input" type="number" step="0.5" min="0.5" id="pump_hp" name="pump_hp" value="{{ values.pump_hp }}"><span>HP</span></div></div>
+        <div class="field" data-field-only><label for="pump_head_m">Water depth / total head</label>
+          <div class="input-suffix"><input class="input" type="number" step="1" min="3" id="pump_head_m" name="pump_head_m" value="{{ values.pump_head_m }}"><span>m</span></div>
+          <div class="hint">Depth of the water source plus lift.</div></div>
+        <div class="field" data-field-only><label for="tariff">Electricity tariff</label>
+          <div class="input-suffix"><input class="input" type="number" step="0.1" min="0" id="tariff" name="tariff" value="{{ values.tariff }}"><span>₹/kWh</span></div></div>
+        <div class="full row" style="justify-content: flex-end">
+          <button class="btn btn-primary btn-lg" type="submit">Work out my schedule</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="card tinted">
+      <div class="card-head"><h3>How we work it out</h3></div>
+      <ol class="tips-list" style="padding-left: 18px">
+        <li><strong>Crop water use</strong>: ETc = Kc × ET₀. ET₀ comes from the weather forecast; Kc depends on the crop and growth stage (FAO-56).</li>
+        <li><strong>Soil water store</strong>: the root zone holds TAW = soil water capacity × root depth. The crop is stress-free until it uses the readily available part (RAW = p × TAW).</li>
+        <li><strong>Daily balance</strong>: starting from your last irrigation, each day's crop water use is subtracted and effective rainfall is added back.</li>
+        <li><strong>Decision</strong>: irrigate when depletion reaches RAW. If useful rain is likely within 2 days, irrigation is held to save water and electricity.</li>
+        <li><strong>Energy</strong>: the gross water depth is converted to pump hours, kWh, cost and CO₂ using your pump details.</li>
+        <li><strong>Pot plants</strong> (money plant, tulsi): a watering interval from the plant's needs and the coming temperature and humidity.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+{% endblock %}

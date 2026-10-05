@@ -1,0 +1,393 @@
+{
+  "evaluated_at": "2026-10-04 20:32",
+  "model_dir": "models\\plant-disease-mobilenetv2",
+  "data_dir": "data\\plantvillage_sample",
+  "note": "Sanity check on 760 PlantVillage images (20 per class) from the public GitHub mirror. The pretrained model was fine-tuned on a version of PlantVillage, so some of these images may have been seen in training; treat this as an upper bound, not a held-out test score.",
+  "images": 760,
+  "classes": 38,
+  "accuracy": 0.9474,
+  "top3_accuracy": 0.9947,
+  "precision_macro": 0.954,
+  "recall_macro": 0.9474,
+  "f1_macro": 0.9468,
+  "precision_weighted": 0.954,
+  "recall_weighted": 0.9474,
+  "f1_weighted": 0.9468,
+  "ms_per_image_cpu": 27.8,
+  "per_class": [
+    {
+      "id": 0,
+      "key": "apple_scab",
+      "name": "Apple: Scab",
+      "precision": 1.0,
+      "recall": 0.9,
+      "f1": 0.9474,
+      "support": 20
+    },
+    {
+      "id": 1,
+      "key": "apple_black_rot",
+      "name": "Apple: Black Rot",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "id": 2,
+      "key": "apple_cedar_rust",
+      "name": "Apple: Cedar Apple Rust",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "id": 3,
+      "key": "apple_healthy",
+      "name": "Apple: healthy",
+      "precision": 1.0,
+      "recall": 0.95,
+      "f1": 0.9744,
+      "support": 20
+    },
+    {
+      "id": 4,
+      "key": "blueberry_healthy",
+      "name": "Blueberry: healthy",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "id": 5,
+      "key": "cherry_powdery_mildew",
+      "name": "Cherry: Powdery Mildew",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "id": 6,
+      "key": "cherry_healthy",
+      "name": "Cherry: healthy",
+      "precision": 0.95,
+      "recall": 0.95,
+      "f1": 0.95,
+      "support": 20
+    },
+    {
+      "id": 7,
+      "key": "corn_gray_leaf_spot",
+      "name": "Maize: Gray Leaf Spot",
+      "precision": 0.9333,
+      "recall": 0.7,
+      "f1": 0.8,
+      "support": 20
+    },
+    {
+      "id": 8,
+      "key": "corn_common_rust",
+      "name": "Maize: Common Rust",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "id": 9,
+      "key": "corn_northern_leaf_blight",
+      "name": "Maize: Northern Leaf Blight (Turcicum)",
+      "precision": 0.76,
+      "recall": 0.95,
+      "f1": 0.8444,
+      "support": 20
+    },
+    {
+      "id": 10,
+      "key": "corn_healthy",
+      "name": "Maize: healthy",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "id": 11,
+      "key": "grape_black_rot",
+      "name": "Grape: Black Rot",
+      "precision": 1.0,
+      "recall": 0.95,
+      "f1": 0.9744,
+      "support": 20
+    },
+    {
+      "id": 12,
+      "key": "grape_esca",
+      "name": "Grape: Esca (Black Measles)",
+      "precision": 0.9524,
+      "recall": 1.0,
+      "f1": 0.9756,
+      "support": 20
+    },
+    {
+      "id": 13,
+      "key": "grape_leaf_blight",
+      "name": "Grape: Leaf Blight (Isariopsis Leaf Spot)",
+      "precision": 1.0,
+      "recall": 0.95,
+      "f1": 0.9744,
+      "support": 20
+    },
+    {
+      "id": 14,
+      "key": "grape_healthy",
+      "name": "Grape: healthy",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "id": 15,
+      "key": "orange_citrus_greening",
+      "name": "Orange: Greening (Huanglongbing)",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "id": 16,
+      "key": "peach_bacterial_spot",
+      "name": "Peach: Bacterial Spot",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "id": 17,
+      "key": "peach_healthy",
+      "name": "Peach: healthy",
+      "precision": 0.9524,
+      "recall": 1.0,
+      "f1": 0.9756,
+      "support": 20
+    },
+    {
+      "id": 18,
+      "key": "pepper_bacterial_spot",
+      "name": "Bell Pepper: Bacterial Spot",
+      "precision": 0.8333,
+      "recall": 1.0,
+      "f1": 0.9091,
+      "support": 20
+    },
+    {
+      "id": 19,
+      "key": "pepper_healthy",
+      "name": "Bell Pepper: healthy",
+      "precision": 0.8333,
+      "recall": 1.0,
+      "f1": 0.9091,
+      "support": 20
+    },
+    {
+      "id": 20,
+      "key": "potato_early_blight",
+      "name": "Potato: Early Blight",
+      "precision": 1.0,
+      "recall": 0.85,
+      "f1": 0.9189,
+      "support": 20
+    },
+    {
+      "id": 21,
+      "key": "potato_late_blight",
+      "name": "Potato: Late Blight",
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.8889,
+      "support": 20
+    },
+    {
+      "id": 22,
+      "key": "potato_healthy",
+      "name": "Potato: healthy",
+      "precision": 0.8571,
+      "recall": 0.6,
+      "f1": 0.7059,
+      "support": 20
+    },
+    {
+      "id": 23,
+      "key": "raspberry_healthy",
+      "name": "Raspberry: healthy",
+      "precision": 1.0,
+      "recall": 0.95,
+      "f1": 0.9744,
+      "support": 20
+    },
+    {
+      "id": 24,
+      "key": "soybean_healthy",
+      "name": "Soybean: healthy",
+      "precision": 0.8,
+      "recall": 1.0,
+      "f1": 0.8889,
+      "support": 20
+    },
+    {
+      "id": 25,
+      "key": "squash_powdery_mildew",
+      "name": "Squash: Powdery Mildew",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "id": 26,
+      "key": "strawberry_leaf_scorch",
+      "name": "Strawberry: Leaf Scorch",
+      "precision": 0.9524,
+      "recall": 1.0,
+      "f1": 0.9756,
+      "support": 20
+    },
+    {
+      "id": 27,
+      "key": "strawberry_healthy",
+      "name": "Strawberry: healthy",
+      "precision": 0.9524,
+      "recall": 1.0,
+      "f1": 0.9756,
+      "support": 20
+    },
+    {
+      "id": 28,
+      "key": "tomato_bacterial_spot",
+      "name": "Tomato: Bacterial Spot",
+      "precision": 0.9524,
+      "recall": 1.0,
+      "f1": 0.9756,
+      "support": 20
+    },
+    {
+      "id": 29,
+      "key": "tomato_early_blight",
+      "name": "Tomato: Early Blight",
+      "precision": 0.8333,
+      "recall": 1.0,
+      "f1": 0.9091,
+      "support": 20
+    },
+    {
+      "id": 30,
+      "key": "tomato_late_blight",
+      "name": "Tomato: Late Blight",
+      "precision": 1.0,
+      "recall": 0.95,
+      "f1": 0.9744,
+      "support": 20
+    },
+    {
+      "id": 31,
+      "key": "tomato_leaf_mold",
+      "name": "Tomato: Leaf Mold",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    },
+    {
+      "id": 32,
+      "key": "tomato_septoria_leaf_spot",
+      "name": "Tomato: Septoria Leaf Spot",
+      "precision": 1.0,
+      "recall": 0.85,
+      "f1": 0.9189,
+      "support": 20
+    },
+    {
+      "id": 33,
+      "key": "tomato_spider_mites",
+      "name": "Tomato: Two-spotted Spider Mite",
+      "precision": 0.7407,
+      "recall": 1.0,
+      "f1": 0.8511,
+      "support": 20
+    },
+    {
+      "id": 34,
+      "key": "tomato_target_spot",
+      "name": "Tomato: Target Spot",
+      "precision": 0.9474,
+      "recall": 0.9,
+      "f1": 0.9231,
+      "support": 20
+    },
+    {
+      "id": 35,
+      "key": "tomato_yellow_leaf_curl_virus",
+      "name": "Tomato: Yellow Leaf Curl Virus (TYLCV)",
+      "precision": 1.0,
+      "recall": 0.95,
+      "f1": 0.9744,
+      "support": 20
+    },
+    {
+      "id": 36,
+      "key": "tomato_mosaic_virus",
+      "name": "Tomato: Mosaic Virus (ToMV)",
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.8889,
+      "support": 20
+    },
+    {
+      "id": 37,
+      "key": "tomato_healthy",
+      "name": "Tomato: healthy",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 20
+    }
+  ],
+  "top_confusions": [
+    {
+      "true": "Maize: Gray Leaf Spot",
+      "pred": "Maize: Northern Leaf Blight (Turcicum)",
+      "count": 6
+    },
+    {
+      "true": "Potato: healthy",
+      "pred": "Soybean: healthy",
+      "count": 5
+    },
+    {
+      "true": "Tomato: Mosaic Virus (ToMV)",
+      "pred": "Tomato: Two-spotted Spider Mite",
+      "count": 4
+    },
+    {
+      "true": "Potato: Early Blight",
+      "pred": "Tomato: Early Blight",
+      "count": 3
+    },
+    {
+      "true": "Potato: healthy",
+      "pred": "Bell Pepper: healthy",
+      "count": 3
+    },
+    {
+      "true": "Potato: Late Blight",
+      "pred": "Bell Pepper: Bacterial Spot",
+      "count": 2
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, status_badge, irrigation_badge %}
+{% block title %}Past scans{% endblock %}
+{% block content %}
+<div class="container page">
+  <div class="page-head">
+    <div>
+      <h1>Past scans and plans</h1>
+      <p>Everything you've checked or planned, newest first.</p>
+    </div>
+    <div class="tabs" role="tablist">
+      <a href="{{ url_for('main.history', type='scans') }}" class="{{ 'active' if kind == 'scans' }}">Leaf checks ({{ counts.scans }})</a>
+      <a href="{{ url_for('main.history', type='plans') }}" class="{{ 'active' if kind == 'plans' }}">Irrigation plans ({{ counts.plans }})</a>
+    </div>
+  </div>
+
+  <form class="card flat row" method="get" style="margin-bottom: 16px; padding: 14px">
+    <input type="hidden" name="type" value="{{ kind }}">
+    <div class="field" style="min-width: 180px">
+      <label for="f-crop">Crop</label>
+      <select class="select" name="crop" id="f-crop">
+        <option value="">All crops</option>
+        {% for group, items in kb.crop_groups() %}<optgroup label="{{ group }}">{% for key, label in items %}<option value="{{ key }}" {% if key == crop %}selected{% endif %}>{{ label }}</option>{% endfor %}</optgroup>{% endfor %}
+      </select>
+    </div>
+    <div class="field" style="min-width: 180px">
+      <label for="f-status">Status</label>
+      <select class="select" name="status" id="f-status">
+        <option value="">All</option>
+        {% if kind == 'scans' %}
+          {% for v, l in [('diseased', 'Disease detected'), ('healthy', 'Healthy'), ('uncertain', 'Uncertain'), ('unsupported', 'Irrigation only')] %}<option value="{{ v }}" {% if v == status %}selected{% endif %}>{{ l }}</option>{% endfor %}
+        {% else %}
+          {% for v, l in [('irrigate_now', 'Irrigate today'), ('delay_rain', 'Hold for rain'), ('upcoming', 'Upcoming'), ('not_needed', 'Not needed')] %}<option value="{{ v }}" {% if v == status %}selected{% endif %}>{{ l }}</option>{% endfor %}
+        {% endif %}
+      </select>
+    </div>
+    <div style="align-self: flex-end" class="row">
+      <button class="btn btn-ghost" type="submit">Filter</button>
+      {% if crop or status %}<a class="small" href="{{ url_for('main.history', type=kind) }}">Clear</a>{% endif %}
+    </div>
+  </form>
+
+  {% if rows %}
+    <div class="scan-list">
+    {% for r in rows %}
+      {% if kind == 'scans' %}
+        {% set d = diseases[r.id] %}
+        <a class="scan-item" href="{{ url_for('main.analysis', aid=r.id) }}">
+          <img src="{{ url_for('main.uploaded', name=r.image_file) }}" alt="" loading="lazy">
+          <div>
+            <div class="t">{{ d.name if d and r.status != 'uncertain' else kb.crop_name(r.crop) }}</div>
+            <div class="s">{{ kb.crop_name(r.crop) }} · {{ r.created_at|nicedate }}{% if r.status in ('diseased', 'healthy') %} · {{ r.confidence|pct }} confidence{% endif %}</div>
+          </div>
+          {{ status_badge(r.status) }}
+        </a>
+      {% else %}
+        {% set p = plan_data[r.id] %}
+        <a class="scan-item" href="{{ url_for('main.irrigation_plan', pid=r.id) }}" style="grid-template-columns: 52px minmax(0, 1fr) auto">
+          <div class="irr-icon irr-{{ p.headline.level }}" style="width: 52px; height: 52px; border-radius: 12px">{{ icon("droplet") }}</div>
+          <div>
+            <div class="t">{{ p.inputs.crop_name }} · {{ p.inputs.stage_name }}</div>
+            <div class="s">{{ r.created_at|nicedate }} · {{ p.headline.title }}{% if r.water_saved_l %} · saved {{ r.water_saved_l|litres }}{% endif %}</div>
+          </div>
+          {{ irrigation_badge(r.status, pot=p.kind == "houseplant") }}
+        </a>
+      {% endif %}
+    {% endfor %}
+    </div>
+  {% else %}
+    <div class="card empty">
+      {{ icon("history") }}
+      <p>{% if crop or status %}No records match these filters.{% elif kind == 'scans' %}No leaves checked yet.{% else %}No irrigation plans yet.{% endif %}</p>
+      <a class="btn btn-soft btn-sm" href="{{ url_for('main.analyze') if kind == 'scans' else url_for('main.irrigation_planner') }}">{{ 'Check a leaf' if kind == 'scans' else 'Plan irrigation' }}</a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

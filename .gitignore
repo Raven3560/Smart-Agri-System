@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+instance/
+data/
+.venv/
+venv/
+models/dinov2-small/
+*.part

@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon %}
+{% block title %}Crop disease checks and irrigation planning{% endblock %}
+{% block content %}
+
+<section class="lp-hero">
+  <div class="container lp-hero-grid">
+    <div>
+      <span class="lp-kicker">For farmers, agronomists and extension workers</span>
+      <h1>Know what's wrong with your crop, and when to water it.</h1>
+      <p class="lead">Take a photo of a leaf. SmartAgri identifies the disease, tells you what to spray and on which day,
+        and plans your irrigation from the local weather forecast. No sensors, no hardware.</p>
+      <div class="lp-cta">
+        {% if g.user %}
+          <a class="btn btn-primary btn-lg" href="{{ url_for('main.analyze') }}">Check a leaf</a>
+          <a class="btn btn-ghost btn-lg" href="{{ url_for('main.dashboard') }}">Open your dashboard</a>
+        {% else %}
+          <a class="btn btn-primary btn-lg" href="{{ url_for('auth.register') }}">Get started free</a>
+          <form method="post" action="{{ url_for('auth.demo') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn btn-ghost btn-lg" type="submit">Try the demo</button>
+          </form>
+        {% endif %}
+      </div>
+      <ul class="lp-points">
+        <li>{{ icon("tick") }} Free to use</li>
+        <li>{{ icon("tick") }} Works in any phone browser</li>
+        <li>{{ icon("tick") }} Weather for any village in India</li>
+      </ul>
+    </div>
+    <div class="lp-visual" aria-hidden="true">
+      <div class="frame-browser">
+        <div class="frame-bar"><span></span><span></span><span></span><div class="frame-url">{{ icon("shield") }} smartagri · leaf check</div></div>
+        <img src="{{ url_for('static', filename='img/product/hero-result.webp') }}" width="1600" height="842" alt="">
+      </div>
+      <div class="frame-phone">
+        <img src="{{ url_for('static', filename='img/product/hero-phone.webp') }}" width="780" height="1688" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lp-sources">
+  <div class="container">
+    <span>Built on trusted methods and open data</span>
+    <strong>FAO-56 crop water method</strong>
+    <strong>Open-Meteo forecasts</strong>
+    <strong>PlantVillage leaf images</strong>
+  </div>
+</div>
+
+<section class="lp-section" id="features">
+  <div class="container">
+    <div class="lp-head">
+      <h2>From one photo to a plan for the week</h2>
+      <p>Every check gives you a diagnosis, what to do about it, and whether your field needs water.</p>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-text">
+        <div class="lp-label">Diagnosis</div>
+        <h3>Find out what you're looking at</h3>
+        <p>Point your camera at an affected leaf. SmartAgri checks the photo is sharp and well lit, then compares it
+          against {{ kb.all_diseases()|length }} diseases and healthy states across {{ kb.model_crops()|length }} crops,
+          from tomato and rice to mango, cotton and money plant.</p>
+        <ul>
+          <li>{{ icon("tick") }}<span>A confidence score on every result</span></li>
+          <li>{{ icon("tick") }}<span>The top three possibilities, not just one</span></li>
+          <li>{{ icon("tick") }}<span>Asks for a clearer photo when it isn't sure</span></li>
+          <li>{{ icon("tick") }}<span>Live mode: walk the field with your camera and watch results update</span></li>
+        </ul>
+      </div>
+      <div class="feature-img"><img src="{{ url_for('static', filename='img/product/feat-diagnosis.webp') }}" width="1400" height="780" loading="lazy" alt="Diagnosis card showing tomato late blight with 99% confidence and the top three guesses"></div>
+    </div>
+
+    <div class="feature-row flip">
+      <div class="feature-text">
+        <div class="lp-label">Treatment</div>
+        <h3>Know exactly what to do about it</h3>
+        <p>Each result comes with steps you can start today: what to remove from the field, an organic option, a
+          chemical option with the dose per litre, and the best day to spray.</p>
+        <ul>
+          <li>{{ icon("tick") }}<span>Spray timing checks rain and wind for the next 3 days</span></li>
+          <li>{{ icon("tick") }}<span>Fertilizer advice for the crop's growth stage</span></li>
+          <li>{{ icon("tick") }}<span>No antibiotics that are banned for farm use in India</span></li>
+        </ul>
+      </div>
+      <div class="feature-img"><img src="{{ url_for('static', filename='img/product/feat-plan.webp') }}" width="1400" height="914" loading="lazy" alt="Numbered list of steps: remove infected plants, apply treatment, irrigation, nutrition, monitor"></div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-text">
+        <div class="lp-label">Irrigation</div>
+        <h3>Water when the field needs it, not out of habit</h3>
+        <p>SmartAgri tracks how much water your crop has used since you last irrigated, from your soil type, the
+          crop's stage and the daily evaporation forecast. If rain is on the way, it tells you to wait.</p>
+        <ul>
+          <li>{{ icon("tick") }}<span>A 7-day schedule with the depth to apply in mm</span></li>
+          <li>{{ icon("tick") }}<span>{{ kb.crops()|length }} crops and plants, from bajra and wheat to banana, coconut and money plant</span></li>
+          <li>{{ icon("tick") }}<span>No soil moisture sensor required</span></li>
+        </ul>
+      </div>
+      <div class="feature-img"><img src="{{ url_for('static', filename='img/product/feat-irrigation.webp') }}" width="1358" height="838" loading="lazy" alt="Line chart of root-zone dryness over 7 days with the irrigation threshold"></div>
+    </div>
+
+    <div class="feature-row flip">
+      <div class="feature-text">
+        <div class="lp-label">Pump cost</div>
+        <h3>See the electricity bill before you start the pump</h3>
+        <p>Enter your pump's horsepower once. Every plan shows the hours of pumping, the units of electricity, the cost
+          in rupees, and how much drip or sprinkler irrigation saves compared with flooding the field.</p>
+        <ul>
+          <li>{{ icon("tick") }}<span>Water and electricity saved, added up over time</span></li>
+          <li>{{ icon("tick") }}<span>A rating of how well a solar pump would work at your farm</span></li>
+        </ul>
+      </div>
+      <div class="feature-img narrow"><img src="{{ url_for('static', filename='img/product/feat-savings.webp') }}" width="822" height="716" loading="lazy" alt="Savings card: cubic metres of water, kWh of electricity and kg of CO2 saved"></div>
+    </div>
+  </div>
+</section>
+
+<section class="lp-numbers">
+  <div class="container">
+    <div class="grid">
+      <div><b>94.7%</b><span>of 760 test photos identified correctly</span></div>
+      <div><b>{{ kb.all_diseases()|length }}</b><span>diseases and healthy states recognised from a photo</span></div>
+      <div><b>{{ kb.crops()|length }}</b><span>crops and plants with water and fertilizer advice</span></div>
+      <div><b>7 days</b><span>of forecast in every irrigation plan</span></div>
+    </div>
+    <p class="note"><a href="{{ url_for('main.model_info') }}">See how we tested the model</a>, including where it makes mistakes.</p>
+  </div>
+</section>
+
+<section class="lp-section" id="how">
+  <div class="container">
+    <div class="lp-head">
+      <h2>Up and running in three steps</h2>
+      <p>No app to install. Open the site on your phone and you're ready.</p>
+    </div>
+    <div class="lp-steps">
+      <div><h3>Tell us about your field</h3><p>Crop, soil type and location. You do this once and we remember it.</p></div>
+      <div><h3>Photograph a leaf</h3><p>Use your phone camera, or upload a photo you already have.</p></div>
+      <div><h3>Follow the plan</h3><p>Treatment, spray day and irrigation schedule, saved so you can check back later.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="lp-section" id="faq">
+  <div class="container">
+    <div class="lp-head">
+      <h2>Questions people ask</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>Is SmartAgri free?</summary>
+        <p>Yes. Create an account and use every feature at no cost.</p>
+      </details>
+      <details>
+        <summary>Do I need sensors or any special equipment?</summary>
+        <p>No. A phone with a camera and an internet connection is enough. Soil moisture is estimated from your soil type,
+          the date you last irrigated and the weather, instead of being measured by a sensor.</p>
+      </details>
+      <details>
+        <summary>Can I scan plants without taking photos one by one?</summary>
+        <p>Yes. Live scan uses your phone or laptop camera and checks what's inside the on-screen square several times a
+          second. When you find a sick plant, tap "Save report" to get the full treatment and irrigation advice.</p>
+      </details>
+      <details>
+        <summary>Which crops are covered?</summary>
+        <p>The photo disease check covers {{ kb.model_crops()|length }} crops:
+          {{ kb.model_crops()|map("crop_short")|join(", ") }}. Irrigation, fertilizer and a guide to common problems cover
+          {{ kb.crops()|length }} crops and plants in total, including wheat, rice, bajra, jowar, ragi, arhar, moong,
+          groundnut, brinjal, bhindi, chilli, banana, mango, coconut and tea, plus pot plants like money plant and tulsi.
+          <a href="{{ url_for('main.crop_guide') }}">See the full crop guide</a>.</p>
+      </details>
+      <details>
+        <summary>How accurate is the disease check?</summary>
+        <p>On 760 test photos it named the right condition 94.7% of the time, and the right answer was in its top three
+          99.5% of the time. It works best with a single leaf against a plain background. With busy field photos it is
+          less accurate, and it tells you when it isn't sure instead of guessing.</p>
+      </details>
+      <details>
+        <summary>What if the weather service is down or my connection drops?</summary>
+        <p>SmartAgri keeps the last forecast it downloaded for your location and uses that, with a clear label saying
+          the data is not live.</p>
+      </details>
+      <details>
+        <summary>Who can see my photos?</summary>
+        <p>Only you. Photos are stored with your account and are not shared. Location data embedded in phone photos is
+          removed when the photo is saved.</p>
+      </details>
+      <details>
+        <summary>Can it replace an agronomist?</summary>
+        <p>No. It gives you a quick, informed first answer. For a serious outbreak, talk to your nearest Krishi Vigyan
+          Kendra or call the Kisan Call Centre on 1800-180-1551.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="lp-final">
+  <div class="container">
+    <h2>Check your first leaf in under a minute</h2>
+    <p>Free to use. Nothing to install.</p>
+    <div class="lp-cta">
+      {% if g.user %}
+        <a class="btn btn-primary btn-lg" href="{{ url_for('main.analyze') }}">Check a leaf</a>
+      {% else %}
+        <a class="btn btn-primary btn-lg" href="{{ url_for('auth.register') }}">Create a free account</a>
+        <form method="post" action="{{ url_for('auth.demo') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button class="btn btn-ghost btn-lg" type="submit">Try the demo</button>
+        </form>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

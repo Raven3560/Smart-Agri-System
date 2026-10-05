@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, weather_source, forecast_day %}
+{% block title %}Weather{% endblock %}
+{% block content %}
+<div class="container page">
+  <div class="page-head">
+    <div>
+      <h1>{{ loc.name }}</h1>
+      <p>{{ '%.3f'|format(loc.lat) }}, {{ '%.3f'|format(loc.lon) }}{% if wx.elevation %} · {{ wx.elevation|int }} m above sea level{% endif %}{% if wx.fetched_at %} · updated {{ wx.fetched_at|nicedate("%d %b") }}{% endif %}</p>
+    </div>
+    <form class="loc-picker no-print" data-loc-picker data-loc-navigate action="{{ url_for('main.weather_page') }}" method="get" style="min-width: min(360px, 100%)" onsubmit="return false">
+      <div class="input-group">
+        <input class="input" type="text" placeholder="Check another location" autocomplete="off" data-loc-input aria-label="Search location">
+        <button class="btn btn-ghost" type="button" data-loc-gps title="Use my current location">{{ icon("locate") }}<span class="sr-only">Use my location</span></button>
+      </div>
+      <div class="loc-results" data-loc-results></div>
+      <input type="hidden" data-loc-lat><input type="hidden" data-loc-lon>
+    </form>
+  </div>
+
+  {% if wx.source != "live" %}
+    <div class="alert alert-warning" style="margin-bottom: 18px">{{ icon("alert") }}
+      <div>The weather service could not be reached. {% if wx.source == "cached" %}Showing the last saved forecast for this location.{% else %}Showing typical seasonal estimates; connect to the internet for live data.{% endif %}</div></div>
+  {% endif %}
+
+  <div class="layout-main">
+    <div class="stack">
+      <div class="card">
+        <div class="card-head"><h2>Right now</h2>{{ weather_source(wx) }}</div>
+        <div class="wx-now">
+          <div class="big-icon">{{ icon(wx.current.icon) }}</div>
+          <div>
+            <div class="wx-temp">{% if wx.current.temp is not none %}{{ wx.current.temp|round(1) }}°C{% else %}--{% endif %}</div>
+            <div class="text-2">{{ wx.current.label }}{% if wx.current.feels_like is not none %} · feels like {{ wx.current.feels_like|round|int }}°C{% endif %}</div>
+          </div>
+          <div class="wx-facts">
+            <span>{{ icon("droplet") }} Humidity {{ wx.current.rh if wx.current.rh is not none else '--' }}%</span>
+            <span>{{ icon("wind") }} Wind {{ wx.current.wind if wx.current.wind is not none else '--' }} km/h</span>
+            <span>{{ icon("rain") }} Rain now {{ wx.current.rain if wx.current.rain is not none else '--' }} mm</span>
+            <span>{{ icon("sun") }} Sunrise {{ wx.forecast[0].sunrise }} · Sunset {{ wx.forecast[0].sunset }}</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="forecast-strip">{% for d in wx.forecast[:7] %}{{ forecast_day(d) }}{% endfor %}</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Temperature, next 7 days</h3></div>
+        <div class="chart-legend">
+          <span><i class="line" style="background: var(--series-2)"></i>Maximum (°C)</span>
+          <span><i class="line" style="background: var(--series-1)"></i>Minimum (°C)</span>
+        </div>
+        <div class="chart-box sm"><canvas data-chart="temperature" role="img" aria-label="Line chart of daily maximum and minimum temperature"></canvas></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Water lost to the air vs rain expected</h3></div>
+        <div class="chart-legend">
+          <span><i style="background: var(--series-2)"></i>Reference evapotranspiration, ET₀ (mm)</span>
+          <span><i style="background: var(--series-1)"></i>Forecast rainfall (mm)</span>
+        </div>
+        <div class="chart-box sm"><canvas data-chart="water" role="img" aria-label="Bar chart of daily evapotranspiration and rainfall"></canvas></div>
+        <details class="table-view">
+          <summary>View forecast as table</summary>
+          <div class="table-wrap"><table class="table">
+            <thead><tr><th>Day</th><th>Conditions</th><th class="num">Max °C</th><th class="num">Min °C</th><th class="num">Rain mm</th><th class="num">Chance</th><th class="num">ET₀ mm</th><th class="num">Humidity</th><th class="num">Wind km/h</th></tr></thead>
+            <tbody>{% for d in wx.forecast[:7] %}<tr><td>{{ d.date|dayname }} {{ d.date|nicedate("%d %b") }}</td><td>{{ d.label }}</td><td class="num">{{ d.tmax }}</td><td class="num">{{ d.tmin }}</td><td class="num">{{ d.rain }}</td><td class="num">{{ d.rain_prob }}%</td><td class="num">{{ d.et0 }}</td><td class="num">{{ d.rh }}%</td><td class="num">{{ d.wind }}</td></tr>{% endfor %}</tbody>
+          </table></div>
+        </details>
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="card">
+        <div class="card-head"><h3>This week</h3></div>
+        {% for a in advisories %}
+          <div class="advisory adv-{{ a.level }}"><div class="adv-icon">{{ icon(a.icon) }}</div><div><h4>{{ a.title }}</h4><p>{{ a.text }}</p></div></div>
+        {% endfor %}
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Good days to spray</h3></div>
+        <p class="text-2 small">{{ spray.text }}</p>
+        <div class="table-wrap"><table class="table">
+          <thead><tr><th>Day</th><th>Suitable?</th></tr></thead>
+          <tbody>{% for d in spray.days %}<tr><td>{{ d.date|dayname }}</td><td>{% if d.ok %}<span class="badge badge-good">{{ icon("check") }} Yes</span>{% else %}<span class="badge badge-warning">{{ icon("alert") }} {{ d.reasons|join(', ')|capitalize }}</span>{% endif %}</td></tr>{% endfor %}</tbody>
+        </table></div>
+      </div>
+      <div class="card tinted">
+        <div class="card-head"><h3>What is ET₀?</h3></div>
+        <p class="small text-2" style="margin: 0">Reference evapotranspiration (ET₀) is the water a well-watered grass surface loses to evaporation and transpiration in a day, calculated with the FAO Penman-Monteith method from temperature, humidity, wind and sunshine. Multiplying it by a crop coefficient gives your crop's daily water use.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="application/json" id="chart-data">{{ chart|tojson }}</script>
+{% endblock %}

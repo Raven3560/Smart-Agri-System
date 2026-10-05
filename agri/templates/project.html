@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon %}
+{% block title %}Project details{% endblock %}
+{% block content %}
+<div class="container page">
+  <div class="page-head">
+    <div>
+      <div class="eyebrow">B.Tech CSE · Semester 7 · Group {{ project.group }}</div>
+      <h1>{{ project.title }}</h1>
+      <p>{{ project.department }}, {{ project.college }} · Affiliated to {{ project.university }} · Session {{ project.session }}</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h2>Team</h2><span class="small muted">Supervisor: {{ project.guide }}, {{ project.guide_role }}</span></div>
+    <div class="team">
+      {% for m in project.team %}
+        <div class="card flat member"><div class="avatar">{{ m.name.split(' ')[0][:1] }}{{ m.name.split(' ')[-1][:1] }}</div><strong>{{ m.name }}</strong><div class="r">{{ m.roll }}</div></div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h2>Abstract</h2></div>
+    <p class="text-2">Agriculture faces challenges such as crop diseases, inefficient irrigation, water scarcity and changing weather. This project builds a software-only AI assistant that lets farmers upload crop or leaf images and enter basic information such as crop type, growth stage, soil type and location. AI-based image analysis detects crop diseases, while a smart irrigation module uses crop information, soil characteristics, irrigation history and weather forecasts to recommend irrigation timing and approximate water requirements. The system also gives treatment and fertilizer guidance through an interactive web dashboard, without requiring physical sensors or IoT hardware.</p>
+    <p class="small muted" style="margin: 0"><strong>Keywords:</strong> Smart Agriculture, Artificial Intelligence, Machine Learning, Computer Vision, Crop Disease Detection, Smart Irrigation, Weather Forecasting, Water Management, Predictive Analytics.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h2>Objectives, and where to find them</h2></div>
+    <div class="grid grid-2">
+      {% set objectives = [
+        ("O1", "User-friendly web application to upload or capture crop images from a phone or computer.", "Check a leaf page: drag-and-drop upload, camera capture and sample images; Live scan page: real-time camera scanning at about 5 frames per second.", url_for('main.analyze')),
+        ("O2", "AI computer vision model to identify crop diseases and visible abnormalities.", "MobileNetV2 CNN (38 PlantVillage classes) plus a second classifier for Indian crops and money plant, with image quality checks and confidence handling.", url_for('main.model_info')),
+        ("O3", "Recommendations for disease treatment, pesticide, fertilizer and preventive care.", "Knowledge base for every disease class: cultural, organic and chemical treatment; stage-wise nutrition.", url_for('main.analyze')),
+        ("O4", "Irrigation guidance using crop, stage, soil, irrigation history, location and weather.", "FAO-56 daily soil water balance with rain-aware scheduling and energy estimates.", url_for('main.irrigation_planner')),
+        ("O5", "Weather API for current and forecast weather to improve recommendations.", "Open-Meteo forecast and ET₀, disease-risk alerts, spray windows, offline fallback.", url_for('main.weather_page')),
+        ("O6", "Interactive dashboard showing analysis, weather, irrigation, crop health and history.", "Dashboard, history with filters, printable reports, savings tracking.", url_for('main.dashboard')),
+      ] %}
+      {% for code, obj, impl, link in objectives %}
+        <div class="obj"><b>{{ code }}</b><div><strong>{{ obj }}</strong><p class="small text-2" style="margin: 4px 0 0">{{ impl }} <a href="{{ link }}">Open</a></p></div></div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="card" id="methodology">
+    <div class="card-head"><h2>Methodology</h2></div>
+    <div class="grid grid-2">
+      <div>
+        <h3>Disease detection</h3>
+        <p class="text-2 small">Images are preprocessed (orientation fix, resize to 256 px, centre-crop 224 × 224, normalisation) and classified by a MobileNetV2 network fine-tuned on PlantVillage (54,000+ images, 38 classes). The model is evaluated with accuracy, precision, recall, F1-score and a confusion matrix. Predictions are combined with the farmer's selected crop; low-confidence results trigger a request for a clearer photo.</p>
+        <h3>Recommendation engine</h3>
+        <p class="text-2 small">A curated knowledge base maps each class to symptoms, favourable weather, cultural, organic and chemical treatment, fertilizer and prevention. Weather profiles for each disease estimate infection risk from the forecast, and a spray advisory picks a window without rain or strong wind.</p>
+      </div>
+      <div>
+        <h3>Smart irrigation (FAO-56)</h3>
+        <p class="text-2 small">Crop water use is ETc = Kc × ET₀, with ET₀ from the weather API and Kc from the crop and growth stage. The root-zone store is TAW = available water capacity × root depth, and stress begins after RAW = p × TAW is used. A daily water balance runs from the last irrigation date through the 7-day forecast, adding effective rainfall. Irrigation is due when depletion reaches RAW, and is held when useful rain is likely within 2 days.</p>
+        <h3>Energy estimate (SDG 7)</h3>
+        <p class="text-2 small">Gross water depth = net depth ÷ method efficiency. Pump discharge is estimated from pump power and head, giving run time, kWh, cost and CO₂ (0.71 kg/kWh, Indian grid). Savings are measured against flood irrigation and against irrigating before rain.</p>
+      </div>
+    </div>
+    <hr class="divider">
+    <div class="label">Technology stack</div>
+    <div class="row">
+      {% for t in ["Python 3", "Flask", "PyTorch", "Hugging Face Transformers", "MobileNetV2", "scikit-learn", "SQLite", "Open-Meteo API", "Chart.js", "HTML / CSS / JavaScript"] %}<span class="badge badge-neutral">{{ t }}</span>{% endfor %}
+    </div>
+  </div>
+
+  <div class="card" id="architecture">
+    <div class="card-head"><h2>System architecture</h2><span class="small muted">Fig. 1 in the synopsis</span></div>
+    <div class="arch">
+      <div class="arch-node n-user">Farmer<small>Smartphone or computer</small></div>
+      <div class="arch-arrow">{{ icon("arrow-down") }}</div>
+      <div class="arch-node n-app">Web application<small>Image upload and crop information</small></div>
+      <div class="arch-arrow">{{ icon("arrow-down") }}</div>
+      <div class="arch-row">
+        <div class="arch-node n-ai">Computer vision<small>MobileNetV2 disease detection</small></div>
+        <div class="arch-node n-ai">Weather API<small>Forecast, rainfall, ET₀</small></div>
+        <div class="arch-node n-ai">Knowledge base<small>Crops, soils, diseases (FAO-56)</small></div>
+      </div>
+      <div class="arch-arrow">{{ icon("arrow-down") }}</div>
+      <div class="arch-node n-engine">Recommendation engine<small>Combines diagnosis, weather and soil water</small></div>
+      <div class="arch-arrow">{{ icon("arrow-down") }}</div>
+      <div class="arch-row">
+        <div class="arch-node n-app">Irrigation guidance</div>
+        <div class="arch-node n-app">Treatment / pesticide</div>
+        <div class="arch-node n-app">Fertilizer / crop care</div>
+      </div>
+      <div class="arch-arrow">{{ icon("arrow-down") }}</div>
+      <div class="arch-node n-user">Farmer dashboard<small>Results and history</small></div>
+    </div>
+  </div>
+
+  <div class="grid grid-2" style="margin-top: 18px">
+    <div class="card">
+      <div class="card-head"><h2>Gaps we tried to fill</h2></div>
+      <ul class="list-check">
+        <li>{{ icon("tick") }}<span><strong>Integration:</strong> disease detection, irrigation, weather and treatment in a single platform.</span></li>
+        <li>{{ icon("tick") }}<span><strong>Decision support:</strong> diagnosis is followed by treatment, fertilizer and timing advice, not just a label.</span></li>
+        <li>{{ icon("tick") }}<span><strong>No hardware:</strong> soil moisture is estimated from weather and soil data instead of IoT sensors.</span></li>
+        <li>{{ icon("tick") }}<span><strong>Context-aware:</strong> crop type, growth stage, soil, location and forecast shape every recommendation.</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><h2>Timeline</h2></div>
+      <ol class="timeline">
+        <li><span class="when">Month 1</span><span class="small">Literature review, requirement analysis, problem identification and system design</span></li>
+        <li><span class="when">Month 2</span><span class="small">Image dataset collection, crop and disease selection, weather API study, database design, preprocessing</span></li>
+        <li><span class="when">Month 3</span><span class="small">Deep learning model development, disease classification and model evaluation</span></li>
+        <li><span class="when">Months 4-5</span><span class="small">Web application, image upload and capture, weather integration and recommendation modules</span></li>
+        <li><span class="when">Months 5-6</span><span class="small">System integration, testing, performance evaluation, UI refinement and result analysis</span></li>
+        <li><span class="when">Month 6</span><span class="small">Documentation, thesis writing, demonstration and submission</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sdg">
+      <div class="sdg-badge"><span><b>7</b>CLEAN<br>ENERGY</span></div>
+      <div>
+        <h2>Relevance to SDG 7: Affordable and Clean Energy</h2>
+        <p class="text-2 small" style="margin: 0">Irrigation pumping is energy-intensive. By recommending irrigation only when the soil needs it, holding irrigation before rain, quantifying the savings of drip and sprinkler systems, and rating solar pumping potential from forecast sunshine, the assistant helps farmers cut electricity and diesel use, lower costs and reduce emissions.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h2>References</h2></div>
+    <ol class="refs">
+      <li>S. P. Mohanty, D. P. Hughes, and M. Salathé, "Using Deep Learning for Image-Based Plant Disease Detection," <em>Frontiers in Plant Science</em>, vol. 7, 1419, 2016.</li>
+      <li>D. P. Hughes and M. Salathé, "An Open Access Repository of Images on Plant Health to Enable the Development of Mobile Disease Diagnostics," 2015. PlantVillage.</li>
+      <li>K. P. Ferentinos, "Deep Learning Models for Plant Disease Detection and Diagnosis," <em>Computers and Electronics in Agriculture</em>, vol. 145, pp. 311-318, 2018.</li>
+      <li>E. C. Too, Y. Li, S. Njuki, and Y. Liu, "A Comparative Study of Fine-Tuning Deep Learning Models for Plant Disease Identification," <em>Computers and Electronics in Agriculture</em>, vol. 161, pp. 272-279, 2019.</li>
+      <li>G. Singh et al., "Machine Learning Based Soil Moisture Prediction for Internet of Things Based Smart Irrigation System," ISPCC, pp. 175-180, 2019.</li>
+      <li>S. Akshay and T. K. Ramesh, "Efficient Machine Learning Algorithm for Smart Irrigation," ICCSP, pp. 867-870, 2020.</li>
+      <li>R. Bhavani and A. Thambi, "Managing Irrigation Needs Based on Smart Decisions Using Machine Learning," <em>ICTACT Journal on Soft Computing</em>, vol. 12, no. 2, 2022.</li>
+      <li>L. Umutoni and V. Samadi, "Application of Machine Learning Approaches in Supporting Irrigation Decision Making: A Review," <em>Agricultural Water Management</em>, vol. 294, 108710, 2024.</li>
+      <li>M. R. Al Mamun et al., "IoT-Enabled Solar-Powered Smart Irrigation for Precision Agriculture," <em>Smart Agricultural Technology</em>, vol. 10, 100773, 2025.</li>
+      <li>R. G. Allen, L. S. Pereira, D. Raes, and M. Smith, "Crop Evapotranspiration: Guidelines for Computing Crop Water Requirements," FAO Irrigation and Drainage Paper 56, FAO, Rome, 1998.</li>
+      <li>M. Sandler, A. Howard, M. Zhu, A. Zhmoginov, and L.-C. Chen, "MobileNetV2: Inverted Residuals and Linear Bottlenecks," CVPR, 2018.</li>
+    </ol>
+  </div>
+</div>
+{% endblock %}

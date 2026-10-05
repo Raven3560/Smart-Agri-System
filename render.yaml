@@ -1,0 +1,21 @@
+# Render Blueprint: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: smartagri
+    runtime: python
+    plan: standard            # 2 GB RAM. The AI model needs ~500 MB, so 512 MB plans run out of memory.
+    buildCommand: pip install -r requirements.txt
+    # One worker keeps a single copy of the model in memory; threads handle concurrent visitors.
+    startCommand: gunicorn wsgi:app --workers 1 --threads 4 --timeout 120 --bind 0.0.0.0:$PORT
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: SECRET_KEY
+        generateValue: true
+      - key: INSTANCE_DIR
+        value: /var/data/instance
+    disk:
+      name: smartagri-data
+      mountPath: /var/data
+      sizeGB: 1

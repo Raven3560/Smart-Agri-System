@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, status_badge, irrigation_badge, level_badge, weather_source, forecast_day %}
+{% block title %}Scan result{% endblock %}
+{% block content %}
+{% set inputs = data.inputs %}
+{% set conf_pct = (pred.confidence * 100)|round|int %}
+{% set meter_cls = {"healthy": "m-good", "diseased": "m-critical", "uncertain": "m-warning"}.get(pred.status, "m-info") %}
+<div class="container page">
+  <div class="page-head">
+    <div>
+      <div class="eyebrow">Scan #{{ row.id }} · {{ row.created_at|nicedate }}</div>
+      <h1>Leaf check result</h1>
+      <p>{{ kb.crop_label(inputs.crop) }} · {{ report.stage_name }}{{ '' if report.houseplant else ' stage' }} · {{ kb.soils()[inputs.soil].name }} soil · {{ data.location.name }}</p>
+    </div>
+    <div class="row no-print">
+      <button class="btn btn-ghost" type="button" onclick="window.print()">Print</button>
+      <a class="btn btn-primary" href="{{ url_for('main.analyze', crop=inputs.crop) }}">Check another leaf</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="diag">
+      <img class="diag-img" src="{{ url_for('main.uploaded', name=row.image_file) }}" alt="Uploaded crop photo">
+      <div>
+        {{ status_badge(pred.status) }}
+        {% if pred.status == "unsupported" %}
+          <h2 class="diag-title">Disease detection is not available for {{ kb.crop_name(inputs.crop) }}</h2>
+          <p class="text-2">The photo models recognise diseases in {{ kb.model_crops()|length }} crops. Irrigation, weather and nutrition guidance below are still tailored to your crop.</p>
+        {% elif pred.status == "uncertain" %}
+          <h2 class="diag-title">We could not identify this reliably</h2>
+          <p class="text-2">The closest match is <strong>{{ disease.name }}</strong>, but the model's confidence is low. Please retake the photo using the tips below before acting on this result.</p>
+        {% else %}
+          <h2 class="diag-title">{{ disease.name }}</h2>
+          <p class="text-2">{{ disease.summary }}</p>
+        {% endif %}
+
+        {% if pred.status != "unsupported" %}
+          <div class="row small" style="justify-content: space-between; margin-top: 6px">
+            <span class="text-2">Model confidence{% if pred.adjusted %} (among {{ kb.crop_name(inputs.crop) }} classes){% endif %}</span>
+            <strong>{{ conf_pct }}% · {{ pred.level|capitalize }}</strong>
+          </div>
+          <div class="meter {{ meter_cls }}" style="margin: 6px 0 14px"><span style="width: {{ conf_pct }}%"></span></div>
+        {% endif %}
+
+        {% if disease and pred.status != "uncertain" %}
+          <dl class="kv" style="margin: 0 0 12px">
+            <div><dt>Type</dt><dd>{{ disease.type }}</dd></div>
+            {% if not disease.healthy %}<div><dt>Typical impact</dt><dd>{{ disease.impact }}</dd></div>{% endif %}
+            {% if disease.pathogen %}<div style="grid-column: span 2"><dt>Cause</dt><dd style="font-weight: 500; font-style: italic">{{ disease.pathogen }}</dd></div>{% endif %}
+          </dl>
+        {% endif %}
+
+        {% if pred.mismatch %}
+          <div class="alert alert-warning" style="margin-bottom: 10px">{{ icon("alert") }}
+            <div>The model's overall top match was <strong>{{ pred.raw_top.name }}</strong> ({{ pred.raw_top.prob|pct }}), which belongs to a different crop.
+              Because you selected {{ kb.crop_name(inputs.crop) }}, the result above is the most likely {{ kb.crop_name(inputs.crop) }} condition.
+              {% if pred.crop_mass is not none and pred.crop_mass < 0.15 %}The photo may not show a {{ kb.crop_name(inputs.crop)|lower }} leaf.{% endif %}</div></div>
+        {% endif %}
+        {% if not data.quality.ok %}
+          <div class="alert alert-warning">{{ icon("camera") }}<div><strong>Image quality:</strong> {{ data.quality.issues|join(" ") }}</div></div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if pred.top3 %}
+      <hr class="divider">
+      <div class="label">The model's top three guesses</div>
+      <div class="top3">
+        {% for t in pred.top3 %}
+          <div class="top3-row">
+            <span>{{ t.name }} <span class="muted small">· {{ t.crop }}</span></span>
+            <strong class="tabular" style="text-align: right">{{ t.prob|pct }}</strong>
+            <div class="meter m-info"><span style="width: {{ (t.prob * 100)|round(1) }}%"></span></div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h2>What to do now</h2></div>
+    <ol class="action-plan">
+      {% for s in report.steps %}
+        <li><div class="a-icon">{{ icon(s.icon) }}</div><div><h4>{{ s.title }}</h4><p>{{ s.text }}</p></div></li>
+      {% endfor %}
+    </ol>
+  </div>
+
+  <div class="layout-main" style="margin-top: 18px">
+    <div class="stack">
+      {% if disease and pred.status == "diseased" %}
+        <div class="card">
+          <div class="card-head"><h3>About {{ disease.name }}</h3></div>
+          <div class="grid grid-2">
+            <div>
+              <div class="label">Symptoms to look for</div>
+              <ul class="list-check">{% for s in disease.symptoms %}<li>{{ icon("tick") }}<span>{{ s }}</span></li>{% endfor %}</ul>
+            </div>
+            <div>
+              <div class="label">When it spreads</div>
+              <p class="text-2 small">{{ disease.conditions }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h3>Treatment</h3></div>
+          <div class="treat-grid">
+            <div class="treat-col"><h4>In the field</h4>
+              <ul class="list-check small">{% for t in disease.treatment.cultural %}<li>{{ icon("tick") }}<span>{{ t }}</span></li>{% endfor %}</ul></div>
+            <div class="treat-col"><h4>Organic</h4>
+              <ul class="list-check small">{% for t in disease.treatment.organic %}<li>{{ icon("tick") }}<span>{{ t }}</span></li>{% else %}<li class="muted">No specific organic option.</li>{% endfor %}</ul></div>
+            <div class="treat-col"><h4>Chemical</h4>
+              <ul class="list-check small">{% for t in disease.treatment.chemical %}<li>{{ icon("tick") }}<span>{{ t }}</span></li>{% endfor %}</ul></div>
+          </div>
+          <div class="disclaimer">{{ icon("shield") }}<span>Doses are general guidance per litre of water. Always read the product label, wear protective gear, observe the pre-harvest interval, and confirm with your local Krishi Vigyan Kendra or the Kisan Call Centre (1800-180-1551).</span></div>
+        </div>
+      {% endif %}
+
+      <div class="card">
+        <div class="card-head"><h3>Fertilizer</h3><span class="badge badge-neutral">{{ report.stage_name }} stage</span></div>
+        <ul class="list-check">{% for n in report.nutrition %}<li>{{ icon("tick") }}<span>{{ n }}</span></li>{% endfor %}</ul>
+        {% if not report.houseplant %}<p class="small muted" style="margin: 12px 0 0">General N : P : K reference for {{ kb.crop_name(inputs.crop) }}: <strong>{{ report.npk }}</strong>. Get a soil test (Soil Health Card) for field-specific doses.</p>{% endif %}
+      </div>
+
+      {% if report.problems %}
+        <div class="card">
+          <div class="card-head"><h3>Common problems with {{ kb.crop_name(inputs.crop)|lower }}</h3><a class="small" href="{{ url_for('main.crop_guide') }}#{{ inputs.crop }}">Crop guide</a></div>
+          <p class="small text-2">Compare your plant with these. If one matches, follow the advice and confirm with a local expert.</p>
+          <div class="problem-list">
+            {% for pr in report.problems %}
+              <div class="problem">
+                <div class="row" style="justify-content: space-between"><h4>{{ pr.name }}</h4><span class="badge badge-neutral">{{ pr.type }}</span></div>
+                <p><strong>Signs:</strong> {{ pr.signs }}</p>
+                <p><strong>What to do:</strong> {{ pr.manage }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if disease and disease.prevention and pred.status != "uncertain" %}
+        <div class="card">
+          <div class="card-head"><h3>Next season</h3></div>
+          <ul class="list-check">{% for p in disease.prevention %}<li>{{ icon("tick") }}<span>{{ p }}</span></li>{% endfor %}</ul>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="stack">
+      <div class="card">
+        <div class="card-head"><h3>Weather and spraying</h3>{{ weather_source(data.weather) }}</div>
+        {% if report.risk %}
+          <div class="row" style="margin-bottom: 6px">{{ level_badge(report.risk.level, report.risk.level|capitalize + " disease risk") }}</div>
+          <p class="text-2 small">{{ report.risk.text }}</p>
+        {% endif %}
+        <div class="advisory boxed {{ 'adv-good' if report.spray.ok_today else 'adv-warning' }}" style="margin-bottom: 14px">
+          <div class="adv-icon">{{ icon("spray") }}</div><div><h4>Spray timing</h4><p>{{ report.spray.text }}</p></div>
+        </div>
+        <div class="mini-forecast">{% for d in data.weather.forecast[:3] %}{{ forecast_day(d) }}{% endfor %}</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Water</h3></div>
+        <div class="row" style="margin-bottom: 8px">{{ irrigation_badge(plan.status, pot=plan.kind == "houseplant") }}</div>
+        <p class="text-2 small">{{ plan.headline.text }}</p>
+        {% if plan.kind == "houseplant" %}
+        <dl class="kv" style="margin-top: 14px">
+          <div><dt>Water every</dt><dd>{{ plan.care.interval_days }} day{{ "s" if plan.care.interval_days != 1 }}</dd></div>
+          <div><dt>Next watering</dt><dd>{{ plan.next.date|nicedate("%a %d %b") }}</dd></div>
+        </dl>
+        <p class="small text-2" style="margin: 12px 0 0">{{ plan.care.light }}</p>
+        {% else %}
+        <div class="moisture"><span style="width: {{ plan.soil_water.moisture_pct }}%"></span><i class="threshold" style="left: {{ 100 - plan.soil_water.raw_pct }}%"></i></div>
+        <div class="moisture-legend"><span>Root-zone moisture {{ plan.soil_water.moisture_pct }}%</span><span>Irrigate below {{ 100 - plan.soil_water.raw_pct }}%</span></div>
+        {% if plan.next.net_mm %}
+          <dl class="kv" style="margin-top: 14px">
+            <div><dt>Water to apply</dt><dd>{{ plan.next.gross_mm }} mm</dd></div>
+            <div><dt>For {{ plan.inputs.area_acres }} acre(s)</dt><dd>{{ plan.next.volume_l|litres }}</dd></div>
+            <div><dt>Pump run time</dt><dd>{{ plan.next.hours }} h</dd></div>
+            <div><dt>Electricity</dt><dd>{{ plan.next.kwh }} kWh</dd></div>
+          </dl>
+        {% endif %}
+        {% endif %}
+        <a class="btn btn-soft btn-block no-print" style="margin-top: 14px" href="{{ url_for('main.irrigation_planner', crop=inputs.crop) }}">Plan the next 7 days</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row no-print" style="margin-top: 22px; justify-content: space-between">
+    <a href="{{ url_for('main.history') }}">All past scans</a>
+    <form method="post" action="{{ url_for('main.delete_analysis', aid=row.id) }}" data-confirm="Delete this scan permanently?">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button class="btn btn-danger btn-sm" type="submit">Delete this scan</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,124 @@
+<!doctype html>
+{% from "_macros.html" import icon, flash_messages %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}SmartAgri{% endblock %} · SmartAgri</title>
+  <meta name="description" content="Take a photo of a crop leaf to find the disease and what to spray, and plan irrigation from your local weather forecast. Free, and works on any phone.">
+  <meta name="theme-color" content="#2e6a3e">
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script>
+    (function () { try { var t = localStorage.getItem("theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {} })();
+  </script>
+  {% block head %}{% endblock %}
+</head>
+<body data-csrf="{{ csrf_token() }}">
+{% include "_icons.html" %}
+{% set ep = request.endpoint or "" %}
+{% if not bare %}
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="{{ url_for('main.dashboard') if g.user else url_for('main.index') }}">
+      <span class="brand-mark">{{ icon("sprout") }}</span>SmartAgri
+    </a>
+    <nav class="nav-links" id="nav-links" aria-label="Main">
+      {% if g.user %}
+        <a href="{{ url_for('main.dashboard') }}" class="{{ 'active' if ep == 'main.dashboard' }}">Dashboard</a>
+        <a href="{{ url_for('main.analyze') }}" class="{{ 'active' if ep in ('main.analyze', 'main.analysis') }}">Check a leaf</a>
+        <a href="{{ url_for('main.live') }}" class="{{ 'active' if ep == 'main.live' }}">Live scan</a>
+        <a href="{{ url_for('main.irrigation_planner') }}" class="{{ 'active' if ep.startswith('main.irrigation') }}">Irrigation</a>
+        <a href="{{ url_for('main.weather_page') }}" class="{{ 'active' if ep == 'main.weather_page' }}">Weather</a>
+        <a href="{{ url_for('main.history') }}" class="{{ 'active' if ep == 'main.history' }}">History</a>
+        <a href="{{ url_for('main.model_info') }}" class="{{ 'active' if ep == 'main.model_info' }}">The model</a>
+        <a href="{{ url_for('main.project') }}" class="{{ 'active' if ep == 'main.project' }}">About</a>
+      {% else %}
+        <a href="{{ url_for('main.index') }}#features">Features</a>
+        <a href="{{ url_for('main.index') }}#how">How it works</a>
+        <a href="{{ url_for('main.crop_guide') }}" class="{{ 'active' if ep == 'main.crop_guide' }}">Crop guide</a>
+        <a href="{{ url_for('main.model_info') }}" class="{{ 'active' if ep == 'main.model_info' }}">Accuracy</a>
+        <a href="{{ url_for('main.index') }}#faq">FAQ</a>
+      {% endif %}
+    </nav>
+    <div class="nav-right">
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark theme">{{ icon("moon") }}<span class="sr-only">Toggle theme</span></button>
+      {% if g.user %}
+        <a class="user-chip" href="{{ url_for('main.profile') }}" title="Profile and farm settings">
+          <span class="avatar">{{ g.user.name[:1]|upper }}</span><span class="name">{{ g.user.name.split(' ')[0] }}</span>
+        </a>
+        <form method="post" action="{{ url_for('auth.logout') }}" class="no-print">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button class="icon-btn" type="submit" title="Log out">{{ icon("logout") }}<span class="sr-only">Log out</span></button>
+        </form>
+      {% else %}
+        <a class="btn btn-ghost btn-sm" href="{{ url_for('auth.login') }}">Log in</a>
+        <a class="btn btn-primary btn-sm" href="{{ url_for('auth.register') }}">Get started</a>
+      {% endif %}
+      <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-controls="nav-links" aria-expanded="false">{{ icon("menu") }}<span class="sr-only">Menu</span></button>
+    </div>
+  </div>
+</header>
+{% endif %}
+
+<main>
+  {% if not bare %}{{ flash_messages("container") }}{% endif %}
+  {% block content %}{% endblock %}
+</main>
+
+{% if not bare %}
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="{{ url_for('main.index') }}"><span class="brand-mark">{{ icon("sprout") }}</span>SmartAgri</a>
+      <p>Crop disease checks and irrigation planning for Indian farms. Works on any phone, no sensors needed.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <ul>
+        <li><a href="{{ url_for('main.analyze') }}">Check a leaf</a></li>
+        <li><a href="{{ url_for('main.live') }}">Live camera scan</a></li>
+        <li><a href="{{ url_for('main.irrigation_planner') }}">Irrigation planner</a></li>
+        <li><a href="{{ url_for('main.weather_page') }}">Weather</a></li>
+        <li><a href="{{ url_for('main.crop_guide') }}">Crop guide</a></li>
+        <li><a href="{{ url_for('main.model_info') }}">Model accuracy</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Help</h4>
+      <ul>
+        <li><a href="{{ url_for('main.index') }}#how">How it works</a></li>
+        <li><a href="{{ url_for('main.index') }}#faq">FAQ</a></li>
+        <li><a href="tel:18001801551">Kisan Call Centre: 1800-180-1551</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Data sources</h4>
+      <ul>
+        <li><a href="https://open-meteo.com/" rel="noopener" target="_blank">Open-Meteo weather</a></li>
+        <li><a href="https://github.com/spMohanty/PlantVillage-Dataset" rel="noopener" target="_blank">PlantVillage leaf images</a></li>
+        <li><a href="https://www.fao.org/4/x0490e/x0490e00.htm" rel="noopener" target="_blank">FAO-56 irrigation method</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© {{ now.year }} SmartAgri</span>
+    <span>Advice is general guidance. Always read the product label and check with your local agriculture officer.</span>
+  </div>
+</footer>
+{% endif %}
+
+<div class="overlay" id="busy" aria-live="polite">
+  <div class="spinner"></div>
+  <strong id="busy-title">Working on it...</strong>
+  <div class="overlay-steps" id="busy-step"></div>
+</div>
+
+<script src="{{ url_for('static', filename='vendor/chart.umd.min.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

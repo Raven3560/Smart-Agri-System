@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, irrigation_badge, weather_source %}
+{% block title %}Irrigation plan{% endblock %}
+{% block content %}
+{% set i = plan.inputs %}
+{% set sw = plan.soil_water %}
+{% set lvl = plan.headline.level %}
+<div class="container page">
+  <div class="page-head">
+    <div>
+      <div class="eyebrow">Irrigation plan #{{ row.id }} · {{ row.created_at|nicedate }}</div>
+      <h1>{{ kb.crop_label(i.crop) }}, {{ i.stage_name|lower }} stage</h1>
+      <p>{{ i.soil_name }} soil · {{ i.method_name }} · {{ i.area_acres }} acre(s) · {{ plan.location.name }}</p>
+    </div>
+    <div class="row no-print">
+      <button class="btn btn-ghost" type="button" onclick="window.print()">Print</button>
+      <a class="btn btn-primary" href="{{ url_for('main.irrigation_planner') }}">Make a new plan</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="irr-hero">
+      <div class="irr-icon irr-{{ lvl }}">{{ icon({'critical': 'droplet', 'info': 'rain', 'warning': 'calendar', 'good': 'check'}[lvl]) }}</div>
+      <div>
+        <div class="row" style="margin-bottom: 4px">{{ irrigation_badge(plan.status) }}{{ weather_source(plan.weather) }}</div>
+        <h2 style="margin: 4px 0">{{ plan.headline.title }}</h2>
+        <p class="text-2" style="margin: 0">{{ plan.headline.text }}</p>
+      </div>
+    </div>
+    <hr class="divider">
+    <div class="moisture"><span style="width: {{ sw.moisture_pct }}%"></span><i class="threshold" style="left: {{ 100 - sw.raw_pct }}%"></i></div>
+    <div class="moisture-legend"><span>Root-zone moisture today: {{ sw.moisture_pct }}% of available water ({{ sw.depletion_mm }} mm used of {{ sw.taw_mm }} mm)</span><span>Irrigate below {{ 100 - sw.raw_pct }}%</span></div>
+  </div>
+
+  <div class="grid grid-4" style="margin: 18px 0">
+    <div class="stat"><div class="stat-label">{{ 'Water held back' if plan.status == 'delay_rain' else 'Next irrigation' }}</div>
+      <div class="stat-value">{{ plan.next.gross_mm if plan.next.gross_mm else 0 }} mm</div>
+      <div class="stat-sub">{% if plan.next.date %}{{ plan.next.date|nicedate("%a %d %b") }} · {{ plan.next.net_mm }} mm net{% else %}none in the next 7 days{% endif %}</div></div>
+    <div class="stat"><div class="stat-label">Volume for your field</div>
+      <div class="stat-value">{{ plan.next.volume_l|litres }}</div>
+      <div class="stat-sub">{{ i.area_acres }} acre(s) at {{ (i.efficiency * 100)|int }}% efficiency</div></div>
+    <div class="stat"><div class="stat-label">Pump time and energy</div>
+      <div class="stat-value">{{ plan.next.hours }} h</div>
+      <div class="stat-sub">{{ plan.next.kwh }} kWh · ₹{{ plan.next.cost|num }} · {{ plan.next.flow_m3h }} m³/h</div></div>
+    <div class="stat"><div class="stat-label">Next 7 days</div>
+      <div class="stat-value">{{ plan.week.events }} irrigation{{ '' if plan.week.events == 1 else 's' }}</div>
+      <div class="stat-sub">Crop uses {{ plan.week.etc_mm }} mm · rain adds {{ plan.week.effective_rain_mm }} mm</div></div>
+  </div>
+
+  <div class="layout-main">
+    <div class="stack">
+      <div class="card">
+        <div class="card-head"><h3>How dry the root zone gets</h3></div>
+        <div class="chart-legend">
+          <span><i class="line" style="background: var(--series-1)"></i>Root-zone depletion, morning (% of available water)</span>
+          <span><i class="line" style="background: var(--critical)"></i>Irrigation threshold (RAW)</span>
+        </div>
+        <div class="chart-box"><canvas data-chart="depletion" role="img" aria-label="Line chart of projected root-zone water depletion against the irrigation threshold"></canvas></div>
+        <p class="small muted" style="margin: 8px 0 0">Depletion rises as the crop uses water and drops after rain or irrigation. Irrigation is scheduled when it reaches the threshold.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>7-day schedule</h3></div>
+        <div class="table-wrap"><table class="table">
+          <thead><tr><th>Day</th><th>Weather</th><th class="num">ET₀</th><th class="num">Crop use</th><th class="num">Rain (chance)</th><th class="num">Depletion</th><th>Action</th></tr></thead>
+          <tbody>
+          {% for s in plan.schedule %}
+            <tr class="{{ 'hl' if s.action == 'irrigate' }}">
+              <td><strong>{{ s.date|dayname }}</strong> <span class="muted small">{{ s.date|nicedate("%d %b") }}</span></td>
+              <td class="wrap small">{{ icon(s.icon) }} {{ s.label }}</td>
+              <td class="num">{{ s.et0 }}</td>
+              <td class="num">{{ s.etc }}</td>
+              <td class="num">{{ s.rain }} ({{ s.rain_prob }}%)</td>
+              <td class="num">{{ s.depletion_pct|int }}%</td>
+              <td>{% if s.action == 'irrigate' %}<span class="badge badge-critical">{{ icon("droplet") }} {{ s.gross_mm }} mm</span>
+                  {% elif s.action == 'skip_rain' %}<span class="badge badge-info">{{ icon("rain") }} Wait</span>
+                  {% else %}<span class="muted">-</span>{% endif %}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table></div>
+        <p class="small muted" style="margin: 8px 0 0">All water values in mm. The action column shows the gross depth to apply; "Wait" means irrigation is held because rain is likely. 1 mm over one acre is about 4,047 litres.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Notes for your field</h3></div>
+        <ul class="list-check">{% for t in plan.tips %}<li>{{ icon("tick") }}<span>{{ t }}</span></li>{% endfor %}</ul>
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="card">
+        <div class="card-head"><h3>What you save</h3><span class="badge badge-neutral">SDG 7</span></div>
+        <div class="saving" style="grid-template-columns: 1fr">
+          <div><div class="v">{{ plan.savings.total_l|litres }}</div><div class="l">water saved compared with flood irrigation{% if plan.savings.rain_skip_l %} and by waiting for rain{% endif %}</div></div>
+          <div><div class="v">{{ plan.savings.total_kwh }} kWh</div><div class="l">electricity saved · about ₹{{ (plan.savings.total_kwh * i.tariff)|num }}</div></div>
+          <div><div class="v">{{ plan.savings.total_co2_kg }} kg CO₂</div><div class="l">emissions avoided (Indian grid average)</div></div>
+        </div>
+        {% if plan.next.flood_volume_l %}
+          <p class="small muted" style="margin: 12px 0 0">Flood irrigation would need {{ plan.next.flood_volume_l|litres }} for the same crop need; {{ i.method_name|lower }} needs {{ plan.next.volume_l|litres }}.</p>
+        {% endif %}
+      </div>
+
+      {% if plan.solar %}
+      <div class="card">
+        <div class="card-head"><h3>Could a solar pump work here?</h3><span class="badge badge-{{ 'good' if plan.solar.rating == 'Good' else 'warning' }}">{{ plan.solar.rating }}</span></div>
+        <p class="stat-value" style="margin: 0">{{ plan.solar.kwh_m2_day }} <span class="small muted">kWh/m²/day this week</span></p>
+        <p class="text-2 small" style="margin: 8px 0 0">{{ plan.solar.text }}</p>
+      </div>
+      {% endif %}
+
+      <div class="card">
+        <div class="card-head"><h3>The numbers behind it</h3></div>
+        <dl class="kv">
+          <div><dt>Crop coefficient (Kc)</dt><dd>{{ sw.kc }}</dd></div>
+          <div><dt>Root depth</dt><dd>{{ sw.root_depth_m }} m</dd></div>
+          <div><dt>Soil water capacity</dt><dd>{{ sw.awc_mm_per_m }} mm/m</dd></div>
+          <div><dt>Total available (TAW)</dt><dd>{{ sw.taw_mm }} mm</dd></div>
+          <div><dt>Depletion fraction (p)</dt><dd>{{ sw.p }}</dd></div>
+          <div><dt>Readily available (RAW)</dt><dd>{{ sw.raw_mm }} mm</dd></div>
+          <div><dt>Crop use today (ETc)</dt><dd>{{ sw.etc_today }} mm</dd></div>
+          <div><dt>Days since irrigation</dt><dd>{{ i.days_since if i.days_since is not none else 'Unknown' }}</dd></div>
+        </dl>
+        <details style="margin-top: 12px">
+          <summary class="small text-2" style="cursor: pointer">Assumptions</summary>
+          <ul class="tips-list" style="margin-top: 8px">{% for a in plan.assumptions %}<li>{{ a }}</li>{% endfor %}</ul>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <div class="row no-print" style="margin-top: 22px; justify-content: space-between">
+    <a href="{{ url_for('main.history', type='plans') }}">All irrigation plans</a>
+    <form method="post" action="{{ url_for('main.delete_plan', pid=row.id) }}" data-confirm="Delete this irrigation plan?">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button class="btn btn-danger btn-sm" type="submit">Delete this plan</button>
+    </form>
+  </div>
+</div>
+<script type="application/json" id="chart-data">{{ {
+  "labels": plan.schedule|map(attribute="date")|list,
+  "depletion": plan.schedule|map(attribute="depletion_pct")|list,
+  "threshold": plan.schedule|map(attribute="raw_pct")|list,
+  "irrigate": plan.schedule|map(attribute="gross_mm")|list
+}|tojson }}</script>
+{% endblock %}

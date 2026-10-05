@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, status_badge, irrigation_badge, weather_source, forecast_day %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+{% set hour = now.hour %}
+<div class="container page">
+  <div class="page-head">
+    <div>
+      <div class="eyebrow">{{ now.strftime("%A, %d %B %Y") }}</div>
+      <h1>{{ "Good morning" if hour < 12 else "Good afternoon" if hour < 17 else "Good evening" }}, {{ g.user.name.split(' ')[0] }}</h1>
+      <p>{{ icon("pin") }} {{ loc.name }}{% if g.user.farm_name %} · {{ g.user.farm_name }}{% endif %}</p>
+    </div>
+    <div class="row">
+      <a class="btn btn-primary" href="{{ url_for('main.analyze') }}">Check a leaf</a>
+      <a class="btn btn-ghost" href="{{ url_for('main.live') }}">Live scan</a>
+      <a class="btn btn-ghost" href="{{ url_for('main.irrigation_planner') }}">Plan irrigation</a>
+    </div>
+  </div>
+
+  {% if loc.is_default %}
+    <div class="alert alert-info" style="margin-bottom: 18px">{{ icon("info") }}
+      <div>Showing weather for {{ loc.name }}. <a href="{{ url_for('main.profile') }}">Set your farm location</a> for accurate weather and irrigation advice.</div></div>
+  {% endif %}
+
+  <div class="grid grid-4" style="margin-bottom: 18px">
+    <div class="stat">
+      <div class="stat-label">Leaves checked</div>
+      <div class="stat-value">{{ stats.scans or 0 }}</div>
+      <div class="stat-sub">{{ stats.healthy or 0 }} looked healthy</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Disease found</div>
+      <div class="stat-value">{{ stats.diseased or 0 }}</div>
+      <div class="stat-sub">needed treatment</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Irrigation plans</div>
+      <div class="stat-value">{{ plans.plans or 0 }}</div>
+      <div class="stat-sub">saved so far</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Water saved (estimate)</div>
+      <div class="stat-value">{{ plans.water|litres }}</div>
+      <div class="stat-sub">and {{ plans.kwh|num(1) }} kWh of electricity</div>
+    </div>
+  </div>
+
+  <div class="layout-main">
+    <div class="stack">
+      <div class="card">
+        <div class="card-head">
+          <h2>Weather in {{ loc.name.split(",")[0] }}</h2>
+          <div class="row">{{ weather_source(wx) }}<a class="small" href="{{ url_for('main.weather_page') }}">7-day forecast</a></div>
+        </div>
+        <div class="wx-now">
+          <div class="big-icon">{{ icon(wx.current.icon) }}</div>
+          <div>
+            <div class="wx-temp">{% if wx.current.temp is not none %}{{ wx.current.temp|round|int }}°C{% else %}--{% endif %}</div>
+            <div class="text-2">{{ wx.current.label }}{% if wx.current.feels_like is not none %} · feels like {{ wx.current.feels_like|round|int }}°C{% endif %}</div>
+          </div>
+          <div class="wx-facts">
+            <span>{{ icon("droplet") }} Humidity {{ wx.current.rh if wx.current.rh is not none else '--' }}%</span>
+            <span>{{ icon("wind") }} Wind {{ wx.current.wind if wx.current.wind is not none else '--' }} km/h</span>
+            <span>{{ icon("sun") }} ET₀ today {{ wx.forecast[0].et0 }} mm</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="forecast-strip">
+          {% for d in wx.forecast[:7] %}{{ forecast_day(d) }}{% endfor %}
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Water lost to the air vs rain expected</h3></div>
+        <div class="chart-legend">
+          <span><i style="background: var(--series-2)"></i>Reference evapotranspiration, ET₀ (mm)</span>
+          <span><i style="background: var(--series-1)"></i>Forecast rainfall (mm)</span>
+        </div>
+        <div class="chart-box"><canvas data-chart="water" aria-label="Bar chart of daily evapotranspiration and rainfall for the next 7 days" role="img"></canvas></div>
+        <p class="small muted" style="margin: 8px 0 0">Where orange is taller than blue, the soil is drying out faster than rain can top it up.</p>
+        <details class="table-view">
+          <summary>View as table</summary>
+          <div class="table-wrap"><table class="table">
+            <thead><tr><th>Day</th><th class="num">ET₀ (mm)</th><th class="num">Rain (mm)</th><th class="num">Rain chance</th></tr></thead>
+            <tbody>{% for i in range(chart.labels|length) %}<tr><td>{{ chart.labels[i] }}</td><td class="num">{{ chart.et0[i] }}</td><td class="num">{{ chart.rain[i] }}</td><td class="num">{{ chart.rain_prob[i] }}%</td></tr>{% endfor %}</tbody>
+          </table></div>
+        </details>
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="card">
+        <div class="card-head"><h3>This week</h3></div>
+        {% for a in advisories %}
+          <div class="advisory adv-{{ a.level }}"><div class="adv-icon">{{ icon(a.icon) }}</div><div><h4>{{ a.title }}</h4><p>{{ a.text }}</p></div></div>
+        {% endfor %}
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Your last irrigation plan</h3>
+          {% if recent_plans %}<a class="small" href="{{ url_for('main.irrigation_plan', pid=recent_plans[0].id) }}">Open</a>{% endif %}</div>
+        {% if latest_plan %}
+          <div class="row" style="margin-bottom: 8px">{{ irrigation_badge(latest_plan.status, pot=latest_plan.kind == "houseplant") }}<span class="small muted">{{ latest_plan.inputs.crop_name }} · {{ recent_plans[0].created_at|nicedate }}</span></div>
+          <p class="text-2 small" style="margin-bottom: 10px">{{ latest_plan.headline.text }}</p>
+          {% if latest_plan.kind != "houseplant" %}
+          <div class="moisture" title="Root-zone moisture">
+            <span style="width: {{ latest_plan.soil_water.moisture_pct }}%"></span>
+            <i class="threshold" style="left: {{ 100 - latest_plan.soil_water.raw_pct }}%"></i>
+          </div>
+          <div class="moisture-legend"><span>Soil moisture {{ latest_plan.soil_water.moisture_pct }}% of available water</span><span>Irrigate below {{ 100 - latest_plan.soil_water.raw_pct }}%</span></div>
+          {% endif %}
+          <p class="small muted" style="margin: 10px 0 0">This plan used the forecast from the day it was made. Make a new one for an up-to-date schedule.</p>
+        {% else %}
+          <div class="empty">{{ icon("droplet") }}<p>No irrigation plans yet.</p><a class="btn btn-soft btn-sm" href="{{ url_for('main.irrigation_planner') }}">Plan irrigation</a></div>
+        {% endif %}
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Recent leaves</h3>{% if recent %}<a class="small" href="{{ url_for('main.history') }}">View all</a>{% endif %}</div>
+        {% if recent %}
+          <div class="scan-list">
+          {% for r in recent %}
+            {% set d = recent_disease[r.id] %}
+            <a class="scan-item" href="{{ url_for('main.analysis', aid=r.id) }}">
+              <img src="{{ url_for('main.uploaded', name=r.image_file) }}" alt="" loading="lazy">
+              <div><div class="t">{{ d.name if d else kb.crop_name(r.crop) }}</div><div class="s">{{ r.created_at|nicedate }}</div></div>
+              {{ status_badge(r.status) }}
+            </a>
+          {% endfor %}
+          </div>
+        {% else %}
+          <div class="empty">{{ icon("image") }}<p>Nothing checked yet.</p><a class="btn btn-soft btn-sm" href="{{ url_for('main.analyze') }}">Check a leaf</a></div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<script type="application/json" id="chart-data">{{ chart|tojson }}</script>
+{% endblock %}

@@ -1,0 +1,111 @@
+{% macro icon(name, cls="") -%}
+<svg class="icon {{ cls }}" aria-hidden="true"><use href="#i-{{ name }}"/></svg>
+{%- endmacro %}
+
+{% macro status_badge(status) -%}
+  {%- if status == "healthy" -%}<span class="badge badge-good">{{ icon("check") }} Healthy</span>
+  {%- elif status == "diseased" -%}<span class="badge badge-critical">{{ icon("alert") }} Disease detected</span>
+  {%- elif status == "uncertain" -%}<span class="badge badge-warning">{{ icon("help") }} Uncertain</span>
+  {%- elif status == "unsupported" -%}<span class="badge badge-neutral">{{ icon("info") }} Irrigation only</span>
+  {%- else -%}<span class="badge badge-neutral">{{ status }}</span>{%- endif -%}
+{%- endmacro %}
+
+{% macro irrigation_badge(status, pot=False) -%}
+  {%- if status == "irrigate_now" -%}<span class="badge badge-critical">{{ icon("droplet") }} {{ "Water today" if pot else "Irrigate today" }}</span>
+  {%- elif status == "delay_rain" -%}<span class="badge badge-info">{{ icon("rain") }} Hold: rain expected</span>
+  {%- elif status == "upcoming" -%}<span class="badge badge-warning">{{ icon("calendar") }} {{ "Watering upcoming" if pot else "Irrigation upcoming" }}</span>
+  {%- else -%}<span class="badge badge-good">{{ icon("check") }} Not needed this week</span>{%- endif -%}
+{%- endmacro %}
+
+{% macro level_badge(level, label=None) -%}
+  {%- set map = {"high": ("critical", "alert"), "moderate": ("warning", "alert"), "low": ("good", "check"),
+                 "medium": ("warning", "alert")} -%}
+  {%- set m = map.get(level, ("neutral", "info")) -%}
+  <span class="badge badge-{{ m[0] }}">{{ icon(m[1]) }} {{ label or (level|capitalize) }}</span>
+{%- endmacro %}
+
+{% macro crop_select(name, selected, required=True, id=None) -%}
+  {#- Scan page: crops the photo model knows come first, then everything else by group. -#}
+  {%- set supported, irrigation_only = kb.grouped_crop_choices() -%}
+  <select class="select" name="{{ name }}" id="{{ id or name }}" {% if required %}required{% endif %}>
+    <optgroup label="Photo disease check available">
+      {%- for key, label in supported %}<option value="{{ key }}" {% if key == selected %}selected{% endif %}>{{ label }}</option>{% endfor %}
+    </optgroup>
+    {%- for group, items in kb.crop_groups(exclude=kb.model_crops()) %}
+    <optgroup label="{{ group }} (advice only)">
+      {%- for key, label in items %}<option value="{{ key }}" {% if key == selected %}selected{% endif %}>{{ label }}</option>{% endfor %}
+    </optgroup>
+    {%- endfor %}
+  </select>
+{%- endmacro %}
+
+{% macro crop_select_all(name, selected, id=None) -%}
+  <select class="select" name="{{ name }}" id="{{ id or name }}" required>
+    {%- for group, items in kb.crop_groups() %}
+    <optgroup label="{{ group }}">
+      {%- for key, label in items %}<option value="{{ key }}" {% if key == selected %}selected{% endif %}>{{ label }}</option>{% endfor %}
+    </optgroup>
+    {%- endfor %}
+  </select>
+{%- endmacro %}
+
+{% macro stage_select(name, selected) -%}
+  <select class="select" name="{{ name }}" id="{{ name }}" required>
+    {%- for key, s in kb.stages().items() %}<option value="{{ key }}" {% if key == selected %}selected{% endif %}>{{ s.label }} - {{ s.hint }}</option>{% endfor %}
+  </select>
+{%- endmacro %}
+
+{% macro soil_select(name, selected) -%}
+  <select class="select" name="{{ name }}" id="{{ name }}" required>
+    {%- for key, s in kb.soils().items() %}<option value="{{ key }}" {% if key == selected %}selected{% endif %}>{{ s.name }}</option>{% endfor %}
+  </select>
+{%- endmacro %}
+
+{% macro method_select(name, selected) -%}
+  <select class="select" name="{{ name }}" id="{{ name }}" required>
+    {%- for key, m in kb.methods().items() %}<option value="{{ key }}" {% if key == selected %}selected{% endif %}>{{ m.label }} ({{ (m.efficiency * 100)|int }}% efficient)</option>{% endfor %}
+  </select>
+{%- endmacro %}
+
+{% macro location_picker(loc, label="Farm location") -%}
+<div class="field loc-picker" data-loc-picker>
+  <label for="loc-search">{{ label }}</label>
+  <div class="input-group">
+    <input class="input" type="text" id="loc-search" name="location_name" value="{{ loc.name if loc and loc.name else '' }}"
+           placeholder="Search village, town or district" autocomplete="off" data-loc-input>
+    <button class="btn btn-ghost" type="button" data-loc-gps title="Use my current location">{{ icon("locate") }}<span class="sr-only">Use my location</span></button>
+  </div>
+  <div class="loc-results" data-loc-results role="listbox"></div>
+  <input type="hidden" name="lat" value="{{ loc.lat if loc and loc.lat is not none else '' }}" data-loc-lat>
+  <input type="hidden" name="lon" value="{{ loc.lon if loc and loc.lon is not none else '' }}" data-loc-lon>
+  <div class="loc-current" data-loc-status>{{ icon("pin") }}
+    {% if loc and loc.lat is not none %}<span>{{ '%.3f'|format(loc.lat) }}, {{ '%.3f'|format(loc.lon) }}</span>{% else %}<span>No location set</span>{% endif %}
+  </div>
+</div>
+{%- endmacro %}
+
+{% macro weather_source(wx) -%}
+  {%- if wx.source == "live" -%}<span class="badge badge-good source-tag">{{ icon("check") }} Live data</span>
+  {%- elif wx.source == "cached" -%}<span class="badge badge-warning source-tag">{{ icon("alert") }} Offline: saved data</span>
+  {%- else -%}<span class="badge badge-warning source-tag">{{ icon("alert") }} Offline: estimated</span>{%- endif -%}
+{%- endmacro %}
+
+{% macro forecast_day(d) -%}
+<div class="mini-day">
+  <div class="d">{{ d.date|dayname }}</div>
+  {{ icon(d.icon) }}
+  <div class="t">{{ d.tmax|round|int }}° <span class="muted">/ {{ d.tmin|round|int }}°</span></div>
+  <div class="r">{{ icon("droplet") }} {{ d.rain }} mm · {{ d.rain_prob }}%</div>
+</div>
+{%- endmacro %}
+
+{% macro flash_messages(extra_class="") -%}
+  {%- set messages = get_flashed_messages(with_categories=true) -%}
+  {%- if messages %}
+  <div class="{{ extra_class }} flash-wrap" role="status">
+    {%- for cat, msg in messages %}
+    <div class="alert alert-{{ cat }}">{{ icon({"error": "alert", "success": "check"}.get(cat, "info")) }}<div>{{ msg }}</div></div>
+    {%- endfor %}
+  </div>
+  {%- endif %}
+{%- endmacro %}
