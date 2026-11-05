@@ -8,7 +8,6 @@ import os
 import secrets
 
 from flask import Flask, abort, render_template, request, session
-from werkzeug.security import generate_password_hash
 
 from . import db
 from .services import knowledge as kb
@@ -28,15 +27,12 @@ PROJECT = {
     "guide": "Mr. Sushil Chabbra",
     "guide_role": "Assistant Professor",
     "team": [
-        {"name": "Pratyush Srivastava", "roll": "2302220100138"},
-        {"name": "Rashmi Rajput", "roll": "2302220100145"},
-        {"name": "Shivam Mahajan", "roll": "2302220100180"},
-        {"name": "Shubham Kumar", "roll": "2302220100185"},
+        {"name": "Pratyush Srivastava", "roll": "2302220100138", "role": "Backend and coding"},
+        {"name": "Rashmi Rajput", "roll": "2302220100145", "role": "Frontend and design"},
+        {"name": "Shivam Mahajan", "roll": "2302220100180", "role": "AI/ML model training"},
+        {"name": "Shubham Kumar", "roll": "2302220100185", "role": "Documentation"},
     ],
 }
-
-DEMO_EMAIL = "demo@smartagri.local"
-DEMO_PASSWORD = "demo1234"
 
 
 def _secret_key(instance_path):
@@ -81,7 +77,6 @@ def create_app(test_config=None):
     app.extensions["extra_model"] = ExtraModel(os.path.join(BASE_DIR, "models", "extra-crops"))
 
     db.init_db(app)
-    _ensure_demo_user(app)
     _register_template_helpers(app)
     _register_csrf(app)
 
@@ -114,19 +109,6 @@ def create_app(test_config=None):
     return app
 
 
-def _ensure_demo_user(app):
-    with app.app_context():
-        if db.query("SELECT id FROM users WHERE email = ?", (DEMO_EMAIL,), one=True):
-            return
-        db.execute(
-            "INSERT INTO users (name, email, password_hash, farm_name, location_name, lat, lon, default_crop,"
-            " default_soil, default_method, area_acres, pump_hp, pump_head_m, tariff)"
-            " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            ("Demo Farmer", DEMO_EMAIL, generate_password_hash(DEMO_PASSWORD), "Demo Farm",
-             "Greater Noida, Uttar Pradesh, India", 28.4962, 77.536, "tomato", "alluvial", "drip", 2.0, 5.0, 20.0, 6.0),
-        )
-
-
 def _register_csrf(app):
     def csrf_token():
         if "_csrf" not in session:
@@ -151,11 +133,7 @@ def _register_template_helpers(app):
 
     @app.context_processor
     def inject_globals():
-        return {
-            "now": dt.datetime.now(),
-            "demo_email": DEMO_EMAIL,
-            "demo_password": DEMO_PASSWORD,
-        }
+        return {"now": dt.datetime.now()}
 
     @app.template_filter("crop_short")
     def crop_short(crop_key):

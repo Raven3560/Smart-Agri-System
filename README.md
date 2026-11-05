@@ -22,7 +22,7 @@ A software-only web application. A farmer uploads or captures a leaf photo and e
 4. runs an FAO-56 soil water balance to say **when to irrigate and how much**, holding irrigation when rain is coming,
 5. converts the water need into pump hours, electricity, cost and CO₂ (SDG 7),
 6. saves everything to a dashboard and history,
-7. keeps a crop database of 61 crops and plants grown in India (cereals, millets, pulses, oilseeds, vegetables,
+7. keeps a crop database of 62 crops and plants grown in India (cereals, millets, pulses, oilseeds, vegetables,
    fruits, spices, plantation crops, and pot plants like money plant and tulsi) with water needs, fertilizer and
    common problems, browsable on the public **Crop guide** page.
 
@@ -43,16 +43,14 @@ python run.py
 
 Or double-click **`start.bat`**.
 
-Open <http://localhost:5000> and click **Try the demo**, or log in with:
+Open <http://localhost:5000>, click **Get started free** to create an account, then set your farm location
+in **Profile** so weather and irrigation advice match your field. Every user's scans and plans are private.
 
-| Email | Password |
-|---|---|
-| demo@smartagri.local | demo1234 |
-
-Before a presentation, refresh the demo data with today's weather:
+Before a presentation, you can fill an account with example scans and plans that use today's weather
+(the account is created if it does not exist; `--reset` clears its earlier scans and plans first):
 
 ```bat
-python scripts\seed_demo.py
+python scripts\seed_account.py --email you@example.com --password "your-password" --name "Your Name"
 ```
 
 ### Using it from a phone
@@ -61,7 +59,7 @@ Run `python run.py --host 0.0.0.0 --https`. The console prints an address like `
 
 ### Offline behaviour
 
-The disease model runs fully offline. Weather comes from the free Open-Meteo API (no key). If the internet drops, the app uses the last saved forecast for that location, or a clearly labelled seasonal estimate, so the demo never breaks.
+The disease model runs fully offline. Weather comes from the free Open-Meteo API (no key). If the internet drops, the app uses the last saved forecast for that location, or a clearly labelled seasonal estimate, so the app keeps working.
 
 ---
 
@@ -93,24 +91,24 @@ The disease model runs fully offline. Weather comes from the free Open-Meteo API
 The **Live scan** page opens the camera in the browser and checks the plant continuously:
 
 * The page copies the square inside the on-screen guide box from the video to a 320 × 320 image, about 5 times a second, and posts it to `/api/live/predict`. Only one request is in flight at a time, so a slow connection lowers the frame rate instead of piling up requests.
-* The server runs the same MobileNetV2 model (about 30-40 ms on a laptop CPU) and returns the probability of all 38 classes, plus a sharpness, light and "plant in view" check.
+* The server runs the same MobileNetV2 model (about 30-40 ms on a laptop CPU) and returns the probability of all 119 classes of both models, plus a sharpness, light and "plant in view" check.
 * The browser smooths the probabilities over recent frames with an exponential moving average, so the answer doesn't flicker. If a crop is selected, it keeps only that crop's classes, using the same rule as the full report.
 * A result is shown as steady only after the same answer repeats for 3 frames in a row. Below 50% confidence it says "not sure", and if almost nothing in the square looks like plant tissue it asks you to point at a leaf.
 * **Save report** grabs a sharper 720 × 720 frame and runs the full analysis (treatment, spray timing, weather, irrigation), saved to history.
-* Frames are never stored. A video file can be used instead of the camera, which is handy for demos.
+* Frames are never stored. A video file can be used instead of the camera, which is handy for presentations.
 
 ### Crop database
 
-`agri/data/crops.json` holds 61 crops and plants. Each entry has:
+`agri/data/crops.json` holds 62 crops and plants. Each entry has:
 
 * the English and Hindi name, group (cereal, pulse, vegetable...) and season (Kharif, Rabi, Zaid, perennial),
 * FAO-56 crop coefficients for the initial, mid-season and late stages, root depth and depletion fraction,
 * a fertilizer reference (N : P : K) and a growing tip,
 * common problems with the signs to look for and what to do.
 
-Water figures follow FAO-56 Tables 12 and 22. Ten crops that FAO does not list (pigeon pea, okra, bottle gourd,
-bitter gourd, turmeric, ginger, mango, guava, papaya, pomegranate) use values from the closest listed crop and are
-marked `"kc_source": "Approximate"`; the crop guide shows them as approximate.
+Water figures follow FAO-56 Tables 12 and 22. Eleven crops that FAO does not list (pigeon pea, okra, bottle gourd,
+bitter gourd, turmeric, ginger, mango, guava, papaya, pomegranate, Malabar spinach) use values from the closest
+listed crop and are marked `"kc_source": "Approximate"`; the crop guide shows them as approximate.
 
 **Pot plants.** Money plant and tulsi are marked `"kind": "houseplant"`. A field water balance in mm per acre makes no
 sense for a pot, so they get a watering interval instead: from the plant's care profile, shortened in hot weather and
@@ -168,7 +166,12 @@ Results on 760 PlantVillage images (20 per class, from the public GitHub mirror)
 | Accuracy | 94.7% |
 | Top-3 accuracy | 99.5% |
 | Macro precision / recall / F1 | 0.954 / 0.947 / 0.947 |
-| Inference time (CPU) | about 41 ms per image |
+| Inference time (ONNX Runtime, one CPU thread) | about 12 ms per image; about 44 ms for a complete leaf report |
+
+**Crop context and confidence.** `python ml/evaluate_context.py --data data/plantvillage_sample` runs the same
+images through the app's own interpretation logic. With the correct crop selected, accuracy rises from 94.7% to
+97.2%; 700 of the 760 answers are high confidence and 98.4% of those are correct; and when a wrong crop is
+selected, 99.7% of the cases are flagged as a possible mismatch. The Model page shows these figures.
 
 The pretrained model was fine-tuned on a version of PlantVillage, so some of these images may have been seen in training. Treat this as an upper bound and a check that the integration is correct, not as a held-out test score. For a proper held-out result, train your own model as described below. The training script reports metrics on a test split that is never used for training or model selection.
 
@@ -239,7 +242,8 @@ training tools are in `requirements-ml.txt` and are only needed to retrain model
 3. `vercel.json` routes every request to `api/index.py`, which runs the Flask app as a serverless function.
 
 Vercel functions have no permanent disk: the SQLite database and uploaded photos live in `/tmp` and can reset
-whenever Vercel starts a fresh instance. The demo account is recreated automatically, so demos keep working.
+whenever Vercel starts a fresh instance, so users may need to register again. For lasting accounts, use a host
+with a persistent disk (see Render below).
 
 ### Render
 **New > Blueprint** with this repository uses `render.yaml` (free plan). For data that survives deploys, switch
@@ -254,7 +258,7 @@ Create a Space with the **Gradio** SDK; it runs `app.py`. See the header at the 
 python -m unittest discover -s tests -v
 ```
 
-There are 55 tests. They cover the knowledge base, the irrigation engine (rain delay, refill, area scaling, energy), the recommender (crop-context re-ranking, risk, spray window), image quality checks, offline weather fallback, and end-to-end web flows: register, login, CSRF, irrigation plan, a real model scan, the live-scan endpoint, the crop guide, money plant watering plans, and access control between users. The crop database tests check all 61 entries for missing fields and out-of-range values.
+There are 60 tests, and all pass. They cover the knowledge base, the irrigation engine (rain delay, refill, area scaling, energy), the recommender (crop-context re-ranking, risk, spray window), image quality checks, offline weather fallback, and end-to-end web flows: register, login, CSRF, irrigation plan, a real model scan, the live-scan endpoint, the crop guide, money plant watering plans, and access control between users. The crop database tests check all 62 entries for missing fields and out-of-range values.
 
 ---
 
@@ -267,7 +271,7 @@ smart-agri-assistant/
 ├── requirements.txt
 ├── agri/
 │   ├── __init__.py             app factory, config, CSRF, template helpers
-│   ├── auth.py                 register / login / demo login
+│   ├── auth.py                 register / login / logout
 │   ├── views.py                pages: dashboard, scan, live scan, results, irrigation, weather, history, profile, model
 │   ├── api.py                  JSON: location search, weather, live-scan frame prediction
 │   ├── db.py                   SQLite schema and helpers
@@ -284,31 +288,33 @@ smart-agri-assistant/
 ├── ml/
 │   ├── train.py                transfer learning with train/val/test split
 │   ├── evaluate.py             accuracy, precision, recall, F1, confusion matrix
+│   ├── evaluate_context.py     effect of the crop-context rule and the confidence levels
 │   └── fetch_sample.py         download a PlantVillage sample
 ├── models/plant-disease-mobilenetv2/   model weights and evaluation results
-├── scripts/                    download_model.py, seed_demo.py
+├── scripts/                    download_model.py, export_onnx.py, seed_account.py, knowledge-base builders
 ├── tests/                      unit and end-to-end tests
 └── instance/                   created at runtime: database, uploads, weather cache
 ```
 
-**Tech stack:** Python, Flask, PyTorch, Hugging Face Transformers, scikit-learn, SQLite, Open-Meteo API, Chart.js, HTML, CSS and JavaScript.
+**Tech stack:** Python, Flask, Jinja2, SQLite, ONNX Runtime (serving), NumPy and Pillow; PyTorch, Hugging Face
+Transformers and scikit-learn (training only); Open-Meteo API; Chart.js, HTML, CSS and JavaScript.
 
 ---
 
-## Suggested demo flow for the review (about 6 minutes)
+## Suggested presentation flow (about 6 minutes)
 
 1. **Landing page**: the product pitch, real screenshots, feature walkthrough, accuracy numbers and FAQ.
-2. **Try the demo** (or log in on the split-screen login page), then the **Dashboard**: live weather, water lost vs rain chart, this week's advice, recent leaves.
+2. **Register** (or log in on the split-screen login page), then the **Dashboard**: live weather, water lost vs rain chart, this week's advice, recent leaves.
 3. **Check a leaf**: pick the *Tomato, late blight* sample, then **Check this leaf**. Walk through the diagnosis, confidence, top-3 guesses, what to do now, treatment, spray timing and water.
 4. **Live scan**: start the camera and point it at a leaf, or at a leaf photo on another phone's screen. Watch the square turn red or green, then tap **Save report**.
 5. Show the **crop-context** feature: click the *Potato, early blight* sample, change the crop back to *Tomato*, then analyse. The app warns that the photo may not show a tomato leaf.
 6. **Irrigation planner**: wheat on flood versus drip; show the 7-day schedule, depletion chart and energy savings.
-7. **The model** page: metrics, confusion matrix and the most common mix-ups. **About** page (inside the app after login): team, objectives mapped to features, architecture and methodology.
+7. **The model** page: metrics, the crop-context results, confusion matrix and the most common mix-ups. **About** page: team and roles, objectives mapped to features, architecture and methodology.
 
 ## Limitations and future scope
 
 * PlantVillage images have plain backgrounds, so accuracy drops on cluttered field photos. Fine-tuning on field images (for example PlantDoc) would help.
-* Only 14 crops are covered by disease detection. Other crops get irrigation and nutrition guidance.
+* Photo diagnosis covers 30 of the 62 crops (14 PlantVillage crops and 16 Indian crops). Other crops get irrigation, nutrition and a guide to their common problems.
 * Soil moisture is estimated, not measured. IoT soil sensors or satellite data could calibrate it.
 * Future work from the synopsis: Hindi and regional languages, SMS or WhatsApp alerts, IoT sensors, satellite imagery, and solar pump sizing.
 

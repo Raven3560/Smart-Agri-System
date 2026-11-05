@@ -3,7 +3,7 @@
 Provides current conditions, a 7-day forecast and recent past days, including
 FAO-56 reference evapotranspiration (ET0) which drives the irrigation module.
 
-Resilience for demos and poor connectivity:
+Resilience for poor connectivity:
 1. responses are cached in memory for 30 minutes,
 2. the last good response per location is stored on disk and used if the API
    is unreachable (marked as "cached"),

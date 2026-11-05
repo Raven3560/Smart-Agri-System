@@ -1,0 +1,31 @@
+{
+  "evaluated_at": "2026-11-05 12:01",
+  "data_dir": "data/plantvillage_sample (760 images, 20 per class)",
+  "images": 760,
+  "accuracy_without_context": 0.9474,
+  "accuracy_with_crop": 0.9724,
+  "levels": {
+    "medium": {
+      "images": 37,
+      "accuracy": 0.8108
+    },
+    "high": {
+      "images": 700,
+      "accuracy": 0.9843
+    },
+    "low": {
+      "images": 23,
+      "accuracy": 0.8696
+    }
+  },
+  "status": {
+    "diseased": 502,
+    "uncertain": 23,
+    "healthy": 235
+  },
+  "wrong_crop": {
+    "flagged_mismatch": 0.9974,
+    "reported_uncertain": 0.9947,
+    "crop_mass_below_15pct": 0.3382
+  }
+}

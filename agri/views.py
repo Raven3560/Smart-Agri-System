@@ -173,6 +173,11 @@ def model_info():
         with open(path, encoding="utf-8") as fh:
             metrics = json.load(fh)
     has_cm = os.path.exists(os.path.join(current_app.config["MODEL_DIR"], "evaluation", "confusion_matrix.png"))
+    context = None
+    context_path = os.path.join(current_app.config["MODEL_DIR"], "evaluation", "context.json")
+    if os.path.exists(context_path):
+        with open(context_path, encoding="utf-8") as fh:
+            context = json.load(fh)
     by_crop = {}
     for d in kb.diseases():
         by_crop.setdefault(d["crop"], []).append(d)
@@ -185,7 +190,7 @@ def model_info():
     if os.path.exists(sources_path):
         with open(sources_path, encoding="utf-8") as fh:
             sources = json.load(fh)
-    return render_template("model.html", info=m.info(), metrics=metrics, has_cm=has_cm, by_crop=by_crop,
+    return render_template("model.html", info=m.info(), metrics=metrics, context=context, has_cm=has_cm, by_crop=by_crop,
                            extra_metrics=extra.metrics() if extra.available else None,
                            extra_by_crop=extra_by_crop, sources=sources)
 

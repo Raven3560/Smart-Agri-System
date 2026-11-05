@@ -5,7 +5,7 @@ import re
 from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from . import DEMO_EMAIL, db
+from . import db
 
 bp = Blueprint("auth", __name__)
 
@@ -94,17 +94,6 @@ def login():
             _login(user, remember=bool(request.form.get("remember")))
             return redirect(_safe_next(request.args.get("next")))
     return render_template("auth/login.html", email=email)
-
-
-@bp.route("/demo", methods=["POST"])
-def demo():
-    user = db.query("SELECT * FROM users WHERE email = ?", (DEMO_EMAIL,), one=True)
-    if user is None:
-        flash("Demo account is not available.", "error")
-        return redirect(url_for("auth.login"))
-    _login(user)
-    flash("You are using the demo account.", "info")
-    return redirect(url_for("main.dashboard"))
 
 
 @bp.route("/logout", methods=["POST"])

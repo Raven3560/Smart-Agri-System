@@ -15,7 +15,7 @@
     <div class="card-head"><h2>Team</h2><span class="small muted">Supervisor: {{ project.guide }}, {{ project.guide_role }}</span></div>
     <div class="team">
       {% for m in project.team %}
-        <div class="card flat member"><div class="avatar">{{ m.name.split(' ')[0][:1] }}{{ m.name.split(' ')[-1][:1] }}</div><strong>{{ m.name }}</strong><div class="r">{{ m.roll }}</div></div>
+        <div class="card flat member"><div class="avatar">{{ m.name.split(' ')[0][:1] }}{{ m.name.split(' ')[-1][:1] }}</div><strong>{{ m.name }}</strong><div class="r">{{ m.roll }}</div>{% if m.role %}<div class="r">{{ m.role }}</div>{% endif %}</div>
       {% endfor %}
     </div>
   </div>

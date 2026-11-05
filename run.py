@@ -32,6 +32,6 @@ if __name__ == "__main__":
             print(f"  On a phone on the same Wi-Fi: {scheme}://{ip}:{args.port}")
         except OSError:
             pass
-    print("  Demo login: demo@smartagri.local / demo1234\n")
+    print("  First time? Create an account on the Register page, then set your farm location in Profile.\n")
     app.run(host=args.host, port=args.port, debug=args.debug, threaded=True,
             ssl_context="adhoc" if args.https else None)

@@ -30,6 +30,20 @@
     <div class="alert alert-info" style="margin-bottom: 18px">{{ icon("info") }}<div>No evaluation results yet. Run <code>python ml/fetch_sample.py</code> and <code>python ml/evaluate.py --data data/plantvillage_sample</code>.</div></div>
   {% endif %}
 
+  {% if context %}
+  {% set hi = context.levels.high %}
+  <div class="card" style="margin-bottom: 18px">
+    <div class="card-head"><h3>What the crop you select adds</h3><span class="small muted">{{ context.images }} images · evaluated {{ context.evaluated_at }}</span></div>
+    <div class="grid grid-4">
+      <div class="stat"><div class="stat-label">Without crop context</div><div class="stat-value">{{ "%.1f"|format(context.accuracy_without_context * 100) }}%</div><div class="stat-sub">top-1 class of the network</div></div>
+      <div class="stat"><div class="stat-label">With the crop selected</div><div class="stat-value">{{ "%.1f"|format(context.accuracy_with_crop * 100) }}%</div><div class="stat-sub">mix-ups between crops removed</div></div>
+      <div class="stat"><div class="stat-label">High-confidence answers</div><div class="stat-value">{{ "%.1f"|format(hi.accuracy * 100) }}%</div><div class="stat-sub">correct · {{ hi.images }} of {{ context.images }} images</div></div>
+      <div class="stat"><div class="stat-label">Wrong crop selected</div><div class="stat-value">{{ "%.1f"|format(context.wrong_crop.flagged_mismatch * 100) }}%</div><div class="stat-sub">flagged as a possible mismatch</div></div>
+    </div>
+    <p class="small muted" style="margin: 10px 0 0">You choose the crop before the photo is checked, so the app only has to pick among that crop's diseases. Answers below 50% confidence are shown as "not sure" with a request for a clearer photo. Reproduce with <code>python ml/evaluate_context.py</code>.</p>
+  </div>
+  {% endif %}
+
   {% if has_cm %}
   <div class="card" style="margin-bottom: 18px">
         <div class="card-head"><h3>Confusion matrix</h3><a class="small" href="{{ url_for('main.confusion_matrix') }}" target="_blank" rel="noopener">Open full size</a></div>
